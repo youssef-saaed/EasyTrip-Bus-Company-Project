@@ -21,9 +21,15 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Zewail City of Science and Technology\Desktop\qrraylist\qrraylist\arrayList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Zewail City of Science and Technology\Desktop\qrraylist\qrraylist\arrayList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
