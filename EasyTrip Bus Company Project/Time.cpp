@@ -56,48 +56,6 @@ public:
     }
 };
 
-int main()
-{
-    //create object
 
-    Time t1(8, 45, 0);
-
-    // Display the initial time
-    cout << "Initial Time: ";
-    t1.display();
-    cout << endl;
-
-    // Add 5 minutes using operator+
-
-    cout << "Time after adding 5 minutes: ";
-
-    Time t2 = t1 + 5;
-
-    t2.display();
-
-    cout << endl;
-
-    // Add 20 minutes using operator+
-
-    cout << "Time after adding 20 minutes: ";
-
-    t2 = t2 + 20;
-
-    t2.display();
-
-    cout << endl;
-
-    // Add 65 seconds using addSeconds function
-
-    cout << "Time after adding 65 seconds: ";
-
-    t2.addSeconds(65);
-
-    t2.display();
-    cout << endl;
-
-
-
-}
 
 
