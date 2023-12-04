@@ -127,11 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\OneDrive - Zewail City of Science and Technology\Desktop\qrraylist\qrraylist\arrayList.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\OneDrive - Zewail City of Science and Technology\Desktop\qrraylist\qrraylist\arrayList.h" />
     <ClInclude Include="Time.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Helpers.h" />
+    <ClInclude Include="PriorityNode.h" />
+    <ClInclude Include="PriorityQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
