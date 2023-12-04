@@ -13,7 +13,7 @@ bool Queue<T>::isEmpty() {
 template<typename T>
 void Queue<T>::enqueue(T value) {
     if (isFull()) {
-        cout << "Queue is full" << endl;
+        // cout << "Queue is full" << endl;
         return;
     }
 
@@ -33,7 +33,7 @@ void Queue<T>::enqueue(T value) {
 template<typename T>
 Node<T>* Queue<T>::dequeue() {
     if (isEmpty()) {
-        cout << "Queue is empty" << endl;
+        // cout << "Queue is empty" << endl;
         return nullptr;
     } else {
         Node<T>* front = rear->next;
