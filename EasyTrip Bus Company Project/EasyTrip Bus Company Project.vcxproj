@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="arrayList.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
+    <ClCompile Include="QueueL.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayList.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 #include "arrayList.h"
+
 template<typename T>
 inline arrayList<T>::arrayList()
 {
