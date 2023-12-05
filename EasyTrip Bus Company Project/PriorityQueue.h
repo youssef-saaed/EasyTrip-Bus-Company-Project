@@ -3,10 +3,12 @@
 
 #include "PriorityNode.h"
 #include "Helpers.h"
+#include <iostream>
 
 #define LeftC i * 2
 #define RightC i * 2 + 1
 #define Parent i / 2
+#define MaxLifeTime 1000000
 
 template <typename T>
 class PriorityQueue
@@ -15,9 +17,9 @@ private:
     PriorityNode<T>* items;
     int MaxCapacity;
     int Size;
-    int k;
-    bool MaintainOrder(PriorityNode<T>& parent, PriorityNode<T>& child);
-    void MaintainRoot(int i);
+    int Order;
+    int PriorityHash(int priority, int order);
+    int PriorityDeHash(int priority);
 public:
     PriorityQueue(int MaxCapacity);
     bool Enqueue(T item, int priority);
@@ -27,41 +29,13 @@ public:
 };
 
 template <typename T>
-bool PriorityQueue<T>::MaintainOrder(PriorityNode<T>& parent, PriorityNode<T>& child)
-{
-    if (parent == child && parent.order > child.order)
-    {
-        Swap(parent, child);
-        return true;
-    }
-    return false;
+int PriorityQueue<T>::PriorityHash(int priority, int order) {
+    return priority * MaxLifeTime + order;
 }
 
 template <typename T>
-void PriorityQueue<T>::MaintainRoot(int i)
-{
-    if (RightC <= Size)
-    {
-        if (items[RightC].order <= items[LeftC].order)
-        {
-            if (MaintainOrder(items[i], items[RightC]))
-            {
-                MaintainRoot(RightC);
-            }
-        }
-        else
-        {
-            if (MaintainOrder(items[i], items[LeftC]))
-            {
-                MaintainRoot(LeftC);
-            }
-        }
-    }
-    else if (LeftC <= Size)
-    {
-        MaintainOrder(items[i], items[LeftC]);
-    }
-    return;
+int PriorityQueue<T>::PriorityDeHash(int priority) {
+    return priority / MaxLifeTime;
 }
 
 template <typename T>
@@ -70,7 +44,7 @@ PriorityQueue<T>::PriorityQueue(int MaxCapacity)
     this->MaxCapacity = MaxCapacity;
     items = new PriorityNode<T>[MaxCapacity + 1];
     Size = 0;
-    k = 1;
+    Order = MaxLifeTime - 1;
 }
 
 template <typename T>
@@ -88,12 +62,12 @@ bool PriorityQueue<T>::IsEmpty()
 template <typename T>
 bool PriorityQueue<T>::Enqueue(T value, int priority)
 {
-    if (Size >= MaxCapacity) {
+    if (Size >= MaxCapacity || Order < 0) {
         return false;
     }
     Size++;
-    items[Size] = PriorityNode<T>(value, priority, k);
-    k++;
+    items[Size] = PriorityNode<T>(value, PriorityHash(priority, Order));
+    Order--;
     int i = Size;
     while (Parent)
     {
@@ -115,7 +89,7 @@ bool PriorityQueue<T>::Dequeue(T& value, int& priority)
         return false;
     }
     value = items[1].value;
-    priority = items[1].priority;
+    priority = PriorityDeHash(items[1].priority);
     items[1] = items[Size];
     Size--;
     int i = 1;
@@ -126,26 +100,17 @@ bool PriorityQueue<T>::Dequeue(T& value, int& priority)
             if (items[RightC] >= items[LeftC] && items[RightC] > items[i])
             {
                 Swap(items[i], items[RightC]);
-                if (MaintainOrder(items[i], items[LeftC]))
-                {
-                    MaintainRoot(LeftC);
-                }
                 i = RightC;
                 continue;
             }
             else if (items[LeftC] >= items[RightC] && items[LeftC] > items[i])
             {
                 Swap(items[i], items[LeftC]);
-                if (MaintainOrder(items[i], items[RightC]))
-                {
-                    MaintainRoot(RightC);
-                }
                 i = LeftC;
                 continue;
             }
             else if (items[i] >= items[LeftC] && items[i] >= items[RightC])
             {
-                MaintainRoot(i);
                 break;
             }
         }
@@ -155,7 +120,6 @@ bool PriorityQueue<T>::Dequeue(T& value, int& priority)
             i = LeftC;
             continue;
         }
-        MaintainOrder(items[i], items[LeftC]);
         break;
     }
     return true;

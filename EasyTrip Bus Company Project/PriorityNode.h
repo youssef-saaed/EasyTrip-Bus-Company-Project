@@ -7,9 +7,8 @@ class PriorityNode
 public:
     T value;
     int priority;
-    int order;
     PriorityNode();
-    PriorityNode(T value, int priority, int order);
+    PriorityNode(T value, int priority);
     bool operator>(PriorityNode<T> x);
     bool operator==(PriorityNode<T> x);
     bool operator>=(PriorityNode<T> x);
@@ -37,11 +36,10 @@ template <typename T>
 PriorityNode<T>::PriorityNode()
 {
     priority = 0;
-    order = 1;
 }
 
 template <typename T>
-PriorityNode<T>::PriorityNode(T value, int priority, int order) : value(value), priority(priority), order(order)
+PriorityNode<T>::PriorityNode(T value, int priority) : value(value), priority(priority)
 {
 }
 
