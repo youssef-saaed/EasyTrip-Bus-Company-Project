@@ -126,14 +126,20 @@ bool PriorityQueue<T>::Dequeue(T& value, int& priority)
             if (items[RightC] >= items[LeftC] && items[RightC] > items[i])
             {
                 Swap(items[i], items[RightC]);
-                MaintainOrder(items[i], items[LeftC]);
+                if (MaintainOrder(items[i], items[LeftC]))
+                {
+                    MaintainRoot(LeftC);
+                }
                 i = RightC;
                 continue;
             }
             else if (items[LeftC] >= items[RightC] && items[LeftC] > items[i])
             {
                 Swap(items[i], items[LeftC]);
-                MaintainOrder(items[i], items[RightC]);
+                if (MaintainOrder(items[i], items[RightC]))
+                {
+                    MaintainRoot(RightC);
+                }
                 i = LeftC;
                 continue;
             }
