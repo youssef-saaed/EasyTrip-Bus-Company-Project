@@ -128,14 +128,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="arrayList.cpp" />
+    <ClCompile Include="Bus.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
+    <ClCompile Include="MBus.cpp" />
     <ClCompile Include="QueueL.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="WBus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayList.h" />
+    <ClInclude Include="Bus.h" />
+    <ClInclude Include="MBus.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="WBus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h" />
