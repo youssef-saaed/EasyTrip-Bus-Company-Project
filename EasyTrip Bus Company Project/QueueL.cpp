@@ -66,3 +66,14 @@ int Queue<T>::size() {
 
     return count;
 }
+
+template<typename T>
+T Queue<T>::peek() {
+    if (isEmpty()) {
+        // cout << "Queue is empty" << endl;
+        return T();
+    } else {
+        Node<T>* front = rear->next;
+        return front->data;
+    }
+}
