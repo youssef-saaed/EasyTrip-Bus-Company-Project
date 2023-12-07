@@ -23,6 +23,7 @@ public:
     Node<T>* dequeue();
     bool isFull();
     int size();
+    T peek();
 };
 
 #endif
