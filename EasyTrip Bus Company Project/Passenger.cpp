@@ -79,7 +79,7 @@ void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> Finishe
     FinishedPassengers.enqueue(*this);
 }
 
-void Passenger::caclFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
+void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
     Time gettingOffAllPassengersTime;
     while (!FinishedPassengersCopy.size() == 1) {
         gettingOffAllPassengersTime +=  FinishedPassengersCopy.dequeue()->data.getOffBusTime();
