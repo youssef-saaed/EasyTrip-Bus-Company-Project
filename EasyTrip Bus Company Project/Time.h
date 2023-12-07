@@ -21,8 +21,10 @@ public:
     bool isWorkingHours() const;
 
     string display() const;
+    int getHour();
+    int getMinute();
+    int getSecond();
 };
-
 
 
 
