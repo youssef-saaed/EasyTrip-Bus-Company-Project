@@ -45,5 +45,14 @@ string Time::display() const {
     return time;
 }
 
+int Time::getHour() {
+    return hour;
+}
 
+int Time::getMinute() {
+    return minute;
+}
 
+int Time::getSecond() {
+    return second;
+}
