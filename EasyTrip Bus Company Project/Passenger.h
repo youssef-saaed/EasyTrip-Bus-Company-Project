@@ -13,13 +13,14 @@ class Passenger {
     int priority;
     string busType;
     string passengerType;
+    string direction;
     Time StationArrivalTime;
     Time GetOnBusTime;
     Time GetOffBusTime;
     Time FinishTime;
     Time TripTime;
     public:
-    Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime=0, Time GetOnBusTime=0);
+    Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime=0, Time GetOnBusTime=0);
     void setGetOnBusTime(Time getOnBusTime);
     void setGetOffBusTime(Time getOnBusTime);
     void setFinishTime(Time finishTime);
@@ -29,6 +30,7 @@ class Passenger {
     int getEndStation();
     string getBusType();
     string getPassengerType();
+    string getDirection();
     Time getStationArrivalTime();
     Time getOnBusTime();
     Time getOffBusTime();

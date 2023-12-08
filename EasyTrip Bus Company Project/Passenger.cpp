@@ -1,12 +1,13 @@
 #include "Passenger.h"
 using namespace std;
 
-Passenger::Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+Passenger::Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
     this->passengerID = passengerID;
     this->currentStation = currentStation;
     this->endStation = endStation;
     this->priority = priority;
     this->busType = busType;
+    this->direction = direction;
     this->passengerType = passengerType;
     this->StationArrivalTime = StationArrivalTime;
 }
@@ -45,6 +46,10 @@ string Passenger::getBusType() {
 
 string Passenger::getPassengerType() {
     return this->passengerType;
+}
+
+string Passenger::getDirection() {
+    return this->direction;
 }
 
 Time Passenger::getStationArrivalTime() {

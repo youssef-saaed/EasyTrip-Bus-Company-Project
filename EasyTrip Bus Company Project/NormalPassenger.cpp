@@ -2,8 +2,8 @@
 #include "NormalPassenger.h"
 using namespace std;
 
-NormalPassenger::NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime)
-    : Passenger(passengerID, currentStation, endStation, priority, busType, passengerType, StationArrivalTime, GetOffBusTime, GetOnBusTime)
+NormalPassenger::NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime)
+    : Passenger(passengerID, currentStation, endStation, priority, busType, passengerType, direction, StationArrivalTime, GetOffBusTime, GetOnBusTime)
 {}
 
 int NormalPassenger::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW) {
