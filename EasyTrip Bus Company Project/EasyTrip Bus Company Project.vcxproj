@@ -131,6 +131,8 @@
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
     <ClCompile Include="MBus.cpp" />
+    <ClCompile Include="NormalPassenger.cpp" />
+    <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="QueueL.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="WBus.cpp" />
@@ -139,6 +141,8 @@
     <ClInclude Include="arrayList.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="MBus.h" />
+    <ClInclude Include="NormalPassenger.h" />
+    <ClInclude Include="Passenger.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="WBus.h" />

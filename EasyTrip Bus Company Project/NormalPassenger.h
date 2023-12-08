@@ -11,7 +11,7 @@ class NormalPassenger : public Passenger {
     int waitTimeMin;
     string status = "waiting";
     public:
-    NormalPassenger(int maxW, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime=0, Time GetOnBusTime=0);
+    NormalPassenger(int maxW, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
     void setwaitTime(Time waitTime);
     Time getWaitTime(); 
     int getMaxW();
