@@ -1,9 +1,8 @@
 #pragma once
 
-#include <iostream>
-# include "Time.h"
-# include "PriorityQueue.h"
-# include "Queue.h"
+#include "Time.h"
+#include "PriorityQueue.h"
+#include "Queue.h"
 using namespace std; 
 
 class Passenger {
@@ -37,7 +36,7 @@ class Passenger {
     Time getTripTime();
     int getPriority();
     void passengerBoarding(PriorityQueue<Passenger>& q);
-    void leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> FinishedPassengers);
+    /*void leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> &FinishedPassengers);*/
     void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);
     void calcTripTime(Time busMoveTime);
 };

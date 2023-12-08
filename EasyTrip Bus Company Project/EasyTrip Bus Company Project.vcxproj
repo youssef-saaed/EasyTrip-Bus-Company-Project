@@ -127,22 +127,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="arrayList.cpp" />
+    <ClCompile Include="ArrivalEvent.cpp" />
     <ClCompile Include="Bus.cpp" />
+    <ClCompile Include="BusMoveEvent.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="LeaveEvent.cpp" />
     <ClCompile Include="MBus.cpp" />
     <ClCompile Include="NormalPassenger.cpp" />
     <ClCompile Include="Passenger.cpp" />
-    <ClCompile Include="QueueL.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="WBus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayList.h" />
+    <ClInclude Include="ArrivalEvent.h" />
     <ClInclude Include="Bus.h" />
+    <ClInclude Include="BusMoveEvent.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="Events.h" />
+    <ClInclude Include="LeaveEvent.h" />
     <ClInclude Include="MBus.h" />
     <ClInclude Include="NormalPassenger.h" />
     <ClInclude Include="Passenger.h" />
+    <ClInclude Include="PassengerEvent.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="WBus.h" />

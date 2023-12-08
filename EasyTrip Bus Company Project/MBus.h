@@ -1,15 +1,13 @@
 #pragma once
 #include "Bus.h"
 #include "PriorityQueue.h"
-class Passenger {
 
-};
 class MBus : public Bus
 {
 private:
-	PriorityQueue <Passenger*> * passengers;
+	PriorityQueue<Passenger*> *passengers;
 public:
-	MBus();
+	MBus(int capacity);
 	bool GetOn(Passenger*);
 	bool GetOff(Passenger*);
 };
