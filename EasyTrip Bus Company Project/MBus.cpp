@@ -35,6 +35,11 @@ bool MBus::GetOff(Passenger*p)
 	}
 }
 
+void MBus::change_direction()
+{
+	direction = "BCW";
+}
+
 void MBus::setCurrent(int currentStation)
 {
 	this->currentStation = currentStation;
@@ -47,7 +52,3 @@ void MBus::setDestination(int destination)
 
 
 
-void WBus::change_direction()
-{
-	direction = "BCW";
-}
