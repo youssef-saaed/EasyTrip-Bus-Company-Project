@@ -2,9 +2,13 @@
 #include "PriorityQueue.h"
 
 
+
 MBus::MBus(int capacity)
 {
 	passengers = new PriorityQueue<Passenger*>(capacity);
+	direction = "FWD";
+	currentStation = 0;
+	destination = 1;
 }
 
 bool MBus::GetOn(Passenger* p)
@@ -30,3 +34,21 @@ bool MBus::GetOff(Passenger*p)
 		return false;
 	}
 }
+
+void MBus::change_direction()
+{
+	direction = "BCW";
+}
+
+void MBus::setCurrent(int currentStation)
+{
+	this->currentStation = currentStation;
+}
+
+void MBus::setDestination(int destination)
+{
+	this->destination = destination;
+}
+
+
+
