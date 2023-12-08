@@ -37,8 +37,10 @@ class Passenger {
     Time getFinishTime();
     Time getTripTime();
     int getPriority();
-    void passengerBoarding(PriorityQueue<Passenger>& q);
-    void leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> &FinishedPassengers);
+    void BoardMBus(PriorityQueue<Passenger>& MBusQ);
+    void BoardWBus(Queue<Passenger>& WBusQ);
+    void leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
+    void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
     void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);
     void calcTripTime(Time busMoveTime);
 };

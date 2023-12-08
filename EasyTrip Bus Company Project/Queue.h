@@ -16,8 +16,9 @@ private:
 public:
     Queue(int capacity);
     bool isEmpty();
-    void enqueue(T value);
+    void enqueue(T passenger);
     Node<T>* dequeue();
+    Node<T>* dequeueSpecificElement(T passenger);
     bool isFull();
     int size();
     T peek();
@@ -34,13 +35,13 @@ bool Queue<T>::isEmpty() {
 }
 
 template<typename T>
-void Queue<T>::enqueue(T value) {
+void Queue<T>::enqueue(T passenger) {
     if (isFull()) {
         return;
     }
 
     Node<T>* newNode = new Node<T>;
-    newNode->data = value;
+    newNode->data = passenger;
 
     if (isEmpty()) {
         newNode->next = newNode;
@@ -67,6 +68,42 @@ Node<T>* Queue<T>::dequeue() {
             rear->next = front->next;
         }
         return front;
+    }
+}
+
+template<typename T>
+Node<T>* Queue<T>::dequeueSpecificElement(T passenger) {
+    if (isEmpty()) {
+        return nullptr;
+    }
+    else {
+        Node<T>* current = rear->next;
+        Node<T>* previous = nullptr;
+
+        while (current != nullptr) {
+            if (current->data == passenger) {
+                if (current == rear->next) {
+                    rear->next = current->next;
+                    if (current == rear) {
+                        rear = nullptr;
+                    }
+                    delete current;
+                    return current;
+                }
+                else {
+                    previous->next = current->next;
+                    if (current == rear) {
+                        rear = previous;
+                    }
+                    delete current;
+                    return current;
+                }
+            }
+            previous = current;
+            current = current->next;
+        }
+
+        return nullptr; 
     }
 }
 

@@ -76,12 +76,21 @@ int Passenger::getPriority() {
     return this->priority;
 }
 
-void Passenger::passengerBoarding(PriorityQueue<Passenger>& q) {
-    q.Enqueue(*this, priority);
+void Passenger::BoardMBus(PriorityQueue<Passenger>& MBusQ) {
+    MBusQ.Enqueue(*this, priority);
 }
 
-void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> &FinishedPassengers) {
-    q.Dequeue(*this, priority);
+void Passenger::BoardWBus(Queue<Passenger>& WBusQ) {
+    WBusQ.enqueue(*this);
+}
+
+void Passenger::leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
+    MBusQ.Dequeue(*this, priority);
+    FinishedPassengers.enqueue(*this);
+}
+
+void Passenger::leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers) {
+    WBusQ.dequeueSpecificElement(*this);
     FinishedPassengers.enqueue(*this);
 }
 
