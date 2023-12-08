@@ -6,7 +6,6 @@ using namespace std;
 class NormalPassenger : public Passenger 
 {
 private:
-    int maxW;
     Time waitTime;
     string status = "waiting";
     public:
