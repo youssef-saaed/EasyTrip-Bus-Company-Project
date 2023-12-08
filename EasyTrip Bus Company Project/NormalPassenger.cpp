@@ -6,13 +6,8 @@ NormalPassenger::NormalPassenger(long int passengerID, int currentStation, int e
     : Passenger(passengerID, currentStation, endStation, priority, busType, passengerType, StationArrivalTime, GetOffBusTime, GetOnBusTime)
 {}
 
-void NormalPassenger::setwaitTime(Time waitTime) {
-    this->waitTime = waitTime;
-}
-
 int NormalPassenger::calcWT(Time busMoveTime, int agedPriority, int maxW) {
     Time WT = busMoveTime - getStationArrivalTime();
-    setwaitTime(WT);
     int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
     if (WTMin == maxW) changePriority(agedPriority);
     return WTMin;
