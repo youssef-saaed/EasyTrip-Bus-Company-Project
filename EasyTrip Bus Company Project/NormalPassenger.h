@@ -10,5 +10,5 @@ class NormalPassenger : public Passenger
     public:
     NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
     void changeStatus(string status);
-    int calcWT(Time busMoveTime, int agedPriority, int maxW);
+    int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW);
 };
