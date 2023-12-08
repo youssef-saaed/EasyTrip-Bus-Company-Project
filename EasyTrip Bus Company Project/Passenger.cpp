@@ -1,7 +1,8 @@
 #include "Passenger.h"
 using namespace std;
 
-Passenger::Passenger(int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+Passenger::Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+    this->passengerID = passengerID;
     this->currentStation = currentStation;
     this->endStation = endStation;
     this->priority = priority;
@@ -79,7 +80,7 @@ void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> Finishe
     FinishedPassengers.enqueue(*this);
 }
 
-void Passenger::caclFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
+void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
     Time gettingOffAllPassengersTime;
     while (!FinishedPassengersCopy.size() == 1) {
         gettingOffAllPassengersTime +=  FinishedPassengersCopy.dequeue()->data.getOffBusTime();
