@@ -3,35 +3,27 @@
 
 
 
-MBus::MBus(int capacity)
+MBus::MBus(int capacity,int currentStation , int destination)
 {
-	passengers = new PriorityQueue<Passenger*>(capacity);
+	passengers = new PriorityQueue<Passenger>(capacity);
+	Finishedpassengers = new Queue<Passenger>(capacity);
 	direction = "FWD";
-	currentStation = 0;
-	destination = 1;
+	this->currentStation = currentStation;
+	this->destination = destination;
 }
 
-bool MBus::GetOn(Passenger* p)
+void MBus::GetOn(Passenger* p)
 {
-	if (passengers->Enqueue(p, p->getPriority())) 
-	{
-		return true;
-	}
-	else 
-	{
-		return false;
+	if (p->getCurrentStation() == currentStation) {
+		p->BoardMBus(*passengers);
 	}
 }
 
-bool MBus::GetOff(Passenger*p)
+void MBus::GetOff(Passenger*p)
 {
-	int priority;
-	if (!passengers->IsEmpty()) {
-		passengers->Dequeue(p , priority);
-		return true;
-	}
-	else {
-		return false;
+	if (p->getEndStation() == currentStation)
+	{
+		p->leaveMBus(*passengers,*Finishedpassengers);
 	}
 }
 
@@ -48,6 +40,16 @@ void MBus::setCurrent(int currentStation)
 void MBus::setDestination(int destination)
 {
 	this->destination = destination;
+}
+
+string MBus::get_direction()
+{
+	return direction;
+}
+
+int MBus::get_destination()
+{
+	return destination;
 }
 
 
