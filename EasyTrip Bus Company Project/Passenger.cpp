@@ -1,7 +1,8 @@
 #include "Passenger.h"
 using namespace std;
 
-Passenger::Passenger(int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+Passenger::Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+    this->passengerID = passengerID;
     this->currentStation = currentStation;
     this->endStation = endStation;
     this->priority = priority;
