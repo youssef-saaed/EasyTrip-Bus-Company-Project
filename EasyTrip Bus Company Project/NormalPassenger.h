@@ -3,15 +3,10 @@
 #include "Passenger.h"
 using namespace std;
 
-<<<<<<< HEAD
-class NormalPassenger : public Passenger {
-    private:
-=======
 class NormalPassenger : public Passenger 
 {
 private:
     int maxW;
->>>>>>> 9dfdb5fa042d3f3e60acd68bd632b4365bf020e6
     Time waitTime;
     string status = "waiting";
     public:

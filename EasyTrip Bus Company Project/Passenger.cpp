@@ -75,11 +75,11 @@ void Passenger::passengerBoarding(PriorityQueue<Passenger>& q) {
     q.Enqueue(*this, priority);
 }
 
-//void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> &FinishedPassengers) {
-//    q.Dequeue(*this, priority);
-//    FinishedPassengers.enqueue(*this);
-//}
-//
+void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> &FinishedPassengers) {
+    q.Dequeue(*this, priority);
+    FinishedPassengers.enqueue(*this);
+}
+
 void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
     Time gettingOffAllPassengersTime;
     while (!(FinishedPassengersCopy.size() == 1)) {
