@@ -1,11 +1,13 @@
 #include "Passenger.h"
 using namespace std;
 
-Passenger::Passenger(int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+Passenger::Passenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
+    this->passengerID = passengerID;
     this->currentStation = currentStation;
     this->endStation = endStation;
     this->priority = priority;
     this->busType = busType;
+    this->direction = direction;
     this->passengerType = passengerType;
     this->StationArrivalTime = StationArrivalTime;
 }
@@ -46,6 +48,10 @@ string Passenger::getPassengerType() {
     return this->passengerType;
 }
 
+string Passenger::getDirection() {
+    return this->direction;
+}
+
 Time Passenger::getStationArrivalTime() {
     return this->StationArrivalTime;
 }
@@ -70,19 +76,28 @@ int Passenger::getPriority() {
     return this->priority;
 }
 
-void Passenger::passengerBoarding(PriorityQueue<Passenger>& q) {
-    q.Enqueue(*this, priority);
+void Passenger::BoardMBus(PriorityQueue<Passenger>& MBusQ) {
+    MBusQ.Enqueue(*this, priority);
 }
 
-void Passenger::leavingBus(PriorityQueue<Passenger>& q, Queue<Passenger> FinishedPassengers) {
-    q.Dequeue(*this, priority);
+void Passenger::BoardWBus(Queue<Passenger>& WBusQ) {
+    WBusQ.enqueue(*this);
+}
+
+void Passenger::leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
+    MBusQ.Dequeue(*this, priority);
+    FinishedPassengers.enqueue(*this);
+}
+
+void Passenger::leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers) {
+    WBusQ.dequeueSpecificElement(*this);
     FinishedPassengers.enqueue(*this);
 }
 
 void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
     Time gettingOffAllPassengersTime;
-    while (!FinishedPassengersCopy.size() == 1) {
-        gettingOffAllPassengersTime +=  FinishedPassengersCopy.dequeue()->data.getOffBusTime();
+    while (!(FinishedPassengersCopy.size() == 1)) {
+        gettingOffAllPassengersTime = gettingOffAllPassengersTime + FinishedPassengersCopy.dequeue()->data.getOffBusTime();
     }
     Time getOff = FinishedPassengersCopy.peek().GetOffBusTime;
     Time totalFT = gettingOffAllPassengersTime + busArrivalTime + getOff;

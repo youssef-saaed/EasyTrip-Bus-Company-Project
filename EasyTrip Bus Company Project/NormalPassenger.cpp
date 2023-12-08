@@ -2,29 +2,22 @@
 #include "NormalPassenger.h"
 using namespace std;
 
-NormalPassenger::NormalPassenger(int maxW, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime)
-    : Passenger(currentStation, endStation, priority, busType, passengerType, StationArrivalTime, GetOffBusTime, GetOnBusTime)
-{
-    this->maxW = maxW;
-}
+NormalPassenger::NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime)
+    : Passenger(passengerID, currentStation, endStation, priority, busType, passengerType, direction, StationArrivalTime, GetOffBusTime, GetOnBusTime)
+{}
 
-void NormalPassenger::setwaitTime(Time waitTime) {
-    this->waitTime = waitTime;
-}
-
-Time NormalPassenger::getWaitTime() {
-    return this->waitTime;
-}
-
-int NormalPassenger::getMaxW() {
-    return this->maxW;
-}
-
-void NormalPassenger::calcWT(Time busMoveTime, int agedPriority) {
-    Time WT = busMoveTime - getStationArrivalTime();
-    setwaitTime(WT);
-    int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-    if (WTMin == getMaxW()) changePriority(agedPriority);
+int NormalPassenger::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW) {
+    if (status == "moved") {
+        Time WT = busMoveTime - getStationArrivalTime();
+        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+        return WTMin;
+    }
+    else if (status == "waiting") {
+        Time WT = now - getStationArrivalTime();
+        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+        if (WTMin == maxW) changePriority(agedPriority);
+        return WTMin;
+    }
 }
 
 void NormalPassenger::changeStatus(string status) {

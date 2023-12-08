@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+
 #include <string>
 using namespace std;
 class Time {
@@ -13,6 +13,10 @@ public:
     Time(int h = 0, int m = 0, int s = 0);
 
     Time operator+(int minutes) const;
+
+    Time operator+(Time t) const;
+
+    Time operator-(Time t) const;
 
     void addSeconds(int seconds);
 

@@ -18,6 +18,33 @@ Time Time::operator+(int minutes) const {
     return outcome;
 }
 
+Time Time::operator+(Time t) const {
+    Time outcome(*this);
+    outcome.hour += t.hour;
+    outcome.minute += t.minute;
+    outcome.second += t.second;
+    outcome.handlingTime();
+    return outcome;
+}
+
+Time Time::operator-(Time t) const {
+    Time outcome(*this);
+    outcome.second -= t.second;
+    if (outcome.second < 0)
+    {
+        outcome.second = 60 + outcome.second;
+        outcome.minute--;
+    }
+    outcome.minute -= t.minute;
+    if (outcome.minute < 0)
+    {
+        outcome.minute = 60 + outcome.minute;
+        outcome.hour--;
+    }
+    outcome.hour -= t.hour;
+    return outcome;
+}
+
 void Time::addSeconds(int seconds) {
     second += seconds;
     handlingTime();
@@ -32,6 +59,7 @@ void Time::handlingTime() {
     int additionalHours = minute / 60;
     minute %= 60;
     hour += additionalHours;
+    hour = hour % 24;
 }
 
 // Function to check if the current time is working hours

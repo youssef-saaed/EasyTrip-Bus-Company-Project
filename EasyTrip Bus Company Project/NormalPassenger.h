@@ -1,20 +1,14 @@
 #pragma once
 
-#include <iostream>
 #include "Passenger.h"
 using namespace std;
 
-class NormalPassenger : public Passenger {
+class NormalPassenger : public Passenger 
+{
     private:
-    int maxW;
-    Time waitTime;
-    int waitTimeMin;
     string status = "waiting";
     public:
-    NormalPassenger(int maxW, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
-    void setwaitTime(Time waitTime);
-    Time getWaitTime(); 
-    int getMaxW();
+    NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
     void changeStatus(string status);
-    void calcWT(Time busMoveTime, int agedPriority);
+    int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW);
 };

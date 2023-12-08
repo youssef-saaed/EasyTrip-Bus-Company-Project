@@ -1,16 +1,21 @@
 #pragma once
 #include "Bus.h"
 #include "Queue.h"
-class Passenger {
+#include <string>
 
-};
 class WBus : public Bus
 {
 private:
 	Queue <Passenger*> *passengers;
+	string direction;
+	int currentStation;
+	int destination;
 public:
-	WBus();
+	WBus(int capacity);
 	bool GetOn(Passenger*);
 	bool GetOff();
+	void change_direction();
+	void setCurrent(int currentStation);
+	void setDestination(int destination);
 };
 
