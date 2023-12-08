@@ -6,15 +6,11 @@ using namespace std;
 
 class NormalPassenger : public Passenger {
     private:
-    int maxW;
     Time waitTime;
-    int waitTimeMin;
     string status = "waiting";
     public:
-    NormalPassenger(int maxW, long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
-    void setwaitTime(Time waitTime);
-    Time getWaitTime(); 
-    int getMaxW();
+    NormalPassenger(long int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime);
+    void setwaitTime(Time waitTime); 
     void changeStatus(string status);
-    void calcWT(Time busMoveTime, int agedPriority);
+    int calcWT(Time busMoveTime, int agedPriority, int maxW);
 };
