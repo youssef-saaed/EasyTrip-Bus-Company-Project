@@ -1,8 +1,7 @@
 #pragma once
-//#include "Passengers.h"
-class Passenger {
 
-};
+#include "Passenger.h"
+
 class Bus
 {
 public:

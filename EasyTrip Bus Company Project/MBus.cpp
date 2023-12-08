@@ -2,25 +2,28 @@
 #include "PriorityQueue.h"
 
 
-MBus::MBus()
+MBus::MBus(int capacity)
 {
-	PriorityQueue<Passenger*>*passengers = new PriorityQueue<Passenger*>(60);
+	passengers = new PriorityQueue<Passenger*>(capacity);
 }
 
-bool MBus::GetOn( Passenger* p)
+bool MBus::GetOn(Passenger* p)
 {
-	if (passengers->Enqueue(p, p->calculatePriority())) {
+	if (passengers->Enqueue(p, p->getPriority())) 
+	{
 		return true;
 	}
-	else {
+	else 
+	{
 		return false;
 	}
 }
 
 bool MBus::GetOff(Passenger*p)
 {
+	int priority;
 	if (!passengers->IsEmpty()) {
-		passengers->Dequeue( p , p->calculatePriority());
+		passengers->Dequeue(p , priority);
 		return true;
 	}
 	else {

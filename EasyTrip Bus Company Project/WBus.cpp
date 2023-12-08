@@ -2,9 +2,9 @@
 #include "Queue.h"
 
 
-WBus::WBus()
+WBus::WBus(int capacity)
 {
-	Queue<Passenger*>* passengers = new Queue<Passenger*>(60);
+	passengers = new Queue<Passenger*>(capacity);
 }
 
 bool WBus::GetOn(Passenger* p)

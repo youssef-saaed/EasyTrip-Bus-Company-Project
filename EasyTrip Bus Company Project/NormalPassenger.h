@@ -1,11 +1,11 @@
 #pragma once
 
-#include <iostream>
 #include "Passenger.h"
 using namespace std;
 
-class NormalPassenger : public Passenger {
-    private:
+class NormalPassenger : public Passenger 
+{
+private:
     int maxW;
     Time waitTime;
     int waitTimeMin;
