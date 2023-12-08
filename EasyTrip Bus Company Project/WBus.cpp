@@ -2,34 +2,27 @@
 #include "Queue.h"
 
 
-WBus::WBus(int capacity)
+WBus::WBus(int capacity,int currentStation,int destination)
 {
-	passengers = new Queue<Passenger*>(capacity);
+	passengers = new Queue<Passenger>(capacity);
+	Finishedpassengers = new Queue<Passenger>(capacity);
 	direction = "FWD";
-	currentStation = 0;
-	destination = 1;
+	this->currentStation = currentStation;
+	this->destination = destination;
 }
 
-bool WBus::GetOn(Passenger* p)
+void WBus::GetOn(Passenger* p)
 {
+	if (p->getCurrentStation() == currentStation) {
+		p->BoardWBus(*passengers);
+	}
 
-	if (!passengers->isFull()) {
-		passengers->enqueue(p);
-		return true;
-	}
-	else {
-		return false;
-	}
 }
 
-bool WBus::GetOff()
+void WBus::GetOff(Passenger* p)
 {
-	if (!passengers->isEmpty()) {
-		passengers->dequeue();
-		return true;
-	}
-	else {
-		return false;
+	if (p->getEndStation() == currentStation) {
+		p->leaveWBus(*passengers, *Finishedpassengers);
 	}
 }
 
@@ -41,6 +34,16 @@ void WBus::setCurrent(int currentStation)
 void WBus::setDestination(int destination)
 {
 	this->destination = destination;
+}
+
+string WBus::get_direction()
+{
+	return direction;
+}
+
+int WBus::get_destination()
+{
+	return destination;
 }
 
 void WBus::change_direction()
