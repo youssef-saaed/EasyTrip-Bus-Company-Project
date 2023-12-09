@@ -3,6 +3,7 @@
 #include "Time.h"
 #include "PriorityQueue.h"
 #include "Queue.h"
+#include "PriorityQueue2D.h"
 using namespace std; 
 
 class Passenger {
@@ -37,9 +38,9 @@ class Passenger {
     Time getFinishTime();
     Time getTripTime();
     int getPriority();
-    void BoardMBus(PriorityQueue<Passenger>& MBusQ);
+    void BoardMBus(PriorityQueue2D<Passenger>& MBusQ);
     void BoardWBus(Queue<Passenger>& WBusQ);
-    void leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
+    void leaveMBus(PriorityQueue2D<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
     void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
     void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);
     void calcTripTime(Time busMoveTime);

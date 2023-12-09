@@ -3,9 +3,9 @@
 
 
 
-MBus::MBus(int capacity,int currentStation , int destination)
+MBus::MBus(int capacity,int currentStation , int destination ,int maxStations)
 {
-	passengers = new PriorityQueue<Passenger>(capacity);
+	passengers = new PriorityQueue2D<Passenger>(capacity, maxStations);
 	Finishedpassengers = new Queue<Passenger>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
@@ -27,9 +27,10 @@ void MBus::GetOff(Passenger*p)
 	}
 }
 
-void MBus::change_direction()
+void MBus::change_direction(int capacity ,int maxStations)
 {
 	direction = "BCW";
+	passengers = new PriorityQueue2D<Passenger>(capacity, maxStations, true);
 }
 
 void MBus::setCurrent(int currentStation)
