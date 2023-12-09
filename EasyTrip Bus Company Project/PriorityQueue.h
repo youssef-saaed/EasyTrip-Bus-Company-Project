@@ -8,12 +8,12 @@
 #define LeftC i * 2
 #define RightC i * 2 + 1
 #define Parent i / 2
-#define MaxLifeTime 1000000
+#define MaxLifeTime 10000
 
 template <typename T>
 class PriorityQueue
 {
-private:
+protected:
     PriorityNode<T>* items;
     int MaxCapacity;
     int Size;
@@ -23,9 +23,9 @@ private:
 public:
     PriorityQueue(int MaxCapacity);
     bool Enqueue(T item, int priority);
-    bool Dequeue(T& item, int& priority);
+    bool Dequeue(T &item, int &priority);
     bool IsEmpty();
-    ~PriorityQueue();
+    virtual ~PriorityQueue();
 };
 
 template <typename T>

@@ -155,6 +155,7 @@
     <ClInclude Include="NormalPassenger.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PassengerEvent.h" />
+    <ClInclude Include="PriorityQueue2D.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="RestStations.h" />
     <ClInclude Include="Time.h" />
