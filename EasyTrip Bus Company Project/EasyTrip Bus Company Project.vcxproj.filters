@@ -48,13 +48,13 @@
     <ClCompile Include="WBus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basestation.cpp">
+    <ClCompile Include="Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="zerostation.cpp">
+    <ClCompile Include="StationZero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RestStations.cpp">
+    <ClCompile Include="Stations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,13 +101,16 @@
     <ClInclude Include="WBus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="basestation.h">
+    <ClInclude Include="Station.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zerostation.h">
+    <ClInclude Include="StationZero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RestStations.h">
+    <ClInclude Include="Stations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

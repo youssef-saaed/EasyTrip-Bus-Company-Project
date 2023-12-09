@@ -1,4 +1,4 @@
-#include "basestation.h"
+#include "Station.h"
 
 template<typename T>
 Station<T>::Station(int number) : stationNumber(number) {}
