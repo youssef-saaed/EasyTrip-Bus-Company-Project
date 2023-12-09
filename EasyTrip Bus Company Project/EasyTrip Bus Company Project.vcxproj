@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrivalEvent.cpp" />
-    <ClCompile Include="basestation.cpp" />
+    <ClCompile Include="Station.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="BusMoveEvent.cpp" />
     <ClCompile Include="EasyTrip Bus Company Project.cpp" />
@@ -137,15 +137,15 @@
     <ClCompile Include="MBus.cpp" />
     <ClCompile Include="NormalPassenger.cpp" />
     <ClCompile Include="Passenger.cpp" />
-    <ClCompile Include="RestStations.cpp" />
+    <ClCompile Include="Stations.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="WBus.cpp" />
-    <ClCompile Include="zerostation.cpp" />
+    <ClCompile Include="StationZero.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayList.h" />
     <ClInclude Include="ArrivalEvent.h" />
-    <ClInclude Include="basestation.h" />
+    <ClInclude Include="Station.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="BusMoveEvent.h" />
     <ClInclude Include="Event.h" />
@@ -157,10 +157,10 @@
     <ClInclude Include="PassengerEvent.h" />
     <ClInclude Include="PriorityQueue2D.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="RestStations.h" />
+    <ClInclude Include="Stations.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="WBus.h" />
-    <ClInclude Include="zerostation.h" />
+    <ClInclude Include="StationZero.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h" />
