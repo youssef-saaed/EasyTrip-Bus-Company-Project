@@ -5,7 +5,6 @@
 WBus::WBus(int capacity,int currentStation,int destination)
 {
 	passengers = new Queue<Passenger>(capacity);
-	Finishedpassengers = new Queue<Passenger>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = destination;
@@ -19,10 +18,10 @@ void WBus::GetOn(Passenger* p)
 
 }
 
-void WBus::GetOff(Passenger* p)
+void WBus::GetOff(Passenger* p, Queue<Passenger>& FinishedPassengers)
 {
 	if (p->getEndStation() == currentStation) {
-		p->leaveWBus(*passengers, *Finishedpassengers);
+		p->leaveWBus(*passengers, FinishedPassengers);
 	}
 }
 

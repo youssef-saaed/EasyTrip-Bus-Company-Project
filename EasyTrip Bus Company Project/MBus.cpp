@@ -6,7 +6,6 @@
 MBus::MBus(int capacity,int currentStation , int destination ,int maxStations)
 {
 	passengers = new PriorityQueue2D<Passenger>(capacity, maxStations);
-	Finishedpassengers = new Queue<Passenger>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = destination;
@@ -19,11 +18,11 @@ void MBus::GetOn(Passenger* p)
 	}
 }
 
-void MBus::GetOff(Passenger*p)
+void MBus::GetOff(Passenger*p, Queue<Passenger>& FinishedPassengers)
 {
 	if (p->getEndStation() == currentStation)
 	{
-		p->leaveMBus(*passengers,*Finishedpassengers);
+		p->leaveMBus(*passengers,FinishedPassengers);
 	}
 }
 
