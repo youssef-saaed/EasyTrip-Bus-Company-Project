@@ -31,4 +31,18 @@ public:
 
     void addPassengerToStation(Passenger* passenger);
     void addRecentBus(Bus* bus);
+
+    
+    void SetNumOfAvailableForwardBuses(int numOfAvailableForwardBuses);
+    void SetNumOfAvailableBackwardBuses(int numOfAvailableBackwardBuses);
+    void SetNumOfRecentBuses(int numOfRecentBuses);
+    void SetNumOfWaitingPassengers(int numOfWaitingPassengers);
+
+  
+    int GetNumOfAvailableForwardBuses() const;
+    int GetNumOfAvailableBackwardBuses() const;
+    int GetNumOfRecentBuses() const;
+    int GetNumOfWaitingPassengers() const;
+   
+   
 };
