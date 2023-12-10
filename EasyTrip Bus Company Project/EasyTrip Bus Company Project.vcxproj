@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="ArrivalEvent.cpp" />
     <ClCompile Include="Company.cpp" />
+    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Station.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="BusMoveEvent.cpp" />
