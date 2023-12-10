@@ -14,13 +14,13 @@ private:
 public:
     Station(int number, int numberOfBusesAvailable, int numberOfMovedBuses);
 
-    virtual void addBusToStation(Bus* bus);
+    void addBusToStation(Bus* bus);
 
-    virtual void removeBusFromStation();
+     void removeBusFromStation();
 
-    virtual arrayList<Bus*> getMovedBuses() const;
+     arrayList<Bus*> getMovedBuses() const;
 
-    virtual Queue<Bus*> getBusesInStation() const;
+     Queue<Bus*> getBusesInStation() const;
      void SetNumberOfAvailableBuses(int numberOfBusesAvailable);
      int GetNumberOfAvailableBuses();
 
