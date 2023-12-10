@@ -73,14 +73,35 @@ string Time::display() const {
     return time;
 }
 
-int Time::getHour() {
+int Time::getHour() const{
     return hour;
 }
 
-int Time::getMinute() {
+int Time::getMinute() const {
     return minute;
 }
 
-int Time::getSecond() {
+int Time::getSecond() const {
     return second;
+}
+
+Time Time::CalcAvgTimeOfTrip(const Time& t, int n) {
+
+    int totalMinutes = ((t.getHour() * 60) + t.getMinute());
+
+    int avgMinutes = totalMinutes / n;
+
+    int resultHour, resultMin;
+    if (avgMinutes < 60) {
+        resultHour = 0;
+        resultMin = avgMinutes;
+    }
+
+    else {
+        resultHour = avgMinutes / 60;
+        resultMin = avgMinutes % 60;
+
+    }
+
+    return Time(resultHour, resultMin);
 }

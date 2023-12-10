@@ -25,9 +25,10 @@ public:
     bool isWorkingHours() const;
 
     string display() const;
-    int getHour();
-    int getMinute();
-    int getSecond();
+    int getHour() const;
+    int getMinute() const;
+    int getSecond() const;
+    Time CalcAvgTimeOfTrip(const Time& t, int n);
 };
 
 
