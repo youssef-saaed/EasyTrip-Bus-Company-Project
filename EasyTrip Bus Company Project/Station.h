@@ -3,21 +3,22 @@
 #include "Queue.h"
 #include "arrayList.h"
 
-template<typename T>
 class Station {
 private:
     int stationNumber;
-    Queue<T*> busesInStation;
-    ArrayList<T*> movedBuses;
+    int numberOfBusesAvailable;
+    int numberOfMovedBuses;
+    Queue<Bus*> busesInStation;
+    arrayList<Bus*> movedBuses;
 
 public:
     Station(int number);
 
-    virtual void addBusToStation(T* bus);
+    virtual void addBusToStation(Bus* bus);
 
     virtual void removeBusFromStation();
 
-    virtual arrayList<T*> getMovedBuses() const;
+    virtual arrayList<Bus*> getMovedBuses() const;
 
-    virtual Queue<T*> getBusesInStation() const;
+    const Queue<Bus*>& getBusesInStation() const;
 };
