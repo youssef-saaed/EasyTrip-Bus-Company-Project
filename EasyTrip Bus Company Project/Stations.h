@@ -26,9 +26,6 @@ public:
     Queue<Bus*> getAvailableForwardBuses() const;
     Queue<Bus*> getAvailableBackwardBuses() const;
 
-   
-    arrayList<Bus*> getMovedBuses() const override;
-
     void addPassengerToStation(Passenger* passenger);
     void addRecentBus(Bus* bus);
 

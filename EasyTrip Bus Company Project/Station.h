@@ -16,13 +16,13 @@ public:
 
     void addBusToStation(Bus* bus);
 
-     void removeBusFromStation();
+    void removeBusFromStation();
 
-     arrayList<Bus*> getMovedBuses() const;
+    arrayList<Bus*> getMovedBuses() const;
 
-     Queue<Bus*> getBusesInStation() const;
-     void SetNumberOfAvailableBuses(int numberOfBusesAvailable);
-     int GetNumberOfAvailableBuses();
+    Queue<Bus*> getBusesInStation() const;
+    void SetNumberOfAvailableBuses(int numberOfBusesAvailable);
+    int GetNumberOfAvailableBuses();
 
     void SetNumberOfMovedBuses(int numberOfMovedBuses);
     int GetNumberOfMovedBuses();

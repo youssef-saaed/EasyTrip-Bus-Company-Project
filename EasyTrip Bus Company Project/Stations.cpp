@@ -11,18 +11,13 @@ Queue<Bus*> Stations::getAvailableBackwardBuses() const {
     return availableBackwardBuses;
 }
 
-
-arrayList<Bus*> Stations::getMovedBuses() const {
-    return this->Station::getMovedBuses();
-}
-
 void Stations::addPassengerToStation(Passenger* passenger) {
     NumOfWaitingPassengers++;
     waitingPassengers.Enqueue(passenger, passenger->getPriority());
 }
 
 void Stations::addRecentBus(Bus* bus) {
-    numOfRecentBuses++ ;
+    NumOfRecentBuses++ ;
     recentBuses.enqueue(bus);
 }
 

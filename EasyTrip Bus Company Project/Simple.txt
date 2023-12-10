@@ -1,0 +1,38 @@
+3 3
+2 2   
+10 15 
+1 18 11
+41 1
+32
+A WP 4:0 1 2 3 
+A WP 4:1 2 1 2 
+A NP 4:8 3 1 2 
+A SP 4:12 4 3 2 Pregnant
+A SP 4:19 5 2 3 aged
+A NP 4:20 6 2 1 
+A SP 4:26 7 3 1 aged
+A SP 4:29 8 3 1 POD
+A WP 4:29 9 3 1 
+A NP 4:38 10 3 1 
+A WP 4:38 11 1 2 
+A SP 4:41 12 2 3 POD
+A SP 4:47 13 1 3 aged
+A NP 4:55 14 1 2 
+A NP 5:1 15 2 1 
+A WP 5:11 16 2 1 
+A WP 5:19 17 1 2 
+A SP 5:29 18 1 2 Pregnant
+L 5:32 3 1
+A SP 5:38 4 3 1 POD
+A NP 5:40 5 1 3 
+A NP 5:48 6 3 2 
+A WP 5:55 7 3 2 
+L 5:55 6 2
+A WP 6:0 7 1 2 
+A NP 6:10 8 1 3 
+A NP 6:11 9 1 2 
+A SP 6:14 10 3 1 Pregnant
+A NP 6:15 11 3 2 
+A WP 6:25 12 2 3 
+A WP 6:31 13 3 2 
+A WP 6:34 14 2 3 
