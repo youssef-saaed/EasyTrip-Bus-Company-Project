@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrivalEvent.cpp" />
+    <ClCompile Include="Company.cpp" />
     <ClCompile Include="Station.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="BusMoveEvent.cpp" />
@@ -145,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="arrayList.h" />
     <ClInclude Include="ArrivalEvent.h" />
+    <ClInclude Include="Company.h" />
     <ClInclude Include="Station.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="BusMoveEvent.h" />

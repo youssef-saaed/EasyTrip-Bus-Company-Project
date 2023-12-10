@@ -57,6 +57,9 @@
     <ClCompile Include="Stations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Company.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PriorityQueue2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Company.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
