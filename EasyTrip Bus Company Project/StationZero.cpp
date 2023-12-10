@@ -1,29 +1,24 @@
 #include "Station.h"
 #include "StationZero.h"
 
-template<typename T>
-StationZero<T>::StationZero(int number) : Station<T>(number) {}
+StationZero::StationZero(int number, int numberOfBusesAvailable, int numberOfMovedBuses) : Station(number, numberOfBusesAvailable, numberOfMovedBuses) {};
 
-template<typename T>
-void StationZero<T>::addBusToStation(T* bus) {
-    this->busesInStation.enqueue(bus);
+void StationZero::addBusToStation(Bus* bus) {
+    this->getBusesInStation().enqueue(bus);
 }
 
-template<typename T>
-void StationZero<T>::removeBusFromStation() {
-    if (!this->busesInStation.isEmpty()) {
-        Node<T*>* busNode = this->busesInStation.dequeue();
-        this->movedBuses.add(busNode->data);
+void StationZero::removeBusFromStation() {
+    if (!this->getBusesInStation().isEmpty()) {
+        Node<Bus*>* busNode = this->getBusesInStation().dequeue();
+        this->getMovedBuses().push(busNode->data);
         delete busNode;
     }
 }
 
-template<typename T>
-arrayList<T*> StationZero<T>::getMovedBuses() const {
-    return this->movedBuses;
+arrayList<Bus*> StationZero::getMovedBuses() const {
+    return this->getMovedBuses();
 }
 
-template<typename T>
-Queue<T*> StationZero<T>::getBusesInStation() const {
-    return this->busesInStation;
+Queue<Bus*> StationZero::getBusesInStation() const {
+    return this->getBusesInStation();
 }

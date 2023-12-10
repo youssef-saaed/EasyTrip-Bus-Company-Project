@@ -1,16 +1,15 @@
 #pragma once
 #include "Station.h"
 
-template<typename T>
-class StationZero : public Station<T> {
+class StationZero : public Station {
 public:
-    StationZero(int number);
+    StationZero(int number, int numberOfBusesAvailable, int numberOfMovedBuses);
 
-    void addBusToStation(T* bus) override;
+    void addBusToStation(Bus* bus) override;
 
     void removeBusFromStation() override;
 
-    arrayList<T*> getMovedBuses() const override;
+    arrayList<Bus*> getMovedBuses() const override;
 
-    Queue<T*> getBusesInStation() const override;
+    Queue<Bus*> getBusesInStation() const override;
 };

@@ -8,23 +8,26 @@
 #include "PriorityQueue.h"
 
 
-template<typename T>
-class Stations : public Station<T> {
+class Stations : public Station {
 private:
     int stationNumber;
+    int NumOfAvailableForwardBuses;
+    int NumOfAvailableBackwardBuses;
+    int NumOfRecentBuses;
+    int NumOfWaitingPassengers;
     Queue<Bus*> availableForwardBuses;
     Queue<Bus*> availableBackwardBuses;
     Queue<Bus*> recentBuses;
     PriorityQueue<Passenger*> waitingPassengers;
 
 public:
-    Stations(int number);
+    Stations(int number, int numberOfBusesAvailable, int numberOfMovedBuses, int numOfAvailableForwardBuses, int numOfAvailableBackwardBuses, int numOfRecentBuses, int NumOfWaitingPassengers);
 
     Queue<Bus*> getAvailableForwardBuses() const;
     Queue<Bus*> getAvailableBackwardBuses() const;
 
    
-    arrayList<T*> getMovedBuses() const override;
+    arrayList<Bus*> getMovedBuses() const override;
 
     void addPassengerToStation(Passenger* passenger);
     void addRecentBus(Bus* bus);

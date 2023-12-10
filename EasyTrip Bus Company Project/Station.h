@@ -12,7 +12,7 @@ private:
     arrayList<Bus*> movedBuses;
 
 public:
-    Station(int number);
+    Station(int number, int numberOfBusesAvailable, int numberOfMovedBuses);
 
     virtual void addBusToStation(Bus* bus);
 
@@ -20,5 +20,5 @@ public:
 
     virtual arrayList<Bus*> getMovedBuses() const;
 
-    const Queue<Bus*>& getBusesInStation() const;
+    virtual Queue<Bus*> getBusesInStation() const;
 };
