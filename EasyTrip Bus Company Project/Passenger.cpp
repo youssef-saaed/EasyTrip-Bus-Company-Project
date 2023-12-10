@@ -112,3 +112,31 @@ void Passenger::calcTripTime(Time busMoveTime) {
     Time TT = getFinishTime() - busMoveTime;
     setTripTime(TT);
 }
+
+int Passenger::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW) {
+    if (status == "moved") {
+        Time WT = busMoveTime - getStationArrivalTime();
+        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+        setWaitTime(WT);
+        return WTMin;
+    }
+    else if (status == "waiting") {
+        Time WT = now - getStationArrivalTime();
+        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+        if ((WTMin == maxW) && getPassengerType() == "NP") changePriority(agedPriority);
+        setWaitTime(WTMin);
+        return WTMin;
+    }
+}
+
+void Passenger::changeStatus(string status) {
+    this->status = status;
+}
+
+void Passenger::setWaitTime(Time waitTime) {
+    this->WaitTime = waitTime;
+}
+
+Time Passenger::getWaitTime() {
+    return this->WaitTime;
+}
