@@ -3,6 +3,7 @@
 
 #include "Time.h"
 #include "Station.h"
+#include "StationZero.h"
 #include "Passenger.h"
 #include "arrayList.h"
 
