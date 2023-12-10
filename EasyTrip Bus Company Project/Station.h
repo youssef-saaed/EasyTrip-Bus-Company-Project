@@ -21,4 +21,9 @@ public:
     virtual arrayList<Bus*> getMovedBuses() const;
 
     virtual Queue<Bus*> getBusesInStation() const;
+     void SetNumberOfAvailableBuses(int numberOfBusesAvailable);
+     int GetNumberOfAvailableBuses();
+
+    void SetNumberOfMovedBuses(int numberOfMovedBuses);
+    int GetNumberOfMovedBuses();
 };
