@@ -105,7 +105,8 @@ void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time bus
     }
     Time getOff = FinishedPassengersCopy.peek().GetOffBusTime;
     Time totalFT = gettingOffAllPassengersTime + busArrivalTime + getOff;
-    FinishedPassengersCopy.dequeue()->data.setFinishTime(totalFT);
+    setFinishTime(totalFT);
+    FinishedPassengersCopy.dequeue();
 }
 
 void Passenger::calcTripTime(Time busMoveTime) {
