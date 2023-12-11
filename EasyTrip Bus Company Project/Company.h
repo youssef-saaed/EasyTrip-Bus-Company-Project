@@ -26,3 +26,13 @@ public:
 	~Company();	
 };
 
+Company::Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt") {
+	InputFileHandler.open(InputDirectory);
+	OutputFileHandler.open(OutputDirectory);
+}
+
+
+Company::~Company() {
+	InputFileHandler.close();
+	OutputFileHandler.close();
+}
