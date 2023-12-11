@@ -10,7 +10,7 @@ private:
     int EndStation;
     std::string PassengerType;
 public:
-    ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType);
+    ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType);
     void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers);
 };
 
