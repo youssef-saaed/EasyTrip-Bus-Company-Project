@@ -16,6 +16,7 @@ void Company::ReadInputFile() {
     InputFileHandler >> NumOfEvents;
 
     string line;
+    Events = new PriorityQueue<Event*>(NumOfEvents);
     std::getline(InputFileHandler, line);
     for (int i = 0; i < NumOfEvents; i++) {
         getline(InputFileHandler, line);
@@ -43,16 +44,17 @@ void Company::ReadInputFile() {
             passengerIDINT = stoi(passengerID);
             startStationINT = stoi(startStation);
             endStationINT = stoi(endStation);
-        
+            
+
             event = new ArrivalEvent(timeStamp, startStationINT, endStationINT, passengerIDINT, passengerType, specificPassengerType);
         } else if (eventType == 'L') {
             string timeStrL, startStationL, passengerIDL;
-            ss >> timeStr >> startStation >> passengerID;
+            ss >> timeStrL >> startStationL>> passengerIDL;
 
             int passengerIDLINT, startStationLINT;
             passengerIDLINT = stoi(passengerIDL);
             int hour, minutes;
-            size_t colonPos = timeStr.find(':');
+            size_t colonPos = timeStrL.find(':');
             if (colonPos != string::npos) {
                 string hourStr = timeStrL.substr(0, colonPos);
                 string minutesStr = timeStrL.substr(colonPos + 1);
@@ -61,6 +63,7 @@ void Company::ReadInputFile() {
                 minutes = stoi(minutesStr);
             }
             Time timeStampL(hour, minutes);
+            startStationLINT = stoi(startStationL);
             event = new LeaveEvent(timeStampL, startStationLINT, passengerIDLINT);
         }
 
@@ -73,45 +76,45 @@ void Company::ReadInputFile() {
         else if (passengerType == "NP" || passengerType == "np")  priority = 1;
 
         if (event != nullptr) {
-            Events.Enqueue(event, priority);
+            Events->Enqueue(event, priority);
         }
-    }   
+    } 
 }
 
 
-ostream& operator<<(ostream& os, const Time& timeObj) {
-    os << timeObj.display();
-    return os;
-}
+//ostream& operator<<(ostream& os, Time& timeObj) {
+//    os << timeObj.display();
+//    return os;
+//}
 
 
-void Company::ProduceOutputFile() {
-    OutputFileHandler << "FT" << "   " << "ID" << "     " << "AT" << "      " << "WT" << "      " << "TT";
-
-    int totalNP, totalSP, totalWP;
-    Time totalTT;
-    Time totalWT;
-
-    size_t finishedPassengersSize = FinishedPassengers.size();
-    for (int i=0; i < finishedPassengersSize; i++) {
-        OutputFileHandler << FinishedPassengers.peek()->getFinishTime().display() << FinishedPassengers.peek()->getPassengerID() << FinishedPassengers.peek()->getStationArrivalTime() << FinishedPassengers.peek()->getWaitTime() << FinishedPassengers.peek()->getTripTime();
-        if (FinishedPassengers.peek()->getPassengerType() == "NP") totalNP++;
-        else if (FinishedPassengers.peek()->getPassengerType() == "WP") totalWP++;
-        else totalSP++;
-
-        totalTT = totalTT + FinishedPassengers.peek()->getTripTime();
-        totalWT = totalWT + FinishedPassengers.peek()->getWaitTime();
-
-        FinishedPassengers.dequeue();
-    }
-    Time avgTT = avgTT.CalcAvgTimeOfTrip(totalTT, finishedPassengersSize);
-    Time avgWT = avgWT.CalcAvgTimeOfTrip(totalWT, finishedPassengersSize);
-
-    OutputFileHandler << "passengers: " << finishedPassengersSize << "  " << "[NP: "<<totalNP<<", SP: "<<totalSP<<", WP: "<<totalWP<<"]";
-    OutputFileHandler << "passenger Avg Wait time= " << avgWT.display();
-    OutputFileHandler << "passenger Avg trip time= " << avgTT.display();
-    OutputFileHandler << "Auto-promoted passengers: " << "%";
-    OutputFileHandler << "buses: " << NumberOfWBuses+NumberOfMBuses << "    " << "[WBus: "<<NumberOfWBuses << ", MBus: "<<NumberOfMBuses << "]";
-    OutputFileHandler << "Avg Busy time = " << "%";
-    OutputFileHandler << "Avg utilization = " << "%";
-}
+//void Company::ProduceOutputFile() {
+//    OutputFileHandler << "FT" << "   " << "ID" << "     " << "AT" << "      " << "WT" << "      " << "TT";
+//
+//    int totalNP, totalSP, totalWP;
+//    Time totalTT;
+//    Time totalWT;
+//
+//    int finishedPassengersSize = FinishedPassengers->size();
+//    for (int i=0; i < finishedPassengersSize; i++) {
+//        OutputFileHandler << FinishedPassengers->peek()->getFinishTime().display() << FinishedPassengers->peek()->getPassengerID() << FinishedPassengers->peek()->getStationArrivalTime() << FinishedPassengers->peek()->getWaitTime() << FinishedPassengers->peek()->getTripTime();
+//        if (FinishedPassengers->peek()->getPassengerType() == "NP") totalNP++;
+//        else if (FinishedPassengers->peek()->getPassengerType() == "WP") totalWP++;
+//        else totalSP++;
+//
+//        totalTT = totalTT + FinishedPassengers->peek()->getTripTime();
+//        totalWT = totalWT + FinishedPassengers->peek()->getWaitTime();
+//
+//        FinishedPassengers->dequeue();
+//    }
+//    Time avgTT = avgTT.CalcAvgTimeOfTrip(totalTT, finishedPassengersSize);
+//    Time avgWT = avgWT.CalcAvgTimeOfTrip(totalWT, finishedPassengersSize);
+//
+//    OutputFileHandler << "passengers: " << finishedPassengersSize << "  " << "[NP: "<<totalNP<<", SP: "<<totalSP<<", WP: "<<totalWP<<"]";
+//    OutputFileHandler << "passenger Avg Wait time= " << avgWT.display();
+//    OutputFileHandler << "passenger Avg trip time= " << avgTT.display();
+//    OutputFileHandler << "Auto-promoted passengers: " << "%";
+//    OutputFileHandler << "buses: " << NumberOfWBuses+NumberOfMBuses << "    " << "[WBus: "<<NumberOfWBuses << ", MBus: "<<NumberOfMBuses << "]";
+//    OutputFileHandler << "Avg Busy time = " << "%";
+//    OutputFileHandler << "Avg utilization = " << "%";
+//}

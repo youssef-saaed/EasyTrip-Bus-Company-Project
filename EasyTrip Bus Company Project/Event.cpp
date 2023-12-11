@@ -10,3 +10,8 @@ Time Event::getEventTime()
 {
     return EventTime;
 }
+
+char Event::getType()
+{
+    return Type;
+}

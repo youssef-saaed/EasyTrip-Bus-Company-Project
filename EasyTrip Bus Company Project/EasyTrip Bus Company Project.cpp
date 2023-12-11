@@ -2,10 +2,12 @@
 //
 
 #include <iostream>
+#include "Company.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Company c("Simple.txt");
+	c.Simulate();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

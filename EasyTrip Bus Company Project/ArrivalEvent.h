@@ -11,8 +11,8 @@ private:
     std::string PassengerType;
     std::string SpecialPassengerType;
 public:
-    ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType);
-    void Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &Passengers);
+    ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType = "NA");
+    void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers);
 };
 
 #endif

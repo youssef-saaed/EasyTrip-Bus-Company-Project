@@ -3,11 +3,10 @@
 #include "Time.h"
 #include "PriorityQueue.h"
 #include "Queue.h"
-#include "PriorityQueue2D.h"
 using namespace std; 
 
 class Passenger {
-    private:
+private:
     int passengerID;
     int currentStation;
     int endStation;
@@ -22,7 +21,8 @@ class Passenger {
     Time TripTime;
     Time WaitTime;
     string status = "waiting";
-    public:
+public:
+    Passenger();
     Passenger(int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime=0, Time GetOnBusTime=0);
     void setGetOnBusTime(Time getOnBusTime);
     void setGetOffBusTime(Time getOnBusTime);
@@ -43,12 +43,12 @@ class Passenger {
     Time getTripTime();
     Time getWaitTime();
     int getPriority();
-    void BoardMBus(PriorityQueue2D<Passenger>& MBusQ);
+    void BoardMBus(PriorityQueue<Passenger>& MBusQ);
     void BoardWBus(Queue<Passenger>& WBusQ);
-    void leaveMBus(PriorityQueue2D<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
-    void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
-    void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);
+    void leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
+    //void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
+    /*void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);*/
     void calcTripTime(Time busMoveTime);
-    int calcWT(PriorityQueue2D<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW);
+    /*int calcWT(PriorityQueue<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW);*/
     void changeStatus(string status);
 };

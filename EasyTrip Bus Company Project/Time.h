@@ -12,23 +12,22 @@ public:
 
     Time(int h = 0, int m = 0, int s = 0);
 
-    Time operator+(int minutes) const;
+    Time operator+(int minutes);
 
-    Time operator+(Time t) const;
-
-    Time operator-(Time t) const;
-    bool operator==(Time t) const;
+    Time operator+(Time t);
+    Time operator-(Time t);
+    bool operator==(Time t);
     void addSeconds(int seconds);
 
     void handlingTime();
 
-    bool isWorkingHours() const;
+    bool isWorkingHours();
 
-    string display() const;
-    int getHour() const;
-    int getMinute() const;
-    int getSecond() const;
-    Time CalcAvgTimeOfTrip(const Time& t, int n);
+    string display();
+    int getHour();
+    int getMinute();
+    int getSecond();
+    Time CalcAvgTimeOfTrip(Time& t, int n);
 };
 
 

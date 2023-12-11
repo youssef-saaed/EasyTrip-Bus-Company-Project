@@ -10,14 +10,14 @@ Time::Time(int h, int m, int s) {
     second = s;
 }
 // Overload + operator for adding minutes
-Time Time::operator+(int minutes) const {
+Time Time::operator+(int minutes) {
     Time outcome(*this);
     outcome.minute += minutes;
     outcome.handlingTime();
     return outcome;
 }
 
-Time Time::operator+(Time t) const {
+Time Time::operator+(Time t) {
     Time outcome(*this);
     outcome.hour += t.hour;
     outcome.minute += t.minute;
@@ -26,7 +26,7 @@ Time Time::operator+(Time t) const {
     return outcome;
 }
 
-Time Time::operator-(Time t) const {
+Time Time::operator-(Time t) {
     Time outcome(*this);
     outcome.second -= t.second;
     if (outcome.second < 0)
@@ -44,9 +44,9 @@ Time Time::operator-(Time t) const {
     return outcome;
 }
 
-bool Time::operator==(Time t) const
+bool Time::operator==(Time t)
 {
-    return (hour == t.hour && minute == t.minute && second == t.second);;
+    return (hour == t.hour && minute == t.minute && second == t.second);
 }
 
 void Time::addSeconds(int seconds) {
@@ -67,29 +67,29 @@ void Time::handlingTime() {
 }
 
 // Function to check if the current time is working hours
-bool Time::isWorkingHours() const {
+bool Time::isWorkingHours() {
     return (hour >= 4 && hour < 10);
 }
 
 // Function to display the time
-string Time::display() const {
+string Time::display() {
     string time = to_string(hour) + ":" + std::to_string(minute);
     return time;
 }
 
-int Time::getHour() const{
+int Time::getHour() {
     return hour;
 }
 
-int Time::getMinute() const {
+int Time::getMinute() {
     return minute;
 }
 
-int Time::getSecond() const {
+int Time::getSecond() {
     return second;
 }
 
-Time Time::CalcAvgTimeOfTrip(const Time& t, int n) {
+Time Time::CalcAvgTimeOfTrip(Time& t, int n) {
 
     int totalMinutes = ((t.getHour() * 60) + t.getMinute());
 

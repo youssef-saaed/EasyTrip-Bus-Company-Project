@@ -1,6 +1,17 @@
 #include "Passenger.h"
 using namespace std;
 
+Passenger::Passenger()
+{
+    this->passengerID = 0;
+    this->currentStation = 0;
+    this->endStation = 0;
+    this->priority = -1000;
+    this->busType = "NA";
+    this->direction = "NA";
+    this->passengerType = "NA";
+}
+
 Passenger::Passenger(int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime, Time GetOnBusTime) {
     this->passengerID = passengerID;
     this->currentStation = currentStation;
@@ -80,57 +91,65 @@ int Passenger::getPriority() {
     return this->priority;
 }
 
-void Passenger::BoardMBus(PriorityQueue2D<Passenger>& MBusQ) {
-    MBusQ.Enqueue2D(*this, currentStation , priority);
+void Passenger::BoardMBus(PriorityQueue<Passenger>& MBusQ) {
+    if (direction == "FWD")
+    {
+        MBusQ.Enqueue(*this,  1000000000 - currentStation);
+    }
+    else
+    {
+        MBusQ.Enqueue(*this, currentStation);
+    }
 }
 
 void Passenger::BoardWBus(Queue<Passenger>& WBusQ) {
     WBusQ.enqueue(*this);
 }
 
-void Passenger::leaveMBus(PriorityQueue2D<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
-    MBusQ.Dequeue2D(*this, endStation , priority);
+void Passenger::leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
+    int _;
+    MBusQ.Dequeue(*this, _);
     FinishedPassengers.enqueue(*this);
 }
 
-void Passenger::leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers) {
-    WBusQ.dequeueSpecificElement(*this);
-    FinishedPassengers.enqueue(*this);
-}
+//void Passenger::leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers) {
+//    WBusQ.dequeueSpecificElement(*this);
+//    FinishedPassengers.enqueue(*this);
+//}
 
-void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
-    Time gettingOffAllPassengersTime;
-    while (!(FinishedPassengersCopy.size() == 1)) {
-        gettingOffAllPassengersTime = gettingOffAllPassengersTime + FinishedPassengersCopy.dequeue()->data.getOffBusTime();
-    }
-    Time getOff = FinishedPassengersCopy.peek().GetOffBusTime;
-    Time totalFT = gettingOffAllPassengersTime + busArrivalTime + getOff;
-    setFinishTime(totalFT);
-    FinishedPassengersCopy.dequeue();
-}
+//void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
+//    Time gettingOffAllPassengersTime;
+//    while (!(FinishedPassengersCopy.size() == 1)) {
+//        gettingOffAllPassengersTime = gettingOffAllPassengersTime + FinishedPassengersCopy.dequeue()->data.getOffBusTime();
+//    }
+//    Time getOff = FinishedPassengersCopy.peek().GetOffBusTime;
+//    Time totalFT = gettingOffAllPassengersTime + busArrivalTime + getOff;
+//    setFinishTime(totalFT);
+//    FinishedPassengersCopy.dequeue();
+//}
 
 void Passenger::calcTripTime(Time busMoveTime) {
     Time TT = getFinishTime() - busMoveTime;
     setTripTime(TT);
 }
 
-int Passenger::calcWT(PriorityQueue2D<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW) {
-    if (status == "moved") {
-        Time WT = busMoveTime - getStationArrivalTime();
-        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-        setWaitTime(WT);
-        return WTMin;
-    }
-    else if (status == "waiting") {
-        Time WT = now - getStationArrivalTime();
-        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-        if ((WTMin >= maxW) && getPassengerType() == "NP") changePriority(agedPriority);
-        setWaitTime(WT);
-        WaitingPassengers.Dequeue2D(*this, endStation, priority);
-        WaitingPassengers.Enqueue2D(*this, currentStation, priority);
-        return WTMin;
-    }
-}
+//int Passenger::calcWT(PriorityQueue<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW) {
+//    if (status == "moved") {
+//        Time WT = busMoveTime - getStationArrivalTime();
+//        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+//        setWaitTime(WT);
+//        return WTMin;
+//    }
+//    else if (status == "waiting") {
+//        Time WT = now - getStationArrivalTime();
+//        int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
+//        if ((WTMin >= maxW) && getPassengerType() == "NP") changePriority(agedPriority);
+//        setWaitTime(WT);
+//        WaitingPassengers.Dequeue(*this, endStation);
+//        WaitingPassengers.Enqueue(*this, currentStation);
+//        return WTMin;
+//    }
+//}
 
 void Passenger::changeStatus(string status) {
     this->status = status;

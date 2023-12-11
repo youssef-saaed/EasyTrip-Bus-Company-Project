@@ -7,7 +7,7 @@ BusMoveEvent::BusMoveEvent(Time EventTime, int From, int To, int BusID): Event('
     this->BusID = BusID;
 }
 
-void BusMoveEvent::Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers)
+void BusMoveEvent::Execute(arrayList<Station*> &Stations, Queue<Passenger*> &Passengers)
 {
 
 }

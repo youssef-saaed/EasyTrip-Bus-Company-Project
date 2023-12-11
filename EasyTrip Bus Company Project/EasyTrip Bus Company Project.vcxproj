@@ -130,6 +130,7 @@
     <ClCompile Include="ArrivalEvent.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="Files.cpp" />
+    <ClCompile Include="PassengerEvent.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Station.cpp" />
     <ClCompile Include="Bus.cpp" />
@@ -138,7 +139,6 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="LeaveEvent.cpp" />
     <ClCompile Include="MBus.cpp" />
-    <ClCompile Include="NormalPassenger.cpp" />
     <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="Stations.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -159,7 +159,6 @@
     <ClInclude Include="NormalPassenger.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PassengerEvent.h" />
-    <ClInclude Include="PriorityQueue2D.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stations.h" />
     <ClInclude Include="Time.h" />
@@ -170,6 +169,12 @@
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="PriorityNode.h" />
     <ClInclude Include="PriorityQueue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Crowded.txt" />
+    <Text Include="Moderate.txt" />
+    <Text Include="OverCrowded.txt" />
+    <Text Include="Simple.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

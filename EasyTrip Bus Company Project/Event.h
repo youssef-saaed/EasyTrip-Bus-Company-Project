@@ -16,7 +16,8 @@ protected:
 public:
     Event(char Type, Time EventTime);
     Time getEventTime();
-    virtual void Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &FinishedPassengers) = 0;    
+    char getType();
+    virtual void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &FinishedPassengers) = 0;    
 };
 
 #endif

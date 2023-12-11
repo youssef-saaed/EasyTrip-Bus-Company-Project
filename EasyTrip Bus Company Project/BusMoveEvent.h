@@ -12,7 +12,7 @@ private:
     int BusID;
 public:
     BusMoveEvent(Time EventTime, int From, int To, int BusID);
-    void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers);    
+    void Execute(arrayList<Station*> &Stations, Queue<Passenger*> &Passengers);    
 };
 
 #endif

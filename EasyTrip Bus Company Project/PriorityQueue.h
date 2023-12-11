@@ -44,7 +44,7 @@ bool PriorityQueue<T>::Peak(T& item)
 {
     if (!IsEmpty())
     {
-        item = items[0];
+        item = items[0].value;
         return true;
     }
     return false;

@@ -73,6 +73,7 @@ void Stations::addPassengerToStation(Passenger* passenger) {
 
 bool Stations::RemovePassengerFromStation(int id)
 {
+    bool flag = false; 
     Queue<Passenger*> temp(forwardNP.getMaxCapacity());
     Node<Passenger*> *p = forwardNP.dequeue();
     while (p)
@@ -81,6 +82,7 @@ bool Stations::RemovePassengerFromStation(int id)
         {
             delete p->data;
             delete p;
+            flag = true;
         }
         else 
         {
@@ -92,6 +94,7 @@ bool Stations::RemovePassengerFromStation(int id)
     {
         forwardNP.enqueue(p->data);
     }
+    return flag;
 }
 
 void Stations::addRecentBus(Bus* bus) {
