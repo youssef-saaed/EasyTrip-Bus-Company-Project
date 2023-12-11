@@ -126,7 +126,7 @@ int Passenger::calcWT(PriorityQueue2D<Passenger>& WaitingPassengers, Time busMov
         if ((WTMin >= maxW) && getPassengerType() == "NP") changePriority(agedPriority);
         setWaitTime(WT);
         WaitingPassengers.Dequeue2D(*this, endStation, priority);
-        WaitingPassengers.Enqueue2D(*this, endStation, priority);
+        WaitingPassengers.Enqueue2D(*this, currentStation, priority);
         return WTMin;
     }
 }
