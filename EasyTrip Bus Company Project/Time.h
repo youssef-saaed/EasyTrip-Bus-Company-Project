@@ -17,7 +17,7 @@ public:
     Time operator+(Time t) const;
 
     Time operator-(Time t) const;
-
+    bool operator==(Time t) const;
     void addSeconds(int seconds);
 
     void handlingTime();

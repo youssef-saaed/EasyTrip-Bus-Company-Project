@@ -9,7 +9,6 @@ Time::Time(int h, int m, int s) {
     minute = m;
     second = s;
 }
-
 // Overload + operator for adding minutes
 Time Time::operator+(int minutes) const {
     Time outcome(*this);
@@ -43,6 +42,11 @@ Time Time::operator-(Time t) const {
     }
     outcome.hour -= t.hour;
     return outcome;
+}
+
+bool Time::operator==(Time t) const
+{
+    return (hour == t.hour && minute == t.minute && second == t.second);;
 }
 
 void Time::addSeconds(int seconds) {
