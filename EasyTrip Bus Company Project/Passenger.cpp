@@ -113,7 +113,7 @@ void Passenger::calcTripTime(Time busMoveTime) {
     setTripTime(TT);
 }
 
-int Passenger::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW) {
+int Passenger::calcWT(PriorityQueue2D<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW) {
     if (status == "moved") {
         Time WT = busMoveTime - getStationArrivalTime();
         int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
@@ -123,8 +123,10 @@ int Passenger::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW) {
     else if (status == "waiting") {
         Time WT = now - getStationArrivalTime();
         int WTMin = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-        if ((WTMin == maxW) && getPassengerType() == "NP") changePriority(agedPriority);
-        setWaitTime(WTMin);
+        if ((WTMin >= maxW) && getPassengerType() == "NP") changePriority(agedPriority);
+        setWaitTime(WT);
+        WaitingPassengers.Dequeue2D(*this, endStation, priority);
+        WaitingPassengers.Enqueue2D(*this, endStation, priority);
         return WTMin;
     }
 }
