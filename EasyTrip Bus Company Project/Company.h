@@ -8,15 +8,16 @@
 #include "PriorityQueue.h"
 #include "Event.h"
 #include "Events.h"
-
+#include "Time.h"
 class Company
 {
 private:
 	std::ifstream InputFileHandler;
 	std::ofstream OutputFileHandler;
-	Queue<Passenger*> FinishedPassengers;
-	arrayList<Station*> Stations;
-	PriorityQueue<Event*> Events;
+	Queue<Passenger*> *FinishedPassengers;
+	arrayList<Station*> *Stations;
+	PriorityQueue<Event*> *Events;
+	Time currentTime;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
 public:
 	Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt");
@@ -25,14 +26,3 @@ public:
 	void Simulate();
 	~Company();	
 };
-
-Company::Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt") {
-	InputFileHandler.open(InputDirectory);
-	OutputFileHandler.open(OutputDirectory);
-}
-
-
-Company::~Company() {
-	InputFileHandler.close();
-	OutputFileHandler.close();
-}

@@ -14,6 +14,7 @@ private:
     Time EventTime;
 public:
     Event(char Type, Time EventTime);
+    Time getEventTime();
     virtual void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers) = 0;    
 };
 
