@@ -78,7 +78,8 @@ void Company::ReadInputFile() {
     }   
 }
 
-std::ostream& operator<<(std::ostream& os, const Time& timeObj) {
+
+ostream& operator<<(ostream& os, const Time& timeObj) {
     os << timeObj.display();
     return os;
 }
