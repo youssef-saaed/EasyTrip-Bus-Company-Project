@@ -10,3 +10,8 @@ Time Event::getEventTime() const
 {
     return EventTime;
 }
+
+char Event::getType()
+{
+    return Type;
+}

@@ -20,13 +20,22 @@ Company::~Company() {
 	OutputFileHandler.close();
 }
 void Company::Simulate() {
-	for (int i = 0; i < 60; i++) {
+	while (Events!=nullptr){
 		currentTime = currentTime + 1 ;
 		Event* item;
 		Events->Peak(item);
+		
 		if (item->getEventTime() == currentTime) {
-			item->Execute(*Stations,);
-			Events->Dequeue(item,);
+			int priority;
+			item->Execute(*Stations);
+			if (item->getType() == 'A') {
+				
+
+			}
+			if (item->getType() == 'L') {
+
+			}
+			Events->Dequeue(item, priority);
 		}
 	}
 	
