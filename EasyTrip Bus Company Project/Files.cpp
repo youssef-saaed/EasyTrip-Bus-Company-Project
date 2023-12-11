@@ -34,12 +34,10 @@ void Company::ReadInputFile() {
             if (colonPos != string::npos) {
                 string hourStr = timeStr.substr(0, colonPos);
                 string minutesStr = timeStr.substr(colonPos + 1);
-
                 hour = stoi(hourStr);
                 minutes = stoi(minutesStr);
             }
             Time timeStamp(hour, minutes);
-
             int passengerIDINT, startStationINT, endStationINT;
             passengerIDINT = stoi(passengerID);
             startStationINT = stoi(startStation);
@@ -49,7 +47,7 @@ void Company::ReadInputFile() {
             event = new ArrivalEvent(timeStamp, startStationINT, endStationINT, passengerIDINT, passengerType, specificPassengerType);
         } else if (eventType == 'L') {
             string timeStrL, startStationL, passengerIDL;
-            ss >> timeStrL >> startStationL>> passengerIDL;
+            ss >> timeStrL >> passengerIDL >> startStationL;
 
             int passengerIDLINT, startStationLINT;
             passengerIDLINT = stoi(passengerIDL);

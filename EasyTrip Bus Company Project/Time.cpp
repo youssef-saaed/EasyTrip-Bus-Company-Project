@@ -49,6 +49,11 @@ bool Time::operator==(Time t)
     return (hour == t.hour && minute == t.minute && second == t.second);
 }
 
+bool Time::operator<(Time t)
+{
+    return hour < t.hour && minute < t.minute && second < t.second;
+}
+
 void Time::addSeconds(int seconds) {
     second += seconds;
     handlingTime();

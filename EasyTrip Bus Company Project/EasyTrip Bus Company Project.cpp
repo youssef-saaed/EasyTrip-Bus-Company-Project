@@ -6,7 +6,7 @@
 
 int main()
 {
-	Company c("Simple.txt");
+	Company c("OverCrowded.txt");
 	c.Simulate();
 }
 

@@ -17,6 +17,7 @@ public:
     Time operator+(Time t);
     Time operator-(Time t);
     bool operator==(Time t);
+    bool operator<(Time t);
     void addSeconds(int seconds);
 
     void handlingTime();
