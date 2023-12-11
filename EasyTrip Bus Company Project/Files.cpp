@@ -66,11 +66,11 @@ void Company::ReadInputFile() {
 
         int priority = 0;
         if (passengerType == "SP" || passengerType == "sp" ) {
-            if (specificPassengerType == "aged" || specificPassengerType == "Aged") priority = 1;
-            else if (specificPassengerType == "pod" || specificPassengerType == "POD") priority = 2;
-            else if (specificPassengerType == "pregnant" || specificPassengerType == "Pregnant")  priority = 3;
+            if (specificPassengerType == "aged" || specificPassengerType == "Aged") priority = 4;
+            else if (specificPassengerType == "pod" || specificPassengerType == "POD") priority = 3;
+            else if (specificPassengerType == "pregnant" || specificPassengerType == "Pregnant")  priority = 2;
         }
-        else if (passengerType == "NP" || passengerType == "np")  priority = 4;
+        else if (passengerType == "NP" || passengerType == "np")  priority = 1;
 
         if (event != nullptr) {
             Events.Enqueue(event, priority);
