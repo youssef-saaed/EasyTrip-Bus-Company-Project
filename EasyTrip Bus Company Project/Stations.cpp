@@ -1,7 +1,9 @@
 #include "Station.h"
 #include "Stations.h"
 
-Stations::Stations(int number, int numberOfBusesAvailable, int numberOfMovedBuses, int numOfAvailableForwardBuses, int numOfAvailableBackwardBuses, int numOfRecentBuses, int NumOfWaitingPassengers) : Station(number, numberOfBusesAvailable, numberOfMovedBuses), NumOfAvailableForwardBuses(numOfAvailableForwardBuses), NumOfAvailableBackwardBuses(numOfAvailableBackwardBuses), NumOfRecentBuses(numOfRecentBuses) , NumOfWaitingPassengers(NumOfWaitingPassengers) , availableForwardBuses(NumOfAvailableForwardBuses), availableBackwardBuses(NumOfAvailableBackwardBuses), recentBuses(NumOfRecentBuses), waitingPassengers(NumOfWaitingPassengers){};
+Stations::Stations(int number, int numberOfBusesAvailable, int numberOfBuses, int numOfAvailableForwardBuses, int numOfAvailableBackwardBuses, int numOfRecentBuses, int NumOfWaitingPassengers) : Station(number, numberOfBusesAvailable, numberOfMovedBuses), NumOfAvailableForwardBuses(numOfAvailableForwardBuses), NumOfAvailableBackwardBuses(numOfAvailableBackwardBuses), NumOfRecentBuses(numOfRecentBuses) , NumOfWaitingPassengers(NumOfWaitingPassengers) , availableForwardBuses(NumOfAvailableForwardBuses), availableBackwardBuses(NumOfAvailableBackwardBuses), recentBuses(NumOfRecentBuses), forwardNP(NumOfWaitingPassengers), backwardNP(NumOfWaitingPassengers), forwardWP(NumOfWaitingPassengers), backwardWP(NumOfWaitingPassengers), forwardPOD(NumOfWaitingPassengers), backwardPOD(NumOfWaitingPassengers), forwardAged(NumOfWaitingPassengers), backwardAged(NumOfWaitingPassengers), forwardPregnant(NumOfWaitingPassengers), backwardPregnant(NumOfWaitingPassengers)
+{
+};
 
 Queue<Bus*> Stations::getAvailableForwardBuses() const {
     return availableForwardBuses;
@@ -13,7 +15,12 @@ Queue<Bus*> Stations::getAvailableBackwardBuses() const {
 
 void Stations::addPassengerToStation(Passenger* passenger) {
     NumOfWaitingPassengers++;
-    waitingPassengers.Enqueue(passenger, passenger->getPriority());
+    if(passenger->)
+}
+
+bool Stations::RemovePassengerFromStation(int id)
+{
+    
 }
 
 void Stations::addRecentBus(Bus* bus) {

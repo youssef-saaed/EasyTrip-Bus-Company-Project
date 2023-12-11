@@ -15,7 +15,7 @@ private:
 	std::ifstream InputFileHandler;
 	std::ofstream OutputFileHandler;
 	Queue<Passenger*> *FinishedPassengers;
-	arrayList<Station*> *Stations;
+	arrayList<Stations*> *Stations;
 	PriorityQueue<Event*> *Events;
 	Time currentTime;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
