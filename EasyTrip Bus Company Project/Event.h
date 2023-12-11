@@ -3,19 +3,20 @@
 
 #include "Time.h"
 #include "Station.h"
+#include "Stations.h"
 #include "StationZero.h"
 #include "Passenger.h"
 #include "arrayList.h"
 
 class Event
 {
-private:
+protected:
     char Type;
     Time EventTime;
 public:
     Event(char Type, Time EventTime);
-    Time getEventTime() const;
-    virtual void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers) = 0;    
+    Time getEventTime();
+    virtual void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &FinishedPassengers) = 0;    
 };
 
 #endif

@@ -18,10 +18,11 @@ private:
     Queue<Bus*> availableForwardBuses;
     Queue<Bus*> availableBackwardBuses;
     Queue<Bus*> recentBuses;
-    PriorityQueue<Passenger*> waitingPassengers;
 
 public:
     Stations(int number, int numberOfBusesAvailable, int numberOfMovedBuses, int numOfAvailableForwardBuses, int numOfAvailableBackwardBuses, int numOfRecentBuses, int NumOfWaitingPassengers);
+
+    PriorityQueue<Passenger*> waitingPassengers;
 
     Queue<Bus*> getAvailableForwardBuses() const;
     Queue<Bus*> getAvailableBackwardBuses() const;
