@@ -12,11 +12,11 @@ class Event
 {
 protected:
     char Type;
-    Time EventTime;
+    Time EventTime;   
 public:
     Event(char Type, Time EventTime);
     Time getEventTime();
-    virtual void Execute(arrayList<Stations*> &StationsList, arrayList<Passenger*> &FinishedPassengers) = 0;    
+    virtual void Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &FinishedPassengers) = 0;    
 };
 
 #endif

@@ -12,7 +12,7 @@ private:
     std::string SpecialPassengerType;
 public:
     ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType);
-    void Execute(arrayList<Stations*> &StationsList, arrayList<Passenger*> &Passengers);
+    void Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &Passengers);
 };
 
 #endif

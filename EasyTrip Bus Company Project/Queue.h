@@ -19,6 +19,7 @@ public:
     void enqueue(T passenger);
     Node<T>* dequeue();
     Node<T>* dequeueSpecificElement(T passenger);
+    int getMaxCapacity();
     bool isFull();
     int size();
     T peek();
@@ -105,6 +106,12 @@ Node<T>* Queue<T>::dequeueSpecificElement(T passenger) {
 
         return nullptr; 
     }
+}
+
+template<typename T>
+inline int Queue<T>::getMaxCapacity()
+{
+    return MaxCapacity;
 }
 
 template<typename T>

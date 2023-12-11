@@ -18,6 +18,7 @@ public:
 	int find(T &element);
 	bool push(T element);
 	bool pop(T &element);
+	int Size();
 };
 
 template<typename T>
@@ -112,6 +113,12 @@ bool arrayList<T>::pop(T& element)
 	element = LookAt(size - 1);
 	remove(size - 1);
 	return true;
+}
+
+template<typename T>
+inline int arrayList<T>::Size()
+{
+	return size;
 }
 
 

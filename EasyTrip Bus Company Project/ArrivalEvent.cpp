@@ -7,7 +7,7 @@ ArrivalEvent::ArrivalEvent(Time EventTime, int StartStation, int EndStation, int
     this->SpecialPassengerType = SpecialPassengerType;
 } 
 
-void ArrivalEvent::Execute(arrayList<Stations*> &StationsList, arrayList<Passenger*> &FinishedPassengers)
+void ArrivalEvent::Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &FinishedPassengers)
 {
     int priority = 0;
     if (SpecialPassengerType == "Aged")
@@ -37,5 +37,6 @@ void ArrivalEvent::Execute(arrayList<Stations*> &StationsList, arrayList<Passeng
         busType = "WBus";
     }
     Passenger *p = new Passenger(PassengerID, StartStation, EndStation, priority, busType, SpecialPassengerType, dir, EventTime);
-    StationsList.LookAt(StartStation)->addPassengerToStation(p);
+    Stations *s = (Stations*)StationsList.LookAt(StartStation);
+    s->addPassengerToStation(p);
 }

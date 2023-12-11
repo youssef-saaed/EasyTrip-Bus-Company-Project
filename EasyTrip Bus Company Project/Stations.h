@@ -10,10 +10,6 @@
 
 class Stations : public Station {
 private:
-    int NumOfAvailableForwardBuses;
-    int NumOfAvailableBackwardBuses;
-    int NumOfRecentBuses;
-    int NumOfWaitingPassengers;
     Queue<Bus*> availableForwardBuses;
     Queue<Bus*> availableBackwardBuses;
     Queue<Bus*> recentBuses;
@@ -29,7 +25,7 @@ private:
     Queue<Passenger*> backwardPregnant;
 
 public:
-    Stations(int number, int numberOfBusesAvailable, int numberOfMovedBuses, int numOfAvailableForwardBuses, int numOfAvailableBackwardBuses, int numOfRecentBuses, int NumOfWaitingPassengers);
+    Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers);
 
 
     Queue<Bus*> getAvailableForwardBuses() const;
@@ -38,18 +34,6 @@ public:
     void addPassengerToStation(Passenger* passenger);
     bool RemovePassengerFromStation(int id);
     void addRecentBus(Bus* bus);
-
-    
-    void SetNumOfAvailableForwardBuses(int numOfAvailableForwardBuses);
-    void SetNumOfAvailableBackwardBuses(int numOfAvailableBackwardBuses);
-    void SetNumOfRecentBuses(int numOfRecentBuses);
-    void SetNumOfWaitingPassengers(int numOfWaitingPassengers);
-
-  
-    int GetNumOfAvailableForwardBuses() const;
-    int GetNumOfAvailableBackwardBuses() const;
-    int GetNumOfRecentBuses() const;
-    int GetNumOfWaitingPassengers() const;
    
    
 };

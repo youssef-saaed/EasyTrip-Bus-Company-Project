@@ -4,8 +4,8 @@ LeaveEvent::LeaveEvent(Time EventTime, int StartStation, int PassengerID) : Pass
 {
 } 
 
-void LeaveEvent::Execute(arrayList<Stations*> &StationsList, arrayList<Passenger*> &Passengers)
+void LeaveEvent::Execute(arrayList<Station*> &StationsList, arrayList<Passenger*> &Passengers)
 {
-	Stations *curr = StationsList.LookAt(StartStation);
-	while (curr.)
+	Stations *s = (Stations*)StationsList.LookAt(StartStation);
+	s->RemovePassengerFromStation(PassengerID);
 }

@@ -5,7 +5,6 @@
 
 class Bus
 {
-
 public:
 
 	virtual void GetOn(Passenger* p) = 0;
