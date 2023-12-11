@@ -24,6 +24,7 @@ public:
     PriorityQueue(int MaxCapacity);
     bool Enqueue(T item, int priority);
     bool Dequeue(T &item, int &priority);
+    bool Peak(T& item);
     bool IsEmpty();
     virtual ~PriorityQueue();
 };
@@ -36,6 +37,17 @@ int PriorityQueue<T>::PriorityHash(int priority, int order) {
 template <typename T>
 int PriorityQueue<T>::PriorityDeHash(int priority) {
     return priority / MaxLifeTime;
+}
+
+template <typename T>
+bool PriorityQueue<T>::Peak(T& item)
+{
+    if (!IsEmpty())
+    {
+        item = items[0];
+        return true;
+    }
+    return false;
 }
 
 template <typename T>

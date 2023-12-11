@@ -44,7 +44,7 @@ void Company::ReadInputFile() {
             startStationINT = stoi(startStation);
             endStationINT = stoi(endStation);
         
-            event = new ArrivalEvent(timeStamp, startStationINT, endStationINT, passengerIDINT, passengerType);
+            event = new ArrivalEvent(timeStamp, startStationINT, endStationINT, passengerIDINT, passengerType, specificPassengerType);
         } else if (eventType == 'L') {
             string timeStrL, startStationL, passengerIDL;
             ss >> timeStr >> startStation >> passengerID;
