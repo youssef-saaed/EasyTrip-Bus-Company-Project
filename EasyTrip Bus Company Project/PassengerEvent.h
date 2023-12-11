@@ -10,7 +10,7 @@ protected:
     int PassengerID;
 public:
     PassengerEvent(char Type, Time EventTime, int StartStation, int PassengerID);
-    virtual void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &FinishedPassengers) = 0;    
+    virtual void Execute(arrayList<Stations*> &StationsList, arrayList<Passenger*> &FinishedPassengers) = 0;    
 };
 
 #endif

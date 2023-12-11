@@ -7,7 +7,7 @@ class LeaveEvent : public PassengerEvent
 {
 public:
     LeaveEvent(Time EventTime, int StartStation, int PassengerID);
-    void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers);
+    void Execute(arrayList<Stations*> &Stations, arrayList<Passenger*> &Passengers);
 };
 
 #endif
