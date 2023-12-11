@@ -49,6 +49,6 @@ class Passenger {
     void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
     void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);
     void calcTripTime(Time busMoveTime);
-    int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW);
+    int calcWT(PriorityQueue2D<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW);
     void changeStatus(string status);
 };
