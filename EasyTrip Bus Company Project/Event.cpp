@@ -6,7 +6,7 @@ Event::Event(char Type, Time EventTime)
     this->EventTime = EventTime;
 }
 
-Time Event::getEventTime()
+Time Event::getEventTime() const
 {
     return EventTime;
 }

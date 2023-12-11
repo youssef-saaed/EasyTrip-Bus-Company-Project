@@ -1,5 +1,6 @@
 #include "Company.h"
-
+using namespace std;
+#include <iostream>
 
 Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	InputFileHandler.open(InputDirectory);
@@ -21,7 +22,12 @@ Company::~Company() {
 void Company::Simulate() {
 	for (int i = 0; i < 60; i++) {
 		currentTime = currentTime + 1 ;
-		if ()
+		Event* item;
+		Events->Peak(item);
+		if (item->getEventTime() == currentTime) {
+			item->Execute(*Stations,);
+			Events->Dequeue(item,);
+		}
 	}
 	
 }
