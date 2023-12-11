@@ -9,6 +9,7 @@ class ArrivalEvent : public PassengerEvent
 private:
     int EndStation;
     std::string PassengerType;
+    std::string SpecialPassengerType;
 public:
     ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType);
     void Execute(arrayList<Station*> &Stations, arrayList<Passenger*> &Passengers);

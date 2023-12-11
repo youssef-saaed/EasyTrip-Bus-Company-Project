@@ -5,7 +5,7 @@
 
 class PassengerEvent : public Event
 {
-private:
+protected:
     int StartStation;
     int PassengerID;
 public:
