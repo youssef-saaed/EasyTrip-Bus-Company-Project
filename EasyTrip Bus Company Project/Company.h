@@ -9,7 +9,9 @@
 #include "Event.h"
 #include "Events.h"
 #include "Time.h"
-
+#include "Bus.h"
+#include "MBus.h"
+#include "WBus.h"
 
 class Company
 {
@@ -18,12 +20,21 @@ private:
 	std::ofstream OutputFileHandler;
 	Queue<Passenger*> *FinishedPassengers;
 	arrayList<Station*> *StationsList;
+	Queue<Bus*> *Station0;
 	PriorityQueue<Event*> *Events;
+	Queue<Bus*> *WBusCheckup;
+	Queue<Bus*> *MBusCheckup;
+	Queue<Bus*> *WBusMoving;
+	Queue<Bus*> *MBusMoving;
 	Time currentTime;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
 public:
 	Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt");
 	void ReadInputFile();
+	void initialize();
+	void calcFinishTime(Time busArrivalTime, Passenger* p);
+	void calcTripTime(Time busMoveTime, Passenger* p);
+	int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, const Passenger p);
 	/*void ProduceOutputFile();*/
 	void Simulate();
 	~Company();	
