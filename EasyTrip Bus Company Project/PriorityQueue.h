@@ -3,7 +3,6 @@
 
 #include "PriorityNode.h"
 #include "Helpers.h"
-#include <iostream>
 
 #define LeftC i * 2
 #define RightC i * 2 + 1

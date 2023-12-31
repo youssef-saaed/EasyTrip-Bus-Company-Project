@@ -34,17 +34,22 @@ public:
     int getCurrentStation();
     int getEndStation();
     string getBusType();
-    string getPassengerType();
+    string getPassengerType() const;
     string getDirection();
-    Time getStationArrivalTime();
+    Time getStationArrivalTime() const;
     Time getOnBusTime();
     Time getOffBusTime();
     Time getFinishTime();
     Time getTripTime();
-    Time getWaitTime();
+    Time getWaitTime() const;
     int getPriority();
     /*void calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime);*/
     void calcTripTime(Time busMoveTime);
     /*int calcWT(PriorityQueue<Passenger>& WaitingPassengers, Time busMoveTime, Time now, int agedPriority, int maxW);*/
+    string getStatus() const;
+    void BoardMBus(PriorityQueue<Passenger>& MBusQ);
+    void BoardWBus(Queue<Passenger>& WBusQ);
+    void leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers);
+    //void leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers);
     void changeStatus(string status);
 };
