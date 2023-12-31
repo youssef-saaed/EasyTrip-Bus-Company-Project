@@ -95,27 +95,6 @@ string Passenger::getStatus() const {
     return this->status;
 }
 
-void Passenger::BoardMBus(PriorityQueue<Passenger>& MBusQ) {
-    if (direction == "FWD")
-    {
-        MBusQ.Enqueue(*this,  1000000000 - currentStation);
-    }
-    else
-    {
-        MBusQ.Enqueue(*this, currentStation);
-    }
-}
-
-void Passenger::BoardWBus(Queue<Passenger>& WBusQ) {
-    WBusQ.enqueue(*this);
-}
-
-void Passenger::leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
-    int _;
-    MBusQ.Dequeue(*this, _);
-    FinishedPassengers.enqueue(*this);
-}
-
 
 void Passenger::changeStatus(string status) {
     this->status = status;

@@ -44,7 +44,7 @@ void Stations::addPassengerToStation(Passenger* passenger) {
         }
         else
         {
-            backwardWP.enqueue(passenger);
+            backwardSP.enqueue(passenger);
         }
     }
     else if (passenger->getPassengerType() == "NP")
