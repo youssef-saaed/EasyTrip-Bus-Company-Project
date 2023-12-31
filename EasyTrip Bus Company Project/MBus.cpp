@@ -11,20 +11,29 @@ MBus::MBus(int capacity,int currentStation , int destination ,int maxStations)
 	this->destination = destination;
 }
 
-//void MBus::GetOn(Passenger* p)
-//{
-//	if (p->getCurrentStation() == currentStation) {
-//		p->BoardMBus(*passengers);
-//	}
-//}
-//
-//void MBus::GetOff(Passenger*p, Queue<Passenger>& FinishedPassengers)
-//{
-//	if (p->getEndStation() == currentStation)
-//	{
-//		p->leaveMBus(*passengers,FinishedPassengers);
-//	}
-//}
+void MBus::GetOn(Passenger* p)
+{
+	if (p->getCurrentStation() == currentStation) {
+		if (direction == "FWD")
+		{
+			passengers->Enqueue(*p, 1000-p->getEndStation());
+		}
+		else
+		{
+			passengers->Enqueue(*p, p->getEndStation());
+		}
+	}
+}
+
+void MBus::GetOff(Passenger*p, Queue<Passenger>& FinishedPassengers)
+{
+	if (p->getEndStation() == currentStation)
+	{
+		int _;
+		passengers->Dequeue(*p, _);
+		FinishedPassengers.enqueue(*p);
+	}
+}
 
 void MBus::change_direction(int capacity ,int maxStations)
 {

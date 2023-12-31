@@ -18,33 +18,33 @@ void Stations::addPassengerToStation(Passenger* passenger) {
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardPOD.enqueue(passenger);
+            forwardSP.enqueue(passenger);
         }
         else
         {
-            backwardPOD.enqueue(passenger);
+            backwardSP.enqueue(passenger);
         }
     }
     else if (passenger->getPassengerType() == "aged")
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardAged.enqueue(passenger);
+            forwardSP.enqueue(passenger);
         }
         else
         {
-            backwardAged.enqueue(passenger);
+            backwardSP.enqueue(passenger);
         }
     }
     else if (passenger->getPassengerType() == "Pregnant")
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardPregnant.enqueue(passenger);
+            forwardSP.enqueue(passenger);
         }
         else
         {
-            backwardPregnant.enqueue(passenger);
+            backwardWP.enqueue(passenger);
         }
     }
     else if (passenger->getPassengerType() == "NP")

@@ -91,31 +91,7 @@ int Passenger::getPriority() {
     return this->priority;
 }
 
-void Passenger::BoardMBus(PriorityQueue<Passenger>& MBusQ) {
-    if (direction == "FWD")
-    {
-        MBusQ.Enqueue(*this,  1000000000 - currentStation);
-    }
-    else
-    {
-        MBusQ.Enqueue(*this, currentStation);
-    }
-}
 
-void Passenger::BoardWBus(Queue<Passenger>& WBusQ) {
-    WBusQ.enqueue(*this);
-}
-
-void Passenger::leaveMBus(PriorityQueue<Passenger>& MBusQ, Queue<Passenger> &FinishedPassengers) {
-    int _;
-    MBusQ.Dequeue(*this, _);
-    FinishedPassengers.enqueue(*this);
-}
-
-//void Passenger::leaveWBus(Queue<Passenger>& WBusQ, Queue<Passenger> &FinishedPassengers) {
-//    WBusQ.dequeueSpecificElement(*this);
-//    FinishedPassengers.enqueue(*this);
-//}
 
 //void Passenger::calcFinishTime(Queue<Passenger> FinishedPassengersCopy, Time busArrivalTime) {
 //    Time gettingOffAllPassengersTime;

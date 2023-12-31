@@ -17,12 +17,9 @@ private:
     Queue<Passenger*> backwardNP;
     Queue<Passenger*> forwardWP;
     Queue<Passenger*> backwardWP;
-    Queue<Passenger*> forwardPOD;
-    Queue<Passenger*> backwardPOD;
-    Queue<Passenger*> forwardAged;
-    Queue<Passenger*> backwardAged;
-    Queue<Passenger*> forwardPregnant;
-    Queue<Passenger*> backwardPregnant;
+    Queue<Passenger*> forwardSP;
+    Queue<Passenger*> backwardSP;
+
 
 public:
     Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers);

@@ -12,8 +12,8 @@ private:
 	int destination;
 public:
 	MBus(int capacity, int currentStation, int destination, int maxStations);
-	/*void GetOn(Passenger*p);
-	void GetOff(Passenger*p, Queue<Passenger> & FinishedPassengers );*/
+	void GetOn(Passenger*p);
+	void GetOff(Passenger*p, Queue<Passenger> & FinishedPassengers );
 	void change_direction(int capacity, int maxStations);
 	void setCurrent(int currentStation);
 	void setDestination(int destination);

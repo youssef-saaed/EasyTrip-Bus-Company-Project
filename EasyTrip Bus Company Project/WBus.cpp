@@ -4,26 +4,36 @@
 
 WBus::WBus(int capacity,int currentStation,int destination)
 {
-	passengers = new Queue<Passenger>(capacity);
+	passengers = new PriorityQueue<Passenger>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = destination;
 }
 
-//void WBus::GetOn(Passenger* p)
-//{
-//	if (p->getCurrentStation() == currentStation) {
-//		p->BoardWBus(*passengers);
-//	}
-//
-//}
 
-//void WBus::GetOff(Passenger* p, Queue<Passenger>& FinishedPassengers)
-//{
-//	if (p->getEndStation() == currentStation) {
-//		p->leaveWBus(*passengers, FinishedPassengers);
-//	}
-//}
+void WBus::GetOn(Passenger* p)
+{
+	if (p->getCurrentStation() == currentStation) {
+		if (direction == "FWD")
+		{
+			passengers->Enqueue(*p, 1000 - p->getEndStation());
+		}
+		else
+		{
+			passengers->Enqueue(*p, p->getEndStation());
+		}
+	}
+}
+
+void WBus::GetOff(Passenger* p, Queue<Passenger>& FinishedPassengers)
+{
+	if (p->getEndStation() == currentStation)
+	{
+		int _;
+		passengers->Dequeue(*p, _);
+		FinishedPassengers.enqueue(*p);
+	}
+}
 
 void WBus::setCurrent(int currentStation)
 {
