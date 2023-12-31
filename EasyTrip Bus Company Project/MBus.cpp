@@ -25,13 +25,12 @@ void MBus::GetOn(Passenger* p)
 	}
 }
 
-void MBus::GetOff(Passenger*p, Queue<Passenger>& FinishedPassengers)
+void MBus::GetOff(Passenger*p)
 {
 	if (p->getEndStation() == currentStation)
 	{
 		int _;
 		passengers->Dequeue(*p, _);
-		FinishedPassengers.enqueue(*p);
 	}
 }
 
