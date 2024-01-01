@@ -4,6 +4,7 @@ using namespace std;
 Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	InputFileHandler.open(InputDirectory);
 	ReadInputFile();
+	BusesEvents = new Queue<BusMoveEvent*>(NumberOfMBuses + NumberOfWBuses);
 	Time currentTime = Time(4, 0, 0);
 	FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
 	StationsList = new arrayList<Station*>(NumberOfStation + 1);
