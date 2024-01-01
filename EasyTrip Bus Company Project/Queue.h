@@ -18,7 +18,7 @@ public:
     Queue(int capacity);
     bool isEmpty();
     void enqueue(T passenger);
-    Node<T>* dequeue();
+    bool dequeue(T& value);
     int getMaxCapacity();
     bool isFull();
     int size();
@@ -56,7 +56,7 @@ void Queue<T>::enqueue(T passenger) {
 }
 
 template<typename T>
-Node<T>* Queue<T>::dequeue() {
+bool Queue<T>::dequeue(T& value) {
     if (isEmpty()) {
         return nullptr;
     }
@@ -68,7 +68,9 @@ Node<T>* Queue<T>::dequeue() {
         else {
             rear->next = front->next;
         }
-        return front;
+        value = front->data;
+        delete front;
+        return true;
     }
 }
 
