@@ -25,13 +25,12 @@ void WBus::GetOn(Passenger* p)
 	}
 }
 
-void WBus::GetOff(Passenger* p, Queue<Passenger>& FinishedPassengers)
+void WBus::GetOff(Passenger* p)
 {
 	if (p->getEndStation() == currentStation)
 	{
 		int _;
 		passengers->Dequeue(*p, _);
-		FinishedPassengers.enqueue(*p);
 	}
 }
 

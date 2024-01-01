@@ -4,10 +4,10 @@ BusMoveEvent::BusMoveEvent(Time EventTime, int From, int To, int BusID): Event('
 {  
     this->From = From;
     this->To = To;
-    this->BusID = BusID;
+    /*this->BusID = BusID;*/
 }
 
-void BusMoveEvent::Execute(arrayList<Station*> &Stations, Queue<Passenger*> &Passengers)
+void BusMoveEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers)
 {
-
+    //StationsList.LookAt(To).
 }

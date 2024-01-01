@@ -17,13 +17,13 @@ void Company::ReadInputFile() {
     InputFileHandler >> NumOfEvents;
 
     string line;
-    Events = new PriorityQueue<Event*>(NumOfEvents);
+    PassengersEvents = new Queue<PassengerEvent*>(NumOfEvents);
     std::getline(InputFileHandler, line);
     for (int i = 0; i < NumOfEvents; i++) {
         getline(InputFileHandler, line);
         stringstream ss(line);
 
-        Event* event = nullptr;
+        PassengerEvent* event = nullptr;
         char eventType;
         string passengerType, timeStr, passengerID, startStation, endStation, specificPassengerType;
         ss >> eventType;
@@ -66,16 +66,9 @@ void Company::ReadInputFile() {
             event = new LeaveEvent(timeStampL, startStationLINT, passengerIDLINT);
         }
 
-        int priority = 0;
-        if (passengerType == "SP" || passengerType == "sp" ) {
-            if (specificPassengerType == "aged" || specificPassengerType == "Aged") priority = 4;
-            else if (specificPassengerType == "pod" || specificPassengerType == "POD") priority = 3;
-            else if (specificPassengerType == "pregnant" || specificPassengerType == "Pregnant")  priority = 2;
-        }
-        else if (passengerType == "NP" || passengerType == "np")  priority = 1;
 
         if (event != nullptr) {
-            Events->Enqueue(event, priority);
+            PassengersEvents->enqueue(event);
         }
     } 
 }

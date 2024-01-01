@@ -4,6 +4,7 @@ using namespace std;
 Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	InputFileHandler.open(InputDirectory);
 	ReadInputFile();
+	BusesEvents = new Queue<BusMoveEvent*>(NumberOfMBuses + NumberOfWBuses);
 	Time currentTime = Time(4, 0, 0);
 	FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
 	StationsList = new arrayList<Station*>(NumberOfStation + 1);
@@ -21,13 +22,20 @@ Company::~Company() {
 	/*OutputFileHandler.close();*/
 }
 void Company::Simulate() {
-	Event* item;
-	Events->Peak(item);
-	while (!Events->IsEmpty()) {
-		while (Events->Peak(item) && item->getEventTime() == currentTime) {
-			int priority;
-			item->Execute(*StationsList, *FinishedPassengers);
-			Events->Dequeue(item, priority);
+	BusMoveEvent *BEvent;
+	PassengerEvent *PEvent;
+	PassengersEvents->peek(PEvent);
+	BusesEvents->peek(BEvent);
+	while (!PassengersEvents->isEmpty() && !BusesEvents->isEmpty()) {
+		while (PassengersEvents->peek(PEvent) && PEvent->getEventTime() == currentTime) {
+			void *DelNode = PassengersEvents->dequeue();
+			PEvent->Execute(*StationsList, *FinishedPassengers);
+			delete DelNode;
+		}
+		while (BusesEvents->peek(BEvent) && BEvent->getEventTime() == currentTime) {
+			void* DelNode = BusesEvents->dequeue();
+			BEvent->Execute(*StationsList, *FinishedPassengers);
+			delete DelNode;
 		}
 		currentTime = currentTime + 1;
 

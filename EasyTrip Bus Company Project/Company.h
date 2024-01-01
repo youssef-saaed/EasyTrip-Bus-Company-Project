@@ -21,7 +21,8 @@ private:
 	Queue<Passenger*> *FinishedPassengers;
 	arrayList<Station*> *StationsList;
 	Queue<Bus*> *Station0;
-	PriorityQueue<Event*> *Events;
+	Queue<PassengerEvent*> *PassengersEvents;
+	Queue<BusMoveEvent*> *BusesEvents;
 	Queue<Bus*> *WBusCheckup;
 	Queue<Bus*> *MBusCheckup;
 	Queue<Bus*> *WBusMoving;
