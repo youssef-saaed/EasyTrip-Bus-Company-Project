@@ -28,14 +28,12 @@ void Company::Simulate() {
 	BusesEvents->peek(BEvent);
 	while (!PassengersEvents->isEmpty() && !BusesEvents->isEmpty()) {
 		while (PassengersEvents->peek(PEvent) && PEvent->getEventTime() == currentTime) {
-			void *DelNode = PassengersEvents->dequeue();
+			PassengersEvents->dequeue(PEvent);
 			PEvent->Execute(*StationsList, *FinishedPassengers);
-			delete DelNode;
 		}
 		while (BusesEvents->peek(BEvent) && BEvent->getEventTime() == currentTime) {
-			void* DelNode = BusesEvents->dequeue();
+			BusesEvents->dequeue(BEvent);
 			BEvent->Execute(*StationsList, *FinishedPassengers);
-			delete DelNode;
 		}
 		currentTime = currentTime + 1;
 
