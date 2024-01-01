@@ -58,7 +58,7 @@ void Queue<T>::enqueue(T passenger) {
 template<typename T>
 bool Queue<T>::dequeue(T& value) {
     if (isEmpty()) {
-        return nullptr;
+        return false;
     }
     else {
         Node<T>* front = rear->next;
