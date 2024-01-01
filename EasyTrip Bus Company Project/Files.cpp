@@ -66,13 +66,6 @@ void Company::ReadInputFile() {
             event = new LeaveEvent(timeStampL, startStationLINT, passengerIDLINT);
         }
 
-        /*int priority = 0;
-        if (passengerType == "SP" || passengerType == "sp" ) {
-            if (specificPassengerType == "aged" || specificPassengerType == "Aged") priority = 4;
-            else if (specificPassengerType == "pod" || specificPassengerType == "POD") priority = 3;
-            else if (specificPassengerType == "pregnant" || specificPassengerType == "Pregnant")  priority = 2;
-        }
-        else if (passengerType == "NP" || passengerType == "np")  priority = 1;*/
 
         if (event != nullptr) {
             PassengersEvents->enqueue(event);
