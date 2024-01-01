@@ -75,24 +75,25 @@ bool Stations::RemovePassengerFromStation(int id)
 {
     bool flag = false; 
     Queue<Passenger*> temp(forwardNP.getMaxCapacity());
-    Node<Passenger*> *p = forwardNP.dequeue();
+    Passenger* p;
+    forwardNP.dequeue(p);
     while (p)
     {
-        if (p->data->getPassengerID() == id)
+        if (p->getPassengerID() == id)
         {
-            delete p->data;
             delete p;
             flag = true;
         }
         else 
         {
-            temp.enqueue(p->data);
+            temp.enqueue(p);
         }
     }
-    p = temp.dequeue();
+
+    temp.dequeue(p);
     while (p)
     {
-        forwardNP.enqueue(p->data);
+        forwardNP.enqueue(p);
     }
     return flag;
 }
