@@ -18,5 +18,6 @@ public:
 	void setDestination(int destination);
 	string get_direction();
 	int get_destination();
+	int get_current();
 };
 

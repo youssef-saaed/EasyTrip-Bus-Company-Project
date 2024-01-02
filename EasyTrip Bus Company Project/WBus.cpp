@@ -54,4 +54,9 @@ int WBus::get_destination()
 	return destination;
 }
 
+int WBus::get_current()
+{
+	return currentStation;
+}
+
 

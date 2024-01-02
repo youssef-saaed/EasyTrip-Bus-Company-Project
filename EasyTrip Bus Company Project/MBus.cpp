@@ -55,5 +55,10 @@ int MBus::get_destination()
 	return destination;
 }
 
+int MBus::get_current()
+{
+	return currentStation;
+}
+
 
 
