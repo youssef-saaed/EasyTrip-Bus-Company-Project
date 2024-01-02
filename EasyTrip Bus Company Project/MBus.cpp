@@ -34,11 +34,6 @@ void MBus::GetOff(Passenger*p)
 	}
 }
 
-void MBus::change_direction(int capacity ,int maxStations)
-{
-	direction = "BCW";
-	passengers = new PriorityQueue<Passenger>(capacity);
-}
 
 void MBus::setCurrent(int currentStation)
 {

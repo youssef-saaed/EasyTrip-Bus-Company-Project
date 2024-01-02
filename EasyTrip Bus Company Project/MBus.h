@@ -14,7 +14,6 @@ public:
 	MBus(int capacity, int currentStation, int destination, int maxStations);
 	void GetOn(Passenger*p);
 	void GetOff(Passenger*p );
-	void change_direction(int capacity, int maxStations);
 	void setCurrent(int currentStation);
 	void setDestination(int destination);
 	string get_direction();

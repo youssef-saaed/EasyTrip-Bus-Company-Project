@@ -54,9 +54,4 @@ int WBus::get_destination()
 	return destination;
 }
 
-void WBus::change_direction()
-{
-	direction = "BCW";
-}
-
 

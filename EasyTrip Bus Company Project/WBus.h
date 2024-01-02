@@ -14,7 +14,6 @@ public:
 	WBus(int capacity, int currentStation, int destination);
 	void GetOn(Passenger*p);
 	void GetOff(Passenger* p);
-	void change_direction();
 	void setCurrent(int currentStation);
 	void setDestination(int destination);
 	string get_direction();
