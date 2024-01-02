@@ -11,7 +11,7 @@ private:
 	int currentStation;
 	int destination;
 public:
-	WBus(int capacity, int currentStation, int destination);
+	WBus(int capacity, int currentStation, int destination=0);
 	void GetOn(Passenger*p);
 	void GetOff(Passenger* p);
 	void setCurrent(int currentStation);

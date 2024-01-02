@@ -9,9 +9,9 @@ void StationZero::addBusToStation(Bus* bus) {
 
 void StationZero::removeBusFromStation() {
     if (!busesInStation.isEmpty()) {
-        Node<Bus*>* busNode = busesInStation.dequeue();
-        movedBuses.push(busNode->data);
-        delete busNode->data;
+        Bus* busNode;
+        busesInStation.dequeue(busNode);
+        movedBuses.push(busNode);
         delete busNode;
     }
 }

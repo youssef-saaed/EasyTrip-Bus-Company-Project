@@ -65,8 +65,9 @@ void Company::calcFinishTime(Time busarrivaltime, Passenger* p) {
         if (passenger->getBusType() == p->getBusType() && passenger->getBusID() == p->getBusID()) {
             gettingoffallpassengerstime = gettingoffallpassengerstime + passenger->getOffBusTime();
         }
-        FinishedPassengersCopy->dequeue();
-        FinishedPassengersCopy->enqueue(passenger);
+        Passenger* p1;
+        FinishedPassengersCopy->dequeue(p1);
+        //FinishedPassengersCopy->enqueue(passenger);
     }
 
     if (found) {
