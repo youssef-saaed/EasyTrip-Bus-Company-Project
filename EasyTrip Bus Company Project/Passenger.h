@@ -8,6 +8,7 @@ using namespace std;
 class Passenger {
 private:
     int passengerID;
+    int busID;
     int currentStation;
     int endStation;
     int priority;
@@ -24,6 +25,7 @@ private:
 public:
     Passenger();
     Passenger(int passengerID, int currentStation, int endStation, int priority, string busType, string passengerType, string direction, Time StationArrivalTime, Time GetOffBusTime=0, Time GetOnBusTime=0);
+    void setBusID(int busID);
     void setGetOnBusTime(Time getOnBusTime);
     void setGetOffBusTime(Time getOnBusTime);
     void setFinishTime(Time finishTime);
@@ -31,6 +33,7 @@ public:
     void setWaitTime(Time waitTime);
     void changePriority(int priority);
     int getPassengerID();
+    int getBusID();
     int getCurrentStation();
     int getEndStation();
     string getBusType();

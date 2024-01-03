@@ -36,7 +36,7 @@ public:
 	void calcFinishTime(Time busArrivalTime, Passenger* p);
 	void calcTripTime(Time busMoveTime, Passenger* p);
 	int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, const Passenger p);
-	/*void ProduceOutputFile();*/
+	void ProduceOutputFile();
 	void Simulate();
 	~Company();	
 };

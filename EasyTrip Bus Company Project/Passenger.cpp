@@ -23,6 +23,8 @@ Passenger::Passenger(int passengerID, int currentStation, int endStation, int pr
     this->StationArrivalTime = StationArrivalTime;
 }
 
+void Passenger::setBusID(int busID) {this->busID = busID;}
+
 void Passenger::setGetOnBusTime(Time getOnBusTime) {
     this->GetOnBusTime = getOnBusTime;
 }
@@ -45,6 +47,10 @@ void Passenger::changePriority(int priority) {
 
 int Passenger::getPassengerID() {
     return this->passengerID;
+}
+
+int Passenger::getBusID() {
+    return this->busID;
 }
 
 int Passenger::getCurrentStation() {
