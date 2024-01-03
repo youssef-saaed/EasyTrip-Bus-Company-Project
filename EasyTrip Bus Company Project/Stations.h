@@ -19,6 +19,8 @@ private:
     Queue<Passenger*> backwardWP;
     Queue<Passenger*> forwardSP;
     Queue<Passenger*> backwardSP;
+    int capacity;
+    int stationNumber;
 
 
 public:
@@ -31,6 +33,7 @@ public:
     void addPassengerToStation(Passenger* passenger);
     bool RemovePassengerFromStation(int id);
     void addRecentBus(Bus* bus);
-   
+    void unloadPassengers();
+    void loadPassengers();
    
 };
