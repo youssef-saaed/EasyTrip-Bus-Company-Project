@@ -2,7 +2,7 @@
 #include "Queue.h"
 
 
-WBus::WBus(int capacity,int currentStation,int destination=0)
+WBus::WBus(int capacity,int currentStation,int destination)
 {
 	passengers = new PriorityQueue<Passenger>(capacity);
 	direction = "FWD";

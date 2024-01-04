@@ -1,9 +1,9 @@
 #include "Station.h"
 #include "Stations.h"
 #include <typeinfo>
-#include <MBus.h>
-#include <WBus.h>
-#include<arrayList.h>
+#include "MBus.h"
+#include "WBus.h"
+#include "arrayList.h"
 Stations::Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers) : Station(number, maxNumberOfBuses), availableForwardBuses(maxNumberOfBuses), availableBackwardBuses(maxNumberOfBuses), recentBuses(maxNumberOfBuses), forwardNP(maxNumberOfPassengers), backwardNP(maxNumberOfPassengers), forwardWP(maxNumberOfPassengers), backwardWP(maxNumberOfPassengers),forwardSP(maxNumberOfPassengers), backwardSP(maxNumberOfPassengers)
 {
 };

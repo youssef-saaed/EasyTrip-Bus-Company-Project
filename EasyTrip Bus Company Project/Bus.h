@@ -5,6 +5,8 @@
 
 class Bus
 {
+protected:
+	string direction;
 public:
 
 	virtual void GetOn(Passenger* p) = 0;

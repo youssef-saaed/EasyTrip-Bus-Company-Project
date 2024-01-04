@@ -7,7 +7,6 @@ class MBus : public Bus
 {
 private:
 	PriorityQueue<Passenger> *passengers;
-	string direction;
 	int currentStation;
 	int destination;
 	int busID;

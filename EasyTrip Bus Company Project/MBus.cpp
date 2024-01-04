@@ -3,7 +3,7 @@
 
 
 
-MBus::MBus(int capacity,int currentStation , int destination=0)
+MBus::MBus(int capacity,int currentStation , int destination )
 {
 	passengers = new PriorityQueue<Passenger>(capacity);
 	direction = "FWD";
