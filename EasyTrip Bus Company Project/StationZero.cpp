@@ -1,6 +1,8 @@
 #include "StationZero.h"
-
-StationZero::StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity) :  MbusesInStation(NumberOfMBuses), WbusesInStation(NumberOfWBuses), MovedMBus(MBusCapacity), MovedWBus(WBusCapacity){   
+ StationZero::StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity) : Station(number, maxNumberOfBuses), MbusesInStation(NumberOfMBuses), WbusesInStation(NumberOfWBuses), MovedMBus(MBusCapacity), MovedWBus(WBusCapacity){   
+};
+    
+    
     Bus* bus = nullptr;
 
     for (int i = 0; i < NumberOfMBuses; i++)
