@@ -10,44 +10,13 @@ void Company::initialize() {
         StationsList->insert(station, i+1);
     }
 
-    // Station0 = new Queue<Bus*>(maxNumberOfBuses);
-    // int mBusCount = 0;
-    // int wBusCount = 0;
+    FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
+    WBusCheckup = new Queue<Bus*>(NumberOfWBuses);
+    MBusCheckup = new Queue<Bus*>(NumberOfMBuses);
+    WBusMoving = new Queue<Bus*>(NumberOfWBuses);
+    MBusMoving = new Queue<Bus*>(NumberOfMBuses);
 
-    // for (int i = 0; i < max(NumberOfMBuses, NumberOfWBuses); i++)
-    // {
-    //     Bus* bus = nullptr;
-    //     if (mBusCount < NumberOfMBuses)
-    //     {
-    //         bus = new MBus(MBusCapacity, 0); 
-    //         Station0->enqueue(bus);
-    //         mBusCount++;
-    //     }
-
-    //     if (wBusCount < NumberOfWBuses)
-    //     {
-    //         bus = new WBus(WBusCapacity, 0);  
-    //         Station0->enqueue(bus);
-    //         wBusCount++;
-    //     }
-
-    //     if (mBusCount == NumberOfMBuses && wBusCount < NumberOfWBuses)
-    //     {
-    //         for (; wBusCount < NumberOfWBuses; wBusCount++)
-    //         {
-    //             bus = new WBus(WBusCapacity, 0);  
-    //             Station0->enqueue(bus);
-    //         }
-    //     }
-    //     else if (wBusCount == NumberOfWBuses && mBusCount < NumberOfMBuses)
-    //     {
-    //         for (; mBusCount < NumberOfMBuses; mBusCount++)
-    //         {
-    //             bus = new MBus(MBusCapacity, 0); 
-    //             Station0->enqueue(bus);
-    //         }
-    //     }
-    // }
+    StationZero* station0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
 }
 
 void Company::calcFinishTime(Time busarrivaltime, Passenger* p) {

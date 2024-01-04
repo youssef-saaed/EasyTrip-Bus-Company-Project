@@ -1,17 +1,23 @@
 #pragma once
-#include "Station.h"
+#include "Bus.h"
+#include "MBus.h"
+#include "WBus.h"
+//#include "Station.h"
 
-class StationZero : public Station {
+class StationZero {
 private:
-    // Add checkup and moving wbus and mbus
+    // Add checkup wbus and mbus ---> moved to company
     // add available m and w
-    Queue<Bus*> busesInStation;
+    Queue<Bus*> MbusesInStation;
+    Queue<Bus*> WbusesInStation;
+    Queue<Bus*> MovedMBus;
+    Queue<Bus*> MovedWBus;
 public:
-    StationZero(int number, int maxNumberOfBuses);
-    void addBusToStation(Bus* bus);
-
-    void removeBusFromStation();
-    Queue<Bus*> getBusesInStation() const;
-
-   
+    StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity);
+    void addBusToStation(Bus* bus, char busType);
+    void removeBusFromStation(char busType);
+    Queue<Bus*> getMbusesInStation();
+    Queue<Bus*> getWbusesInStation();
+    Queue<Bus*> getMovedMBus();
+    Queue<Bus*> getMovedWBus();
 };

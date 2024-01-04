@@ -6,13 +6,17 @@ Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	ReadInputFile();
 	BusesEvents = new Queue<BusMoveEvent*>(NumberOfMBuses + NumberOfWBuses);
 	Time currentTime = Time(4, 0, 0);
-	FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
-	StationsList = new arrayList<Station*>(NumberOfStation + 1);
-	StationsList->push(new StationZero(0, 100));
-	for (int i = 0; i < NumberOfStation; i++)
-	{
-		StationsList->push(new Stations(i + 1, 100, 100));
-	}
+
+	// FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
+	// StationsList = new arrayList<Station*>(NumberOfStation + 1);
+	// StationsList->push(new StationZero(0, 100));
+	// for (int i = 0; i < NumberOfStation; i++)
+	// {
+	// 	StationsList->push(new Stations(i + 1, 100, 100));
+	// }
+
+	initialize();
+
 	/*OutputFileHandler.open(OutputDirectory);*/
 }
 
