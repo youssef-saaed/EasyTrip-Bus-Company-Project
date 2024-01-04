@@ -20,7 +20,6 @@ private:
 	std::ofstream OutputFileHandler;
 	Queue<Passenger*> *FinishedPassengers;
 	arrayList<Station*> *StationsList;
-	Queue<Bus*> *Station0;
 	Queue<PassengerEvent*> *PassengersEvents;
 	Queue<BusMoveEvent*> *BusesEvents;
 	Queue<Bus*> *WBusCheckup;
@@ -36,7 +35,7 @@ public:
 	void calcFinishTime(Time busArrivalTime, Passenger* p);
 	void calcTripTime(Time busMoveTime, Passenger* p);
 	int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, const Passenger p);
-	/*void ProduceOutputFile();*/
+	void ProduceOutputFile();
 	void Simulate();
 	~Company();	
 };
