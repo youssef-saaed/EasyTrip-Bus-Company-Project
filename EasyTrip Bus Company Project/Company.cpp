@@ -1,16 +1,26 @@
 #include "Company.h"
+#include <iostream>
+
+void Company::PassengerBoarding()
+{
+    for (int i = 1; i <= NumberOfStation; i++)
+    {   
+        int BoardingTime = 0;
+        Stations* s = (Stations*)StationsList->LookAt(i);
+        s->unloadPassengers(FinishedPassengers, NumberOfStation, GetOnOffDur, BoardingTime);
+        s->loadPassengers(BusesEvents, GetOnOffDur, BoardingTime, currentTime);
+    }
+}
 
 void Company::initialize() {
-    StationsList = new arrayList<Station*>(NumberOfStation);
+    StationsList = new arrayList<Station*>(NumberOfStation + 1);
     StationZero* s0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
-    S02 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
-    StationsList->insert(s0, 0);
+    StationsList->push(s0);
     int maxNumberOfBuses = NumberOfMBuses + NumberOfWBuses;
     for (int i = 0; i < NumberOfStation; i++)
     {
         Station* station;
         station = new Stations(i + 1, maxNumberOfBuses, NumOfEvents);
-
         StationsList->insert(station, i+1);
     }
 

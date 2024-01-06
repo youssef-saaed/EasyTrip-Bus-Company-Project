@@ -18,7 +18,7 @@ Bus::Bus(int capacity, int currentStation, int destination)
 	passengers = new PriorityQueue<Passenger*>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
-	this->destination = destination;
+	this->destination = currentStation + 1;
 	busID = count;
 }
 
@@ -36,23 +36,27 @@ void Bus::GetOn(Passenger* p)
 	}
 }
 
-void Bus::GetOff(Passenger *&p)
+bool Bus::GetOff(Passenger *&p)
 {
 	if (passengers->Peak(p) && p->getEndStation() == currentStation)
 	{
 		int _;
 		passengers->Dequeue(p, _);
+		return true;
 	}
+	return false;
 }
 
 
-void Bus::setCurrent(int currentStation)
+void Bus::setCurrent()
 {
 	if (direction == "FWD") {
-		currentStation++;
+		this->currentStation++;
+		this->destination = currentStation + 1;
 	}
 	else {
-		currentStation--;
+		this->currentStation--;
+		this->destination = currentStation - 1;
 	}
 }
 

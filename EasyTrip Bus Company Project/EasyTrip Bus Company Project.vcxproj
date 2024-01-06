@@ -157,7 +157,6 @@
     <ClInclude Include="Events.h" />
     <ClInclude Include="LeaveEvent.h" />
     <ClInclude Include="MBus.h" />
-    <ClInclude Include="NormalPassenger.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PassengerEvent.h" />
     <ClInclude Include="Queue.h" />

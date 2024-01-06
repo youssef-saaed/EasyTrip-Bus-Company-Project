@@ -1,4 +1,5 @@
 #include "LeaveEvent.h"
+#include <iostream>
 
 LeaveEvent::LeaveEvent(Time EventTime, int StartStation, int PassengerID) : PassengerEvent('L', EventTime, StartStation, PassengerID)
 {

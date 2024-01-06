@@ -1,5 +1,4 @@
-#ifndef _HELPERS_H_
-#define _HELPERS_H_
+#pragma once 
 
 template<typename T>
 void Swap(T& a, T& b)
@@ -8,5 +7,3 @@ void Swap(T& a, T& b)
     a = b;
     b = temp;
 }
-
-#endif

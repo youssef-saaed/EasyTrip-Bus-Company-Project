@@ -1,5 +1,4 @@
-#ifndef _ARRIVALEVENT_H_
-#define _ARRIVALEVENT_H_
+#pragma once
 
 #include "PassengerEvent.h"
 #include <string>
@@ -14,5 +13,3 @@ public:
     ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType = "NA");
     void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers);
 };
-
-#endif

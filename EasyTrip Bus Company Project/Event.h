@@ -1,5 +1,4 @@
-#ifndef _EVENT_H_
-#define _EVENT_H_
+#pragma once
 
 #include "Time.h"
 #include "Station.h"
@@ -19,5 +18,3 @@ public:
     char getType();
     virtual void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &FinishedPassengers) = 0;    
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef _PASSENGEREVENT_H_
-#define _PASSENGEREVENT_H_
+#pragma once
 
 #include "Event.h"
 
@@ -12,5 +11,3 @@ public:
     PassengerEvent(char Type, Time EventTime, int StartStation, int PassengerID);
     virtual void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &FinishedPassengers) = 0;    
 };
-
-#endif

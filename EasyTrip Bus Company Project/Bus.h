@@ -16,8 +16,8 @@ public:
 	Bus(int capacity, int currentStation, int destination);
 	void change_direction();
 	void GetOn(Passenger* p);
-	void GetOff(Passenger *&p);
-	void setCurrent(int currentStation);
+	bool GetOff(Passenger *&p);
+	void setCurrent();
 	void setDestination(int destination);
 	void setBusId(int busID);
 	string get_direction();

@@ -20,7 +20,6 @@ private:
 	std::ofstream OutputFileHandler;
 	Queue<Passenger*> *FinishedPassengers;
 	arrayList<Station*> *StationsList;
-	StationZero* S02;
 	Queue<PassengerEvent*> *PassengersEvents;
 	Queue<BusMoveEvent*> *BusesEvents;
 	Queue<Bus*> *WBusCheckup;
@@ -29,6 +28,7 @@ private:
 	Queue<Bus*> *MBusMoving;
 	Time currentTime;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
+	void PassengerBoarding();
 public:
 	Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt");
 	void ReadInputFile();

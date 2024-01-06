@@ -1,4 +1,5 @@
 #include "StationZero.h"
+#include <iostream>
  StationZero::StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity) : MbusesInStation(NumberOfMBuses), WbusesInStation(NumberOfWBuses), Station(0, NumberOfMBuses + NumberOfWBuses){       
     
     Bus* bus = nullptr;
@@ -9,10 +10,10 @@
         MbusesInStation.enqueue(bus);
     }
 
-    for (int i = 0; i < NumberOfMBuses; i++)
+    for (int i = 0; i < NumberOfWBuses; i++)
     {
         bus = new WBus(WBusCapacity, 0); 
-        MbusesInStation.enqueue(bus);
+        WbusesInStation.enqueue(bus);
     }
 };
 
@@ -22,21 +23,13 @@ void StationZero::addBusToStation(Bus* bus, char busType) {
 }
 
 void StationZero::removeBusFromStation(char busType, Bus*& b) {
-    if (busType == 'M') {
-        if (MbusesInStation.dequeue(b)) {
-            MovedMBus->enqueue(b);
-        }
-        else {
-            delete b;
-        }
+    if (busType == 'M' && MbusesInStation.dequeue(b))
+    {
+        MovedMBus->enqueue(b);
+        
     }
-    else if (busType == 'W') {
-        if (WbusesInStation.dequeue(b)) {
-            MovedWBus->enqueue(b);
-        }
-        else {
-            delete b;
-        }
+    else if (busType == 'W'&& WbusesInStation.dequeue(b)) {
+        MovedWBus->enqueue(b);
     }
 }
 

@@ -4,6 +4,7 @@
 #include "Bus.h"
 #include "Passenger.h"
 #include "arrayList.h"
+#include "Events.h"
 
 #include "PriorityQueue.h"
 
@@ -17,10 +18,9 @@ private:
     Queue<Passenger*> backwardNP;
     Queue<Passenger*> forwardWP;
     Queue<Passenger*> backwardWP;
-    Queue<Passenger*> forwardSP;
-    Queue<Passenger*> backwardSP;
+    PriorityQueue<Passenger*> forwardSP;
+    PriorityQueue<Passenger*> backwardSP;
     int capacity;
-    int stationNumber;
 
 
 public:
@@ -33,6 +33,6 @@ public:
     void addPassengerToStation(Passenger* passenger);
     bool RemovePassengerFromStation(int id);
     void addRecentBus(Bus* bus);
-    void unloadPassengers(arrayList<Station*>* StationsList);
-    void loadPassengers();
+    void unloadPassengers(Queue<Passenger*>*&FinishedPassengers, int numOfStations, int PassengerBoardingTime, int &BoardingTime);
+    void loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBoardingTime, int& BoardingTime, Time currentTime);
 };

@@ -1,5 +1,4 @@
-#ifndef _QUEUE_H_
-#define _QUEUE_H_
+#pragma once
 
 template<typename V>
 struct Node {
@@ -112,5 +111,3 @@ bool Queue<T>::peek(T& value) {
         return true;
     }
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef _PRIORITY_NODE_H_
-#define _PRIORITY_NODE_H_
+#pragma once
 
 template <typename T>
 class PriorityNode
@@ -42,5 +41,3 @@ template <typename T>
 PriorityNode<T>::PriorityNode(T value, int priority) : value(value), priority(priority)
 {
 }
-
-#endif

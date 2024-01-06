@@ -1,5 +1,4 @@
-#ifndef _PRIORITY_QUEUE_H_
-#define _PRIORITY_QUEUE_H_
+#pragma once
 
 #include "PriorityNode.h"
 #include "Helpers.h"
@@ -139,5 +138,3 @@ bool PriorityQueue<T>::Dequeue(T& value, int& priority)
 #undef LeftC
 #undef RightC
 #undef Parent
-
-#endif

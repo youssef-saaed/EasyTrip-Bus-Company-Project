@@ -1,4 +1,5 @@
 #include "ArrivalEvent.h"
+#include <iostream>
 
 ArrivalEvent::ArrivalEvent(Time EventTime, int StartStation, int EndStation, int PassengerID, std::string PassengerType, std::string SpecialPassengerType) : PassengerEvent('A', EventTime, StartStation, PassengerID)
 {
