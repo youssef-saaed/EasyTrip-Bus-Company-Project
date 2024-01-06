@@ -83,7 +83,7 @@ ostream& operator<<(ostream& os, Time& timeObj) {
 void Company::ProduceOutputFile() {
    OutputFileHandler << "FT" << "   " << "ID" << "     " << "AT" << "      " << "WT" << "      " << "TT";
 
-   int totalNP, totalSP, totalWP;
+   int totalNP = 0, totalSP = 0, totalWP = 0;
    Time totalTT;
    Time totalWT;
 

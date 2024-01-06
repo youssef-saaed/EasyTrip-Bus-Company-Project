@@ -7,12 +7,21 @@ class Bus
 {
 protected:
 	string direction;
+	PriorityQueue <Passenger*>* passengers;
+	int currentStation;
+	int destination;
+	int busID;
 public:
-
-	virtual void GetOn(Passenger* p) = 0;
-	virtual void GetOff(Passenger* p) = 0;
+	Bus(int capacity, int currentStation, int destination);
 	void change_direction();
-	virtual void setCurrent(int station) = 0;
-	virtual void setDestination(int station) = 0;
+	void GetOn(Passenger* p);
+	void GetOff(Passenger *&p);
+	void setCurrent(int currentStation);
+	void setDestination(int destination);
+	void setBusId(int busID);
+	string get_direction();
+	int get_destination();
+	int get_current();
+	int getBusID();
 };
 
