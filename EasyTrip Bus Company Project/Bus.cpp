@@ -1,5 +1,7 @@
 #include "Bus.h"
 
+int Bus::count = 0;
+
 void Bus::change_direction()
 {
 	if (direction == "FWD") {
@@ -12,10 +14,12 @@ void Bus::change_direction()
 
 Bus::Bus(int capacity, int currentStation, int destination)
 {
+	count++;
 	passengers = new PriorityQueue<Passenger*>(capacity);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = destination;
+	busID = count;
 }
 
 void Bus::GetOn(Passenger* p)

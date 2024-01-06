@@ -6,6 +6,7 @@
 class Bus
 {
 protected:
+	static int count;
 	string direction;
 	PriorityQueue <Passenger*>* passengers;
 	int currentStation;

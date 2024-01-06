@@ -6,11 +6,11 @@
 class Station {
 protected:
     int stationNumber;
-    arrayList<Bus*> movedBuses;
-
+    Queue<Bus*> *MovedMBus;
+    Queue<Bus*> *MovedWBus;
 public:
     Station(int number, int maxNumberOfBuses);
     /*Bus* removeBus(int id);*/
-    arrayList<Bus*> getMovedBuses() const;
+    bool PopFromMovedBuses(int BusID, char& type, Bus*& b);
     int getStationNumber();
 };

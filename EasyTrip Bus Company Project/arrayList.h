@@ -70,7 +70,7 @@ inline T arrayList<T>::LookAt(int index)
 }
 
 template<typename T>
-inline bool arrayList<T>::isempty()
+bool arrayList<T>::isempty()
 {
 	if (size == 0)
 	{
@@ -106,7 +106,7 @@ bool arrayList<T>::push(T element)
 template<typename T>
 bool arrayList<T>::pop(T& element)
 {
-	if (isempty)
+	if (isempty())
 	{
 		return false;
 	}

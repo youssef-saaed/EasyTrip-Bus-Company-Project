@@ -2,10 +2,13 @@
 
 void Company::initialize() {
     StationsList = new arrayList<Station*>(NumberOfStation);
+    StationZero* s0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
+    StationsList->push(s0);
     int maxNumberOfBuses = NumberOfMBuses + NumberOfWBuses;
     for (int i = 0; i < NumberOfStation; i++)
     {
-        Station* station = new Station(i + 1, maxNumberOfBuses);
+        Station* station;
+        station = new Stations(i + 1, maxNumberOfBuses, NumOfEvents);
 
         StationsList->insert(station, i+1);
     }
@@ -16,7 +19,7 @@ void Company::initialize() {
     WBusMoving = new Queue<Bus*>(NumberOfWBuses);
     MBusMoving = new Queue<Bus*>(NumberOfMBuses);
 
-    StationZero* station0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
+    
 }
 
 void Company::calcFinishTime(Time busarrivaltime, Passenger* p) {

@@ -83,6 +83,7 @@ void Stations::loadPassengers() {
                 currentBus->GetOn(currentPassenger);
                 forwardNP.dequeue(currentPassenger);
             }
+            MovedMBus->enqueue(currentBus);
         }
 
         else {
@@ -93,6 +94,7 @@ void Stations::loadPassengers() {
                 currentBus->GetOn(currentPassenger);
                 forwardWP.dequeue(currentPassenger);
             }
+            MovedWBus->enqueue(currentBus);
         }
     }
 
@@ -118,6 +120,7 @@ void Stations::loadPassengers() {
                 currentBus->GetOn(currentPassenger);
                 forwardNP.dequeue(currentPassenger);
             }
+            MovedMBus->enqueue(currentBus);
         }
 
         else {
@@ -129,6 +132,7 @@ void Stations::loadPassengers() {
                 currentBus->GetOn(currentPassenger);
                 forwardWP.dequeue(currentPassenger);
             }
+            MovedWBus->enqueue(currentBus);
         }
     }
 }

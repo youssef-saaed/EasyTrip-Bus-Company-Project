@@ -1,5 +1,5 @@
 #include "StationZero.h"
- StationZero::StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity) : MbusesInStation(NumberOfMBuses), WbusesInStation(NumberOfWBuses), MovedMBus(MBusCapacity), MovedWBus(WBusCapacity){       
+ StationZero::StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity) : MbusesInStation(NumberOfMBuses), WbusesInStation(NumberOfWBuses), Station(0, NumberOfMBuses + NumberOfWBuses){       
     
     Bus* bus = nullptr;
 
@@ -25,7 +25,7 @@ void StationZero::removeBusFromStation(char busType) {
     if (busType == 'M') {
         Bus* bus = nullptr;
         if (MbusesInStation.dequeue(bus)) {
-            MovedMBus.enqueue(bus);
+            MovedMBus->enqueue(bus);
         }
         else {
             delete bus;
@@ -34,7 +34,7 @@ void StationZero::removeBusFromStation(char busType) {
     else if (busType == 'W') {
         Bus* bus = nullptr;
         if (WbusesInStation.dequeue(bus)) {
-            MovedWBus.enqueue(bus);
+            MovedWBus->enqueue(bus);
         }
         else {
             delete bus;
@@ -48,12 +48,4 @@ Queue<Bus*> StationZero::getMbusesInStation() {
 
 Queue<Bus*> StationZero::getWbusesInStation() {
     return this->WbusesInStation;
-}
-
-Queue<Bus*> StationZero::getMovedMBus() {
-    return this->MovedMBus;
-}
-
-Queue<Bus*> StationZero::getMovedWBus() {
-    return this->MovedWBus;
 }
