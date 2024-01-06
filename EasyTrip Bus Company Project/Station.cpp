@@ -11,6 +11,9 @@ Station::Station(int number, int maxNumberOfBusess) : stationNumber(number), mov
 //}
 
 
+int Station::getStationNumber() {
+    return this->stationNumber;
+}
 
 arrayList<Bus*> Station::getMovedBuses() const {
     return movedBuses;

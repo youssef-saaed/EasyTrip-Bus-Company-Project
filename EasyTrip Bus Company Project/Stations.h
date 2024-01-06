@@ -33,7 +33,6 @@ public:
     void addPassengerToStation(Passenger* passenger);
     bool RemovePassengerFromStation(int id);
     void addRecentBus(Bus* bus);
-    void unloadPassengers();
+    void unloadPassengers(arrayList<Station*>* StationsList);
     void loadPassengers();
-   
 };

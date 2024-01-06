@@ -12,4 +12,5 @@ public:
     Station(int number, int maxNumberOfBuses);
     /*Bus* removeBus(int id);*/
     arrayList<Bus*> getMovedBuses() const;
+    int getStationNumber();
 };

@@ -15,27 +15,29 @@ Queue<Bus*> Stations::getAvailableForwardBuses() const {
 Queue<Bus*> Stations::getAvailableBackwardBuses() const {
     return availableBackwardBuses;
 }
-void Stations::unloadPassengers() {
+void Stations::unloadPassengers(arrayList<Station*>* StationsList) {
 
    
     while (!recentBuses.isEmpty()) {
 
-        Bus* currentBus = recentBuses.peek();
+        Bus* currentBus;
+        recentBuses.peek(currentBus);
         if (typeid(*currentBus).name() == "MBus") {
 
-            currentBus = new MBus(int capacity, currentBus->get_current(), currentBus->get_destination());
-            currentBus->GetOff(Passenger * p);
+            currentBus = new MBus(capacity, currentBus->get_current(), currentBus->get_destination());
+            Passenger* p;
+            currentBus->GetOff(p);
         }
 
 
         else {
 
-            currentBus = new WBus(int capacity, currentBus->get_current(), currentBus->get_destination());
+            currentBus = new WBus(capacity, currentBus->get_current(), currentBus->get_destination());
 
         }
 
 
-        if (stationNumber == arrayList[stationNumber].size() - 1) {
+        if (stationNumber == StationsList->LookAt(-1)->getStationNumber()) {
             currentBus->change_direction();
         }
         if (currentBus->get_direction() == "FWD") {
@@ -47,7 +49,7 @@ void Stations::unloadPassengers() {
         if (currentBus->get_direction() == "BWD") {
             availableBackwardBuses.enqueue(currentBus);
         }
-        recentBuses.dequeue();
+        recentBuses.dequeue(currentBus);
 
 
     }
@@ -57,124 +59,79 @@ void Stations::loadPassengers() {
 
     while (!availableForwardBuses.isEmpty()) {
 
-        Bus* currentBus = availableForwardBuses.peek();
+        Bus* currentBus;
+        availableForwardBuses.peek(currentBus);
 
         if ((typeid(*currentBus).name() == "MBus")) {
 
-            currentBus = new MBus(int capacity, currentBus->get_current(), currentBus->get_destination());
+            currentBus = new MBus(capacity, currentBus->get_current(), currentBus->get_destination());
 
 
             while (!forwardSP.isEmpty()) {
 
 
-                Passenger* currentPassenger = forwardSP.peek() ;
+                Passenger* currentPassenger;
+                forwardSP.peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardSP.dequeue();
-
-
-
+                forwardSP.dequeue(currentPassenger);
 
             }
-
 
             while (!forwardNP.isEmpty()) {
-
-
-                Passenger* currentPassenger = forwardNP.peek();
+                Passenger* currentPassenger;
+                forwardNP.peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardNP.dequeue();
-
-
+                forwardNP.dequeue(currentPassenger);
             }
-
-
-
         }
 
         else {
-
-            currentBus = new WBus(int capacity, currentBus->get_current(), currentBus->get_destination());
-
+            currentBus = new WBus(capacity, currentBus->get_current(), currentBus->get_destination());
             while (!forwardWP.isEmpty()) {
-
-
-                Passenger* currentPassenger = forwardWP.peek();
+                Passenger* currentPassenger;
+                forwardWP.peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardWP.dequeue();
-
+                forwardWP.dequeue(currentPassenger);
             }
-
-
-
         }
-
-
-
     }
 
    /* ////////////////////////////////availableBackwardBuses///////////////////////////////////////////////
     */
     while (!availableBackwardBuses.isEmpty()) {
 
-        Bus* currentBus = availableBackwardBuses.peek();
+        Bus* currentBus; 
+        availableBackwardBuses.peek(currentBus);
 
         if ((typeid(*currentBus).name() == "MBus")) {
-
-            currentBus = new MBus(int capacity, currentBus->get_current(), currentBus->get_destination());
-
-
+            currentBus = new MBus(capacity, currentBus->get_current(), currentBus->get_destination());
                 while (!forwardSP.isEmpty()) {
-
-
-                    Passenger* currentPassenger = forwardSP.peek();
-                        currentBus->GetOn(currentPassenger);
-                        forwardSP.dequeue();
-
-
-
-
+                    Passenger* currentPassenger;
+                    forwardSP.peek(currentPassenger);
+                    currentBus->GetOn(currentPassenger);
+                    forwardSP.dequeue(currentPassenger);
                 }
 
-
             while (!forwardNP.isEmpty()) {
-
-
-                Passenger* currentPassenger = forwardNP.peek();
+                Passenger* currentPassenger;
+                forwardNP.peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardNP.dequeue();
-
-
+                forwardNP.dequeue(currentPassenger);
             }
-
-
-
         }
 
         else {
 
-            currentBus = new WBus(int capacity, currentBus->get_current(), currentBus->get_destination());
-
+            currentBus = new WBus(capacity, currentBus->get_current(), currentBus->get_destination());
             while (!forwardWP.isEmpty()) {
-
-
-                Passenger* currentPassenger = forwardWP.peek();
+                Passenger* currentPassenger;
+                forwardWP.peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardWP.dequeue();
-
+                forwardWP.dequeue(currentPassenger);
             }
-
-
-
         }
-
-
-
     }
-
-
 }
-
-
 
 void Stations::addPassengerToStation(Passenger* passenger) {
     if (passenger->getPassengerType() == "POD")
