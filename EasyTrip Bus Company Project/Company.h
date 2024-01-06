@@ -20,7 +20,7 @@ private:
 	std::ofstream OutputFileHandler;
 	Queue<Passenger*> *FinishedPassengers;
 	arrayList<Station*> *StationsList;
-	//StationZero* S0;
+	StationZero* S02;
 	Queue<PassengerEvent*> *PassengersEvents;
 	Queue<BusMoveEvent*> *BusesEvents;
 	Queue<Bus*> *WBusCheckup;

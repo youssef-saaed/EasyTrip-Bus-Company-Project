@@ -3,7 +3,8 @@
 void Company::initialize() {
     StationsList = new arrayList<Station*>(NumberOfStation);
     StationZero* s0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
-    StationsList->push(s0);
+    S02 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
+    StationsList->insert(s0, 0);
     int maxNumberOfBuses = NumberOfMBuses + NumberOfWBuses;
     for (int i = 0; i < NumberOfStation; i++)
     {

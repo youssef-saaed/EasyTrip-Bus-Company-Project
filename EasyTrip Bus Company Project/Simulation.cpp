@@ -20,16 +20,30 @@ void Company::Simulate() {
 	PassengerEvent *PEvent;
 	PassengersEvents->peek(PEvent);
 	BusesEvents->peek(BEvent);
+	int timeCounter = 0;
+	Bus* MB;
+	Bus* WB;
+	S02->removeBusFromStation('M', MB);
+	S02->removeBusFromStation('W', WB);
+	MB->setCurrent(1);
+	WB->setCurrent(1);
 	while (!PassengersEvents->isEmpty() && !BusesEvents->isEmpty()) {
 		while (PassengersEvents->peek(PEvent) && PEvent->getEventTime() == currentTime) {
 			PassengersEvents->dequeue(PEvent);
 			PEvent->Execute(*StationsList, *FinishedPassengers);
+
 		}
-		while (BusesEvents->peek(BEvent) && BEvent->getEventTime() == currentTime) {
+		/*while (BusesEvents->peek(BEvent) && BEvent->getEventTime() == currentTime) {
 			BusesEvents->dequeue(BEvent);
 			BEvent->Execute(*StationsList, *FinishedPassengers);
-		}
+		}*/
+		
 		currentTime = currentTime + 1;
-
+		timeCounter++;
+		if (timeCounter == 15) {
+			timeCounter = 0;
+			S02->removeBusFromStation('M', MB);
+			S02->removeBusFromStation('W', WB);
+		}
 	}
 }

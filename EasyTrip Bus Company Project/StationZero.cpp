@@ -21,23 +21,21 @@ void StationZero::addBusToStation(Bus* bus, char busType) {
     else if (busType == 'W') WbusesInStation.enqueue(bus);
 }
 
-void StationZero::removeBusFromStation(char busType) {
+void StationZero::removeBusFromStation(char busType, Bus*& b) {
     if (busType == 'M') {
-        Bus* bus = nullptr;
-        if (MbusesInStation.dequeue(bus)) {
-            MovedMBus->enqueue(bus);
+        if (MbusesInStation.dequeue(b)) {
+            MovedMBus->enqueue(b);
         }
         else {
-            delete bus;
+            delete b;
         }
     }
     else if (busType == 'W') {
-        Bus* bus = nullptr;
-        if (WbusesInStation.dequeue(bus)) {
-            MovedWBus->enqueue(bus);
+        if (WbusesInStation.dequeue(b)) {
+            MovedWBus->enqueue(b);
         }
         else {
-            delete bus;
+            delete b;
         }
     }
 }

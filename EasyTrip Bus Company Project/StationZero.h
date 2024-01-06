@@ -13,7 +13,7 @@ private:
 public:
     StationZero(int NumberOfMBuses, int NumberOfWBuses, int MBusCapacity, int WBusCapacity);
     void addBusToStation(Bus* bus, char busType);
-    void removeBusFromStation(char busType);
+    void removeBusFromStation(char busType, Bus*& b);
     Queue<Bus*> getMbusesInStation();
     Queue<Bus*> getWbusesInStation();
 };
