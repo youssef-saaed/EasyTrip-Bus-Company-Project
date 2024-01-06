@@ -2,7 +2,7 @@
 #include "Queue.h"
 
 
-WBus::WBus(int capacity,int currentStation,int destination=0)
+WBus::WBus(int capacity,int currentStation,int destination)
 {
 	passengers = new PriorityQueue<Passenger>(capacity);
 	direction = "FWD";
@@ -36,12 +36,22 @@ void WBus::GetOff(Passenger* p)
 
 void WBus::setCurrent(int currentStation)
 {
-	this->currentStation = currentStation;
+	if (direction == "FWD") {
+		currentStation++;
+	}
+	else {
+		currentStation--;
+	}
 }
 
 void WBus::setDestination(int destination)
 {
 	this->destination = destination;
+}
+
+void WBus::setBusId(int busID)
+{
+	this->busID = busID;
 }
 
 string WBus::get_direction()
@@ -57,6 +67,11 @@ int WBus::get_destination()
 int WBus::get_current()
 {
 	return currentStation;
+}
+
+int WBus::getBusID()
+{
+	return busID;
 }
 
 

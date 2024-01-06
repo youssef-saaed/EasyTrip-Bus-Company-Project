@@ -6,6 +6,6 @@ void Bus::change_direction()
 		direction = "BCW";
 	}
 	else {
-		direction = "FWD"
+		direction = "FWD";
 	}
 }

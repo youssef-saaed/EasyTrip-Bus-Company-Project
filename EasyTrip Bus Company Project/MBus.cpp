@@ -3,7 +3,7 @@
 
 
 
-MBus::MBus(int capacity,int currentStation , int destination=0)
+MBus::MBus(int capacity,int currentStation , int destination )
 {
 	passengers = new PriorityQueue<Passenger>(capacity);
 	direction = "FWD";
@@ -37,12 +37,22 @@ void MBus::GetOff(Passenger*p)
 
 void MBus::setCurrent(int currentStation)
 {
-	this->currentStation = currentStation;
+	if (direction == "FWD") {
+		currentStation++;
+	}
+	else {
+		currentStation--;
+	}
 }
 
 void MBus::setDestination(int destination)
 {
 	this->destination = destination;
+}
+
+void MBus::setBusId(int busID)
+{
+	this->busID = busID;
 }
 
 string MBus::get_direction()
@@ -58,6 +68,11 @@ int MBus::get_destination()
 int MBus::get_current()
 {
 	return currentStation;
+}
+
+int MBus::getBusID()
+{
+	return busID;
 }
 
 
