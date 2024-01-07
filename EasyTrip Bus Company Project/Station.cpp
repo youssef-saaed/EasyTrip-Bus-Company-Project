@@ -40,4 +40,8 @@ void Station::addRecentBus(Bus* bus) {
     recentBuses->enqueue(bus);
 }
 
+Queue<Bus*>* Station::getRecentBuses() {
+    return this->recentBuses;
+}
+
 

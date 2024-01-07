@@ -27,6 +27,7 @@ private:
 	Queue<Bus*> *WBusMoving;
 	Queue<Bus*> *MBusMoving;
 	Time currentTime;
+	int BoardingTime = GetOnOffDur;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
 	void PassengerBoarding();
 public:

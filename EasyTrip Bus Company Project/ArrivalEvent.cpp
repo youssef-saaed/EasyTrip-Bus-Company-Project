@@ -40,4 +40,5 @@ void ArrivalEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> 
     Passenger *p = new Passenger(PassengerID, StartStation, EndStation, priority, busType, SpecialPassengerType, dir, EventTime);
     Stations *s = (Stations*)StationsList.LookAt(StartStation);
     s->addPassengerToStation(p);
+    cout << "A" << "\n";
 }

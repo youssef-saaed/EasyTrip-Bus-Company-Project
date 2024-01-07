@@ -18,9 +18,11 @@ Queue<Bus*> Stations::getAvailableBackwardBuses() const {
     return availableBackwardBuses;
 }
 void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numOfStations, int PassengerBoardingTime, int &BoardingTime) {
-    
+    Bus* currentBus;
+    recentBuses->peek(currentBus);
+    //cout << currentBus->getBusID() << "\n";
     while (!recentBuses->isEmpty()) {
-
+        std::cout << "M";
         Bus* currentBus;
         if (recentBuses->peek(currentBus))
         {
@@ -42,7 +44,7 @@ void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numO
 
                 availableForwardBuses.enqueue(currentBus);
             }
-            if (currentBus->get_direction() == "BWD") {
+            else if (currentBus->get_direction() == "BWD") {
                 availableBackwardBuses.enqueue(currentBus);
             }
             currentBus->setCurrent();
@@ -52,11 +54,10 @@ void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numO
 }
 
 void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBoardingTime, int &BoardingTime, Time currentTime, int MBusCapacity, int WBusCapacity) {
-
-    while (!availableForwardBuses.isEmpty()) {
-
-        Bus* currentBus;
-        availableForwardBuses.peek(currentBus);
+    Bus* currentBus;
+    availableForwardBuses.peek(currentBus);
+    cout << currentBus->getBusID() << "\n";
+    while (availableForwardBuses.peek(currentBus)) {
 
         if ((typeid(*currentBus).name() == "MBus")) {
 
@@ -71,6 +72,7 @@ void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBo
                 currentBus->GetOn(currentPassenger);
                 forwardSP.Dequeue(currentPassenger, _);
                 BoardingTime += PassengerBoardingTime;
+                cout << BoardingTime << "\n";
             }
 
             while (!forwardNP.isEmpty() && BoardingTime < 60) {
@@ -82,8 +84,9 @@ void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBo
             }
             if (BoardingTime < 60)
             {
+                availableForwardBuses.dequeue(currentBus);
                 MovedWBus->enqueue(currentBus);
-                //EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+                EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
             }
         }
 
@@ -97,8 +100,9 @@ void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBo
             }
             if (BoardingTime < 60) 
             {
+                availableForwardBuses.dequeue(currentBus);
                 MovedWBus->enqueue(currentBus);
-                //EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+                EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
             }
         }
     }

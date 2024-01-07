@@ -15,4 +15,5 @@ public:
     bool PopFromMovedBuses(int BusID, char& type, Bus*& b);
     int getStationNumber();
     void addRecentBus(Bus* bus);
+    Queue<Bus*>* getRecentBuses();
 };

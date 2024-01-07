@@ -32,3 +32,7 @@ Time BusMoveEvent::getEventTime()
 {
     return EventTime;
 }
+void BusMoveEvent::setEventTime(Time EventTime)
+{
+    this->EventTime = EventTime;
+}

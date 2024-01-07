@@ -5,7 +5,7 @@ void Company::PassengerBoarding()
 {
     for (int i = 1; i <= NumberOfStation; i++)
     {   
-        int BoardingTime = 0;
+        BoardingTime = 0;
         Stations* s = (Stations*)StationsList->LookAt(i);
         s->unloadPassengers(FinishedPassengers, NumberOfStation, GetOnOffDur, BoardingTime);
         s->loadPassengers(BusesEvents, GetOnOffDur, BoardingTime, currentTime, MBusCapacity, WBusCapacity);
