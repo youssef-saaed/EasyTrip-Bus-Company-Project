@@ -4,6 +4,7 @@
 Station::Station(int number, int maxNumberOfBusess) : stationNumber(number) {
     MovedMBus = new Queue<Bus*>(maxNumberOfBusess);
     MovedWBus = new Queue<Bus*>(maxNumberOfBusess);
+    recentBuses = new Queue<Bus*>(maxNumberOfBusess);
 }
 //Bus* Station::removeBus(int id)
 //{
@@ -33,6 +34,10 @@ bool Station::PopFromMovedBuses(int BusID, char &type, Bus*& b)
 
 int Station::getStationNumber() {
     return this->stationNumber;
+}
+
+void Station::addRecentBus(Bus* bus) {
+    recentBuses->enqueue(bus);
 }
 
 

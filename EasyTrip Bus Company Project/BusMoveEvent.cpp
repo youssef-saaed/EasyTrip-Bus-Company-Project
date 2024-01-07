@@ -1,10 +1,11 @@
 #include "BusMoveEvent.h"
 
-BusMoveEvent::BusMoveEvent(Time EventTime, int From, int To, int BusID): Event('M', EventTime)
-{  
+BusMoveEvent::BusMoveEvent(Time EventTime, int From, int To, int BusID, char busType)
+{
     this->From = From;
     this->To = To;
     this->BusID = BusID;
+    this->EventTime = EventTime;
 }
 
 void BusMoveEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers)
@@ -13,16 +14,21 @@ void BusMoveEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> 
     char type;
     if (To == 0)
     {
-        if (((Stations*)StationsList.LookAt(From))->PopFromMovedBuses(BusID, type, b))
+        if ((StationsList.LookAt(From))->PopFromMovedBuses(BusID, type, b))
         {
             ((StationZero*)StationsList.LookAt(0))->addBusToStation(b, type);
         }
     }
     else
     {
-        if (((Stations*)StationsList.LookAt(From))->PopFromMovedBuses(BusID, type, b))
+        if ((StationsList.LookAt(From))->PopFromMovedBuses(BusID, type, b))
         {
-            ((Stations*)StationsList.LookAt(To))->addRecentBus(b);
+            (StationsList.LookAt(To))->addRecentBus(b);
         }
     }
+}
+
+Time BusMoveEvent::getEventTime()
+{
+    return EventTime;
 }

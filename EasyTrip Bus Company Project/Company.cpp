@@ -8,7 +8,7 @@ void Company::PassengerBoarding()
         int BoardingTime = 0;
         Stations* s = (Stations*)StationsList->LookAt(i);
         s->unloadPassengers(FinishedPassengers, NumberOfStation, GetOnOffDur, BoardingTime);
-        s->loadPassengers(BusesEvents, GetOnOffDur, BoardingTime, currentTime);
+        s->loadPassengers(BusesEvents, GetOnOffDur, BoardingTime, currentTime, MBusCapacity, WBusCapacity);
     }
 }
 
@@ -72,11 +72,12 @@ int Company::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, Pass
        p.setWaitTime(WT);
        return WTMinutes;
    }
-   else if (p.getStatus() == "waiting") {
+   else {
        Time WT = now - p.getStationArrivalTime();
        int WTMinutes = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
        //if ((WTMinutes >= maxW) && p.getPassengerType() == "NP") p.changePriority(agedPriority);
        p.setWaitTime(WT);
        return WTMinutes;
    }
+   return 0;
 }

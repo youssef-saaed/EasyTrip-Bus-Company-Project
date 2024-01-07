@@ -1,16 +1,20 @@
 #pragma once
 
-#include "Event.h"
+#include "Station.h"
+#include "StationZero.h"
 #include "Bus.h"
 #include <typeinfo>
 
-class BusMoveEvent : public Event
+class BusMoveEvent
 {
 private:
     int From;
     int To;
     int BusID;
+    Time EventTime;
+
 public:
-    BusMoveEvent(Time EventTime, int From, int To, int BusID);
-    void Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers);    
+    BusMoveEvent(Time EventTime, int From, int To, int BusID, char busType = 'M');
+    void Execute(arrayList<Station*>& StationsList, Queue<Passenger*>& Passengers);
+    Time getEventTime();
 };
