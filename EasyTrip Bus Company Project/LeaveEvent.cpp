@@ -9,5 +9,4 @@ void LeaveEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &P
 {
 	Stations *s = (Stations*)StationsList.LookAt(StartStation);
 	s->RemovePassengerFromStation(PassengerID);
-	std::cout << "L" << "\n";
 }

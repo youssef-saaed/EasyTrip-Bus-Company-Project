@@ -1,19 +1,22 @@
 #pragma once
 
 #include "Passenger.h"
-
+#include "DirPriorityQueue.h"
 
 class Bus
 {
 protected:
 	static int count;
 	string direction;
-	PriorityQueue <Passenger*>* passengers;
+	DirPriorityQueue <Passenger*>* passengers;
+	int tripCount;
 	int currentStation;
 	int destination;
 	int busID;
 public:
 	Bus(int capacity, int currentStation, int destination);
+	void AddOneTrip();
+	int getTripCount();
 	void change_direction();
 	void GetOn(Passenger* p);
 	bool GetOff(Passenger *&p);

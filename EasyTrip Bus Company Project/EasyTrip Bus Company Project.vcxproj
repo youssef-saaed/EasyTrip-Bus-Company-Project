@@ -150,6 +150,7 @@
     <ClInclude Include="ArrivalEvent.h" />
     <ClInclude Include="Company.h" />
     <ClInclude Include="DirPriorityQueue.h" />
+    <ClInclude Include="Pair.h" />
     <ClInclude Include="Station.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="BusMoveEvent.h" />

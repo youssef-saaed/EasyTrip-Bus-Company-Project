@@ -13,6 +13,7 @@ void Company::PassengerBoarding()
 }
 
 void Company::initialize() {
+    NumberOfPromotedPassengers = 0;
     StationsList = new arrayList<Station*>(NumberOfStation + 1);
     StationZero* s0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
     StationsList->push(s0);
@@ -25,8 +26,6 @@ void Company::initialize() {
     }
 
     FinishedPassengers = new Queue<Passenger*>(NumOfEvents);
-    WBusCheckup = new Queue<Bus*>(NumberOfWBuses);
-    MBusCheckup = new Queue<Bus*>(NumberOfMBuses);
     WBusMoving = new Queue<Bus*>(NumberOfWBuses);
     MBusMoving = new Queue<Bus*>(NumberOfMBuses);
 
@@ -65,18 +64,18 @@ void Company::calcTripTime(Time busMoveTime, Passenger* p) {
     p->setTripTime(TT);
 }
 
-int Company::calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, Passenger p) {
-   if (p.getStatus() == "moved") {
-       Time WT = busMoveTime - p.getStationArrivalTime();
+int Company::calcWT(Time busMoveTime, Time now, Passenger *p) {
+   if (p->getStatus() == "moved") {
+       Time WT = busMoveTime - p->getStationArrivalTime();
        int WTMinutes = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-       p.setWaitTime(WT);
+       p->setWaitTime(WT);
        return WTMinutes;
    }
    else {
-       Time WT = now - p.getStationArrivalTime();
+       Time WT = now - p->getStationArrivalTime();
        int WTMinutes = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
        //if ((WTMinutes >= maxW) && p.getPassengerType() == "NP") p.changePriority(agedPriority);
-       p.setWaitTime(WT);
+       p->setWaitTime(WT);
        return WTMinutes;
    }
    return 0;

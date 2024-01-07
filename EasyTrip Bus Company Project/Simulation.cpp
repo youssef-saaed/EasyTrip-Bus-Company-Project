@@ -1,6 +1,5 @@
 #include "Company.h"
 #include <iostream>
-using namespace std;
 
 Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	InputFileHandler.open(InputDirectory);
@@ -8,16 +7,14 @@ Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	BusesEvents = new Queue<BusMoveEvent*>(NumberOfMBuses + NumberOfWBuses);
 	currentTime = Time(4, 0, 0);
 	initialize();
-	/*OutputFileHandler.open(OutputDirectory);*/
 }
 
 
 Company::~Company() {
 	InputFileHandler.close();
-	/*OutputFileHandler.close();*/
 }
 void Company::Simulate() {
-	//std::cout << currentTime.display() << "\n";
+	
 	BusMoveEvent *BEvent;
 	PassengerEvent *PEvent;
 	PassengersEvents->peek(PEvent);
@@ -30,27 +27,53 @@ void Company::Simulate() {
 	StationsList->LookAt(1)->getRecentBuses()->enqueue(MB);
 	StationsList->LookAt(1)->getRecentBuses()->enqueue(WB);
 	StationsList->LookAt(1)->getRecentBuses()->enqueue(WB);
-	((Stations*)StationsList->LookAt(1))->getAvailableForwardBuses().enqueue(MB);
-	((Stations*)StationsList->LookAt(1))->getAvailableForwardBuses().enqueue(WB);
+	((Stations*)StationsList->LookAt(1))->getAvailableForwardBuses()->enqueue(MB);
+	((Stations*)StationsList->LookAt(1))->getAvailableForwardBuses()->enqueue(WB);
 	while (!PassengersEvents->isEmpty() || !BusesEvents->isEmpty()) {
-		std::cout << FinishedPassengers->size() << '\n';
-		//std::cout << PEvent->getEventTime().display() << "\n";
+		for (int i = 1; i <= NumberOfStation; i++)
+		{
+			auto fnpl = ((Stations*)StationsList->LookAt(i))->getForwardNP();
+			auto fspl = ((Stations*)StationsList->LookAt(i))->getForwardSP();
+			Passenger* p;
+			while (fnpl->peek(p) && calcWT(Time(), currentTime, p) > MaxNormalPassengerWaiting)
+			{
+				fnpl->dequeue(p);
+				p->changeStatus("moved");
+				fspl->Enqueue(p, 4);
+				NumberOfPromotedPassengers++;
+			}
+			auto bnpl = ((Stations*)StationsList->LookAt(i))->getBackwardNP();
+			auto bspl = ((Stations*)StationsList->LookAt(i))->getBackwardSP();
+			while (bnpl->peek(p) && calcWT(Time(), currentTime, p) > MaxNormalPassengerWaiting)
+			{
+				bnpl->dequeue(p);
+				p->changeStatus("moved");
+				bspl->Enqueue(p, 4);
+				NumberOfPromotedPassengers++;
+			}
+		}
+		PassengerBoarding();
 		while (PassengersEvents->peek(PEvent) || PEvent->getEventTime() == currentTime) {
 			PassengersEvents->dequeue(PEvent);
-			//cout << "IN" << "\n";
 			PEvent->Execute(*StationsList, *FinishedPassengers);
-			//cout << "ex" << "\n";
 		}
-		//cout << BEvent->getEventTime().display() << "\n";
 		Time BusEventTime = currentTime + BoardingTime;
-		BEvent->setEventTime(BusEventTime);
 		while (BusesEvents->peek(BEvent) && BEvent->getEventTime() == currentTime) {
 			BusesEvents->dequeue(BEvent);
-			BEvent->Execute(*StationsList, *FinishedPassengers);
-			//cout << "ddd" << "\n";
+			BEvent->Execute(*StationsList, *FinishedPassengers, NumOfTripsBeforeCheckup, MBusCheckupDur, WBusCheckupDur);
+		}
+		Pair<Bus*, Time> p;
+		while (((StationZero*)StationsList->LookAt(0))->getWBusCheckup()->peek(p) && p.B == currentTime)
+		{
+			((StationZero*)StationsList->LookAt(0))->getWBusCheckup()->dequeue(p);
+			((StationZero*)StationsList->LookAt(0))->addBusToStation(p.A, 'W');
+		}
+		while (((StationZero*)StationsList->LookAt(0))->getMBusCheckup()->peek(p) && p.B == currentTime)
+		{
+			((StationZero*)StationsList->LookAt(0))->getMBusCheckup()->dequeue(p);
+			((StationZero*)StationsList->LookAt(0))->addBusToStation(p.A, 'M');
 		}
 		currentTime = currentTime + 1;
-		//std::cout << currentTime.display() << "\n";
 		timeCounter++;
 		if (timeCounter == 15) {
 			timeCounter = 0;
@@ -58,9 +81,7 @@ void Company::Simulate() {
 			((StationZero*)StationsList->LookAt(0))->removeBusFromStation('W', WB);
 			StationsList->LookAt(MB->get_current())->getRecentBuses()->enqueue(MB);
 			StationsList->LookAt(WB->get_current())->getRecentBuses()->enqueue(WB);
-		}
-		//cout << "sss" << "\n";
-		PassengerBoarding();
+		}		
 	}
 
 }

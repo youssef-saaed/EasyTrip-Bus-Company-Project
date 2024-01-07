@@ -15,11 +15,22 @@ void Bus::change_direction()
 Bus::Bus(int capacity, int currentStation, int destination)
 {
 	count++;
-	passengers = new PriorityQueue<Passenger*>(capacity);
+	tripCount = 0;
+	passengers = new DirPriorityQueue<Passenger*>(capacity, 10);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = currentStation + 1;
 	busID = count;
+}
+
+void Bus::AddOneTrip()
+{
+	tripCount++;
+}
+
+int Bus::getTripCount()
+{
+	return tripCount;
 }
 
 void Bus::GetOn(Passenger* p)

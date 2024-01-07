@@ -22,13 +22,12 @@ private:
 	arrayList<Station*> *StationsList;
 	Queue<PassengerEvent*> *PassengersEvents;
 	Queue<BusMoveEvent*> *BusesEvents;
-	Queue<Bus*> *WBusCheckup;
-	Queue<Bus*> *MBusCheckup;
 	Queue<Bus*> *WBusMoving;
 	Queue<Bus*> *MBusMoving;
 	Time currentTime;
 	int BoardingTime = GetOnOffDur;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
+	int NumberOfPromotedPassengers;
 	void PassengerBoarding();
 public:
 	Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt");
@@ -36,7 +35,7 @@ public:
 	void initialize();
 	void calcFinishTime(Time busArrivalTime, Passenger* p);
 	void calcTripTime(Time busMoveTime, Passenger* p);
-	int calcWT(Time busMoveTime, Time now, int agedPriority, int maxW, const Passenger p);
+	int calcWT(Time busMoveTime, Time now, Passenger *p);
 	void ProduceOutputFile();
 	void Simulate();
 	~Company();	

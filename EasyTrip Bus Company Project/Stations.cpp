@@ -4,30 +4,48 @@
 #include "MBus.h"
 #include "WBus.h"
 #include "arrayList.h"
-//#include "Company.h"
-#include <iostream>
-Stations::Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers) : Station(number, maxNumberOfBuses), availableForwardBuses(maxNumberOfBuses), availableBackwardBuses(maxNumberOfBuses), forwardNP(maxNumberOfPassengers), backwardNP(maxNumberOfPassengers), forwardWP(maxNumberOfPassengers), backwardWP(maxNumberOfPassengers),forwardSP(maxNumberOfPassengers), backwardSP(maxNumberOfPassengers)
+
+Stations::Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers) : Station(number, maxNumberOfBuses)
 {
+    availableForwardBuses = new Queue<Bus*>(maxNumberOfBuses);
+    availableBackwardBuses = new Queue<Bus*>(maxNumberOfBuses);
+    forwardNP = new Queue<Passenger*>(maxNumberOfPassengers);
+    backwardNP = new Queue<Passenger*>(maxNumberOfPassengers);
+    forwardWP = new Queue<Passenger*>(maxNumberOfPassengers);
+    backwardWP = new Queue<Passenger*>(maxNumberOfPassengers);
+    forwardSP = new PriorityQueue<Passenger*>(maxNumberOfPassengers);
+    backwardSP = new PriorityQueue<Passenger*>(maxNumberOfPassengers);
 };
 
-Queue<Bus*> Stations::getAvailableForwardBuses() const {
+Queue<Bus*> *Stations::getAvailableForwardBuses() const {
     return availableForwardBuses;
 }
 
-Queue<Bus*> Stations::getAvailableBackwardBuses() const {
+Queue<Bus*> *Stations::getAvailableBackwardBuses() const {
     return availableBackwardBuses;
+}
+Queue<Passenger*>* Stations::getForwardNP()
+{
+    return forwardNP;
+}
+Queue<Passenger*> *Stations::getBackwardNP()
+{
+    return backwardNP;
+}
+PriorityQueue<Passenger*>* Stations::getForwardSP()
+{
+    return forwardSP;
+}
+PriorityQueue<Passenger*>* Stations::getBackwardSP()
+{
+    return backwardSP;
 }
 void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numOfStations, int PassengerBoardingTime, int &BoardingTime) {
     Bus* currentBus;
-    recentBuses->peek(currentBus);
-    //cout << currentBus->getBusID() << "\n";
     while (!recentBuses->isEmpty()) {
-        std::cout << "M";
-        Bus* currentBus;
         if (recentBuses->peek(currentBus))
         {
             Passenger* p;
-
             while (currentBus->GetOff(p) && BoardingTime < 60)
             {
                 FinishedPassengers->enqueue(p);
@@ -42,10 +60,10 @@ void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numO
             }
             if (currentBus->get_direction() == "FWD") {
 
-                availableForwardBuses.enqueue(currentBus);
+                availableForwardBuses->enqueue(currentBus);
             }
             else if (currentBus->get_direction() == "BWD") {
-                availableBackwardBuses.enqueue(currentBus);
+                availableBackwardBuses->enqueue(currentBus);
             }
             currentBus->setCurrent();
             recentBuses->dequeue(currentBus);
@@ -55,94 +73,97 @@ void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numO
 
 void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBoardingTime, int &BoardingTime, Time currentTime, int MBusCapacity, int WBusCapacity) {
     Bus* currentBus;
-    availableForwardBuses.peek(currentBus);
-    cout << currentBus->getBusID() << "\n";
-    while (availableForwardBuses.peek(currentBus)) {
+    while (availableForwardBuses->peek(currentBus)) {
 
         if ((typeid(*currentBus).name() == "MBus")) {
 
-            currentBus = new MBus(MBusCapacity, currentBus->get_current(), currentBus->get_destination());
 
-
-            while (!forwardSP.IsEmpty() && BoardingTime < 60) {
+            while (!forwardSP->IsEmpty() && BoardingTime < 60) {
 
                 int _;
                 Passenger* currentPassenger;
-                forwardSP.Peak(currentPassenger);
+                forwardSP->Peak(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardSP.Dequeue(currentPassenger, _);
+                forwardSP->Dequeue(currentPassenger, _);
                 BoardingTime += PassengerBoardingTime;
-                cout << BoardingTime << "\n";
             }
 
-            while (!forwardNP.isEmpty() && BoardingTime < 60) {
+            while (!forwardNP->isEmpty() && BoardingTime < 60) {
                 Passenger* currentPassenger;
-                forwardNP.peek(currentPassenger);
+                forwardNP->peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardNP.dequeue(currentPassenger);
+                forwardNP->dequeue(currentPassenger);
                 BoardingTime += PassengerBoardingTime;
             }
-            if (BoardingTime < 60)
+            if (BoardingTime < 60 && currentBus)
             {
-                availableForwardBuses.dequeue(currentBus);
+                availableForwardBuses->dequeue(currentBus);
                 MovedWBus->enqueue(currentBus);
-                EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+                EventsList->enqueue(new BusMoveEvent(currentTime + 1, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
             }
         }
 
         else {
-            while (!forwardWP.isEmpty() && BoardingTime < 60) {
+            while (!forwardWP->isEmpty() && BoardingTime < 60) {
                 Passenger* currentPassenger;
-                forwardWP.peek(currentPassenger);
+                forwardWP->peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardWP.dequeue(currentPassenger);
+                forwardWP->dequeue(currentPassenger);
                 BoardingTime += PassengerBoardingTime;
             }
-            if (BoardingTime < 60) 
+            if (BoardingTime < 60 && currentBus)
             {
-                availableForwardBuses.dequeue(currentBus);
+                availableForwardBuses->dequeue(currentBus);
                 MovedWBus->enqueue(currentBus);
-                EventsList->enqueue(new BusMoveEvent(currentTime, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+                EventsList->enqueue(new BusMoveEvent(currentTime + 2, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
             }
         }
     }
 
    /* ////////////////////////////////availableBackwardBuses///////////////////////////////////////////////
     */
-    while (!availableBackwardBuses.isEmpty()) {
+    while (availableBackwardBuses->peek(currentBus)) {
 
-        Bus* currentBus; 
-        availableBackwardBuses.peek(currentBus);
+        
 
         if ((typeid(*currentBus).name() == "MBus")) {
-            currentBus = new MBus(MBusCapacity, currentBus->get_current(), currentBus->get_destination());
-                while (!forwardSP.IsEmpty()) {
+                while (!forwardSP->IsEmpty()) {
                     int _;
                     Passenger* currentPassenger;
-                    forwardSP.Peak(currentPassenger);
+                    forwardSP->Peak(currentPassenger);
                     currentBus->GetOn(currentPassenger);
-                    forwardSP.Dequeue(currentPassenger, _);
+                    forwardSP->Dequeue(currentPassenger, _);
                 }
 
-            while (!forwardNP.isEmpty()) {
+            while (!forwardNP->isEmpty()) {
                 Passenger* currentPassenger;
-                forwardNP.peek(currentPassenger);
+                forwardNP->peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardNP.dequeue(currentPassenger);
+                forwardNP->dequeue(currentPassenger);
             }
-            MovedMBus->enqueue(currentBus);
+            if (BoardingTime < 60 && currentBus)
+            {
+                availableForwardBuses->dequeue(currentBus);
+                MovedWBus->enqueue(currentBus);
+                EventsList->enqueue(new BusMoveEvent(currentTime + 2, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+            }
         }
 
         else {
 
             currentBus = new WBus(WBusCapacity, currentBus->get_current(), currentBus->get_destination());
-            while (!forwardWP.isEmpty()) {
+            while (!forwardWP->isEmpty()) {
                 Passenger* currentPassenger;
-                forwardWP.peek(currentPassenger);
+                forwardWP->peek(currentPassenger);
                 currentBus->GetOn(currentPassenger);
-                forwardWP.dequeue(currentPassenger);
+                forwardWP->dequeue(currentPassenger);
             }
-            MovedWBus->enqueue(currentBus);
+            if (BoardingTime < 60 && currentBus)
+            {
+                availableForwardBuses->dequeue(currentBus);
+                MovedWBus->enqueue(currentBus);
+                EventsList->enqueue(new BusMoveEvent(currentTime + 2, stationNumber, currentBus->get_destination(), currentBus->getBusID()));
+            }
         }
     }
 }
@@ -153,33 +174,33 @@ void Stations::addPassengerToStation(Passenger* passenger) {
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardNP.enqueue(passenger);
+            forwardNP->enqueue(passenger);
         }
         else
         {
-            backwardNP.enqueue(passenger);
+            backwardNP->enqueue(passenger);
         }
     }
     else if (passenger->getPassengerType() == "WP")
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardWP.enqueue(passenger);
+            forwardWP->enqueue(passenger);
         }
         else
         {
-            backwardWP.enqueue(passenger);
+            backwardWP->enqueue(passenger);
         }
     }
     else
     {
         if (passenger->getDirection() == "FWD")
         {
-            forwardSP.Enqueue(passenger, passenger->getPriority());
+            forwardSP->Enqueue(passenger, passenger->getPriority());
         }
         else
         {
-            backwardSP.Enqueue(passenger, passenger->getPriority());
+            backwardSP->Enqueue(passenger, passenger->getPriority());
         }
     }
 }
@@ -187,9 +208,20 @@ void Stations::addPassengerToStation(Passenger* passenger) {
 bool Stations::RemovePassengerFromStation(int id)
 {
     bool flag = false; 
-    Queue<Passenger*> temp(forwardNP.getMaxCapacity());
-    Passenger* p;
-    while (forwardNP.dequeue(p))
+    //Queue<Passenger*> temp(forwardNP.getMaxCapacity());
+    Passenger* p, *firstP;
+    if (!forwardNP->dequeue(p))
+    {
+        return true;
+    }
+    firstP = p;
+    if (firstP->getPassengerID() == id)
+    {
+        delete firstP;
+        return true;
+    }
+    forwardNP->enqueue(firstP);
+    while (forwardNP->peek(p) && p != firstP)
     {
         if (p->getPassengerID() == id)
         {
@@ -198,13 +230,13 @@ bool Stations::RemovePassengerFromStation(int id)
         }
         else 
         {
-            temp.enqueue(p);
+            forwardNP->enqueue(p);
         }
     }
 
-    while (temp.dequeue(p))
+    /*while (temp.dequeue(p))
     {
         forwardNP.enqueue(p);
-    }
+    }*/
     return flag;
 }

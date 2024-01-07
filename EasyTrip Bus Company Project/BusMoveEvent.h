@@ -15,7 +15,7 @@ private:
 
 public:
     BusMoveEvent(Time EventTime, int From, int To, int BusID, char busType = 'M');
-    void Execute(arrayList<Station*>& StationsList, Queue<Passenger*>& Passengers);
+    void Execute(arrayList<Station*>& StationsList, Queue<Passenger*>& Passengers, int TripsBeforeCheckup, Time Mbus, Time Wbus);
     Time getEventTime();
     void setEventTime(Time EventTime);
 };
