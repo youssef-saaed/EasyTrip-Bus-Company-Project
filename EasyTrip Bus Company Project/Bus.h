@@ -13,8 +13,10 @@ protected:
 	int currentStation;
 	int destination;
 	int busID;
+	int totalNumberOfPassengers;
 public:
 	Bus(int capacity, int currentStation, int destination);
+	bool IsEmpty();
 	void AddOneTrip();
 	int getTripCount();
 	void change_direction();

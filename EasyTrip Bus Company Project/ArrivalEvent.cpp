@@ -37,8 +37,7 @@ void ArrivalEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> 
     {
         busType = "WBus";
     }
-    Passenger *p = new Passenger(PassengerID, StartStation, EndStation, priority, busType, SpecialPassengerType, dir, EventTime);
+    Passenger *p = new Passenger(PassengerID, StartStation, EndStation, priority, busType, PassengerType, dir, EventTime);
     Stations *s = (Stations*)StationsList.LookAt(StartStation);
     s->addPassengerToStation(p);
-    /*cout << "A" << "\n";*/
 }

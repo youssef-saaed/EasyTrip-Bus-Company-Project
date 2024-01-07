@@ -16,11 +16,17 @@ Bus::Bus(int capacity, int currentStation, int destination)
 {
 	count++;
 	tripCount = 0;
+	totalNumberOfPassengers = 0;
 	passengers = new DirPriorityQueue<Passenger*>(capacity, 10);
 	direction = "FWD";
 	this->currentStation = currentStation;
 	this->destination = currentStation + 1;
 	busID = count;
+}
+
+bool Bus::IsEmpty()
+{
+	return passengers->IsEmpty();
 }
 
 void Bus::AddOneTrip()
@@ -38,11 +44,11 @@ void Bus::GetOn(Passenger* p)
 	if (p->getCurrentStation() == currentStation) {
 		if (direction == "FWD")
 		{
-			passengers->Enqueue(p, 1000 - p->getEndStation());
+			passengers->Enqueue(p, p->getEndStation()) ? totalNumberOfPassengers++ : totalNumberOfPassengers;
 		}
 		else
 		{
-			passengers->Enqueue(p, p->getEndStation());
+			passengers->Enqueue(p, p->getEndStation()) ? totalNumberOfPassengers++ : totalNumberOfPassengers;
 		}
 	}
 }
@@ -68,6 +74,10 @@ void Bus::setCurrent()
 	else {
 		this->currentStation--;
 		this->destination = currentStation - 1;
+		if (currentStation == 0)
+		{
+			tripCount++;
+		}
 	}
 }
 

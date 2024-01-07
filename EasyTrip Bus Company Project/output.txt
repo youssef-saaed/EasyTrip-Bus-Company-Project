@@ -1,0 +1,7 @@
+FT   ID     AT      WT      TT
+passengers: 0  [NP: 0, SP: 0, WP: 0]
+passenger Avg Wait time= 0:0
+passenger Avg trip time= 0:0
+Auto-promoted passengers: -nan(ind)%buses: 8    [WBus: 3, MBus: 5]
+Avg Busy time = %
+Avg utilization = %

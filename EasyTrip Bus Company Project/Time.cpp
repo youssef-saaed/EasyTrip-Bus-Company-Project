@@ -98,7 +98,7 @@ Time Time::CalcAvgTimeOfTrip(Time& t, int n) {
 
     int totalMinutes = ((t.getHour() * 60) + t.getMinute());
 
-    int avgMinutes = totalMinutes / n;
+    int avgMinutes = totalMinutes / std::max(n, 1);
 
     int resultHour, resultMin;
     if (avgMinutes < 60) {

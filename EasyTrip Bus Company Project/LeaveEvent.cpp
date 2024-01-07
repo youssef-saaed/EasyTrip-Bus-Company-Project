@@ -7,6 +7,7 @@ LeaveEvent::LeaveEvent(Time EventTime, int StartStation, int PassengerID) : Pass
 
 void LeaveEvent::Execute(arrayList<Station*> &StationsList, Queue<Passenger*> &Passengers)
 {
+	
 	Stations *s = (Stations*)StationsList.LookAt(StartStation);
 	s->RemovePassengerFromStation(PassengerID);
 }

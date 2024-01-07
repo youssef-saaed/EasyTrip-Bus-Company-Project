@@ -18,6 +18,11 @@ void Company::initialize() {
     StationZero* s0 = new StationZero(NumberOfMBuses, NumberOfWBuses, MBusCapacity, WBusCapacity);
     StationsList->push(s0);
     int maxNumberOfBuses = NumberOfMBuses + NumberOfWBuses;
+    busyTime = new int[maxNumberOfBuses];
+    for (int i = 0; i < maxNumberOfBuses; i++)
+    {
+        busyTime[i] = 0;
+    }
     for (int i = 0; i < NumberOfStation; i++)
     {
         Station* station;
@@ -49,7 +54,7 @@ void Company::calcFinishTime(Time busarrivaltime, Passenger* p) {
         }
         Passenger* p1;
         FinishedPassengersCopy->dequeue(p1);
-        //FinishedPassengersCopy->enqueue(passenger);
+        FinishedPassengersCopy->enqueue(passenger);
     }
 
     if (found) {
@@ -74,7 +79,6 @@ int Company::calcWT(Time busMoveTime, Time now, Passenger *p) {
    else {
        Time WT = now - p->getStationArrivalTime();
        int WTMinutes = (WT.getHour() * 60) + WT.getMinute() + (WT.getSecond() / 60);
-       //if ((WTMinutes >= maxW) && p.getPassengerType() == "NP") p.changePriority(agedPriority);
        p->setWaitTime(WT);
        return WTMinutes;
    }

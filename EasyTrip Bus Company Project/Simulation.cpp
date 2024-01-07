@@ -3,6 +3,7 @@
 
 Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 	InputFileHandler.open(InputDirectory);
+	OutputFileHandler.open(OutputDirectory);
 	ReadInputFile();
 	BusesEvents = new Queue<BusMoveEvent*>(NumberOfMBuses + NumberOfWBuses);
 	currentTime = Time(4, 0, 0);
@@ -12,6 +13,8 @@ Company::Company(std::string InputDirectory, std::string OutputDirectory) {
 
 Company::~Company() {
 	InputFileHandler.close();
+	ProduceOutputFile();
+	OutputFileHandler.close();
 }
 void Company::Simulate() {
 	
@@ -32,6 +35,27 @@ void Company::Simulate() {
 	while (!PassengersEvents->isEmpty() || !BusesEvents->isEmpty()) {
 		for (int i = 1; i <= NumberOfStation; i++)
 		{
+			
+			if (((Stations*)StationsList->LookAt(i))->getRecentBuses()->dequeue(MB))
+			{
+				WB = MB;
+				if (MB->IsEmpty())
+				{
+					busyTime[MB->getBusID() - 1]++;
+				}
+				((Stations*)StationsList->LookAt(i))->getRecentBuses()->enqueue(MB);
+				while (((Stations*)StationsList->LookAt(i))->getRecentBuses()->peek(MB) && MB != WB)
+				{
+					((Stations*)StationsList->LookAt(i))->getRecentBuses()->dequeue(MB);
+					if (MB->IsEmpty())
+					{
+						busyTime[MB->getBusID() - 1]++;
+					}
+					((Stations*)StationsList->LookAt(i))->getRecentBuses()->enqueue(MB);
+
+				}
+			}
+
 			auto fnpl = ((Stations*)StationsList->LookAt(i))->getForwardNP();
 			auto fspl = ((Stations*)StationsList->LookAt(i))->getForwardSP();
 			Passenger* p;

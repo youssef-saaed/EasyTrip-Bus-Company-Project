@@ -3,6 +3,7 @@
 #include <typeinfo>
 #include "MBus.h"
 #include "WBus.h"
+#include <iostream>
 #include "arrayList.h"
 
 Stations::Stations(int number, int maxNumberOfBuses, int maxNumberOfPassengers) : Station(number, maxNumberOfBuses)
@@ -74,12 +75,10 @@ void Stations::unloadPassengers(Queue<Passenger*>*& FinishedPassengers, int numO
 void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBoardingTime, int &BoardingTime, Time currentTime, int MBusCapacity, int WBusCapacity) {
     Bus* currentBus;
     while (availableForwardBuses->peek(currentBus)) {
-
         if ((typeid(*currentBus).name() == "MBus")) {
 
 
             while (!forwardSP->IsEmpty() && BoardingTime < 60) {
-
                 int _;
                 Passenger* currentPassenger;
                 forwardSP->Peak(currentPassenger);
@@ -169,7 +168,6 @@ void Stations::loadPassengers(Queue<BusMoveEvent*>*& EventsList, int PassengerBo
 }
 
 void Stations::addPassengerToStation(Passenger* passenger) {
-    
     if (passenger->getPassengerType() == "NP")
     {
         if (passenger->getDirection() == "FWD")
@@ -221,7 +219,7 @@ bool Stations::RemovePassengerFromStation(int id)
         return true;
     }
     forwardNP->enqueue(firstP);
-    while (forwardNP->peek(p) && p != firstP)
+    while (forwardNP->dequeue(p) && p != firstP)
     {
         if (p->getPassengerID() == id)
         {

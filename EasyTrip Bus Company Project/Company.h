@@ -28,6 +28,7 @@ private:
 	int BoardingTime = GetOnOffDur;
 	int NumberOfStation, NumberOfWBuses, NumberOfMBuses, TimeBetweenEachStation, WBusCapacity, MBusCapacity, NumOfTripsBeforeCheckup, WBusCheckupDur, MBusCheckupDur, MaxNormalPassengerWaiting, GetOnOffDur, NumOfEvents;
 	int NumberOfPromotedPassengers;
+	int *busyTime;
 	void PassengerBoarding();
 public:
 	Company(std::string InputDirectory = "input.txt", std::string OutputDirectory = "output.txt");

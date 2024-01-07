@@ -43,7 +43,6 @@ void Company::ReadInputFile() {
             passengerIDINT = stoi(passengerID);
             startStationINT = stoi(startStation);
             endStationINT = stoi(endStation);
-            
 
             event = new ArrivalEvent(timeStamp, startStationINT, endStationINT, passengerIDINT, passengerType, specificPassengerType);
         } else if (eventType == 'L') {
@@ -81,7 +80,7 @@ ostream& operator<<(ostream& os, Time& timeObj) {
 
 
 void Company::ProduceOutputFile() {
-   OutputFileHandler << "FT" << "   " << "ID" << "     " << "AT" << "      " << "WT" << "      " << "TT";
+   OutputFileHandler << "FT" << "   " << "ID" << "     " << "AT" << "      " << "WT" << "      " << "TT\n";
 
    int totalNP = 0, totalSP = 0, totalWP = 0;
    Time totalTT;
@@ -91,7 +90,7 @@ void Company::ProduceOutputFile() {
    Passenger* p;
    for (int i=0; i < finishedPassengersSize; i++) {
        FinishedPassengers->peek(p);
-       OutputFileHandler << p->getFinishTime().display() << p->getPassengerID() << p->getStationArrivalTime().display() << p->getWaitTime().display() << p->getTripTime().display();
+       OutputFileHandler << p->getFinishTime().display() << p->getPassengerID() << p->getStationArrivalTime().display() << p->getWaitTime().display() << p->getTripTime().display() << '\n';
        if (p->getPassengerType() == "NP") totalNP++;
        else if (p->getPassengerType() == "WP") totalWP++;
        else totalSP++;
@@ -104,11 +103,15 @@ void Company::ProduceOutputFile() {
    Time avgTT = avgTT.CalcAvgTimeOfTrip(totalTT, finishedPassengersSize);
    Time avgWT = avgWT.CalcAvgTimeOfTrip(totalWT, finishedPassengersSize);
 
-   OutputFileHandler << "passengers: " << finishedPassengersSize << "  " << "[NP: "<<totalNP<<", SP: "<<totalSP<<", WP: "<<totalWP<<"]";
-   OutputFileHandler << "passenger Avg Wait time= " << avgWT.display();
-   OutputFileHandler << "passenger Avg trip time= " << avgTT.display();
-   OutputFileHandler << "Auto-promoted passengers: " << "%";
-   OutputFileHandler << "buses: " << NumberOfWBuses+NumberOfMBuses << "    " << "[WBus: "<<NumberOfWBuses << ", MBus: "<<NumberOfMBuses << "]";
-   OutputFileHandler << "Avg Busy time = " << "%";
-   OutputFileHandler << "Avg utilization = " << "%";
+   double npPercentage = 100. * NumberOfPromotedPassengers / totalNP;
+   // Utilization
+   // Busy Time
+
+   OutputFileHandler << "passengers: " << finishedPassengersSize << "  " << "[NP: "<<totalNP<<", SP: "<<totalSP<<", WP: "<<totalWP<<"]\n";
+   OutputFileHandler << "passenger Avg Wait time= " << avgWT.display() << '\n';
+   OutputFileHandler << "passenger Avg trip time= " << avgTT.display() << '\n';
+   OutputFileHandler << "Auto-promoted passengers: " << npPercentage << "%";
+   OutputFileHandler << "buses: " << NumberOfWBuses+NumberOfMBuses << "    " << "[WBus: "<<NumberOfWBuses << ", MBus: "<<NumberOfMBuses << "]\n";
+   OutputFileHandler << "Avg Busy time = " << "%\n";
+   OutputFileHandler << "Avg utilization = " << "%\n";
 }
